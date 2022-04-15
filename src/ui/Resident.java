@@ -13,7 +13,6 @@ public class Resident {
 
     private JTabbedPane tabbedPane;
     private JPanel panelResident;
-    private JTable table1;
     private JButton addButton;
     private JButton modifyButton;
     private JButton deleteButton;
