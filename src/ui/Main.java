@@ -11,14 +11,14 @@ import java.util.Date;
 public class Main {
     private JPanel JPanel;
     private JPanel JPanelMain;
+    private JPanel JPanelContent;
     private JTextField textField1;
     private JTextField textField2;
     private JButton signInButton;
     private JButton signUpButton;
-    private JButton logOutButton;
     private JRadioButton residentRadioButton;
     private JRadioButton managementRadioButton;
-    private JRadioButton supermarketRadioButton;
+    private JRadioButton marketRadioButton;
     private JButton addButton;
     private JButton modifyButton;
     private JButton deleteButton;
@@ -48,6 +48,7 @@ public class Main {
                 //abnormalPatientModel.notifyUpdate();
             }
         });
+        JPanelContent.add("Resident", new ui.Resident().getPanel());
     }
 
     public static void main(String[] args) {
