@@ -9,8 +9,16 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class Main {
+    private JPanel JPanel;
     private JPanel JPanelMain;
-    private JTabbedPane tabbedPane1;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JButton signInButton;
+    private JButton signUpButton;
+    private JButton logOutButton;
+    private JRadioButton residentRadioButton;
+    private JRadioButton managementRadioButton;
+    private JRadioButton supermarketRadioButton;
     private JButton addButton;
     private JButton modifyButton;
     private JButton deleteButton;
@@ -45,9 +53,10 @@ public class Main {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Main");
         Main main = new Main();
-        frame.setContentPane(main.JPanelMain);
+        frame.setContentPane(main.JPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
@@ -79,6 +88,5 @@ public class Main {
         tableResident = new JTable(residentDir);
         // tableResident.setDefaultRenderer(Date.class, DateRenderer);
         tableResident.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
     }
 }
