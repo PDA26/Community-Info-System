@@ -19,6 +19,32 @@ public class Resident {
     private JButton deleteButton;
     private JPanel panelResOverview;
 
+    public Resident() {
+        addButton.addActionListener(actionEvent -> {
+            model.Resident p = ResidentEditor.showResidentEditor(tableResident, null);
+            if (p != null) {
+                residentDir.add(p);
+            }
+        });
+        modifyButton.addActionListener(actionEvent -> {
+            int selected = tableResident.getSelectedRow();
+            if (selected != -1) {
+                model.Resident p = residentDir.get(selected);
+                p = ResidentEditor.showResidentEditor(tableResident, p);
+                if (p != null) {
+                    residentDir.fireTableRowsUpdated(selected, selected);
+                }
+            }
+        });
+        deleteButton.addActionListener(actionEvent -> {
+            int selected = tableResident.getSelectedRow();
+            if (selected != -1) {
+                residentDir.delete(selected);
+                //abnormalPatientModel.notifyUpdate();
+            }
+        });
+    }
+
     public JPanel getPanel() {
         return panelResident;
     }

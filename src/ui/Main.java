@@ -9,55 +9,33 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class Main {
-    private JPanel JPanel;
     private JPanel JPanelMain;
     private JPanel JPanelContent;
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField textFieldUsr;
+    private JTextField textFieldPwd;
     private JButton signInButton;
     private JButton signUpButton;
     private JRadioButton residentRadioButton;
     private JRadioButton managementRadioButton;
     private JRadioButton marketRadioButton;
-    private JButton addButton;
-    private JButton modifyButton;
-    private JButton deleteButton;
     private JTable tableResident;
     private Community residentDir;
+
     public Main(){
-        addButton.addActionListener(actionEvent -> {
-            Resident p = ResidentEditor.showResidentEditor(tableResident, null);
-            if (p != null) {
-                residentDir.add(p);
-            }
-        });
-        modifyButton.addActionListener(actionEvent -> {
-            int selected = tableResident.getSelectedRow();
-            if (selected != -1) {
-                Resident p = residentDir.get(selected);
-                p = ResidentEditor.showResidentEditor(tableResident, p);
-                if (p != null) {
-                    residentDir.fireTableRowsUpdated(selected, selected);
-                }
-            }
-        });
-        deleteButton.addActionListener(actionEvent -> {
-            int selected = tableResident.getSelectedRow();
-            if (selected != -1) {
-                residentDir.delete(selected);
-                //abnormalPatientModel.notifyUpdate();
-            }
-        });
         JPanelContent.add("Resident", new ui.Resident().getPanel());
     }
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         JFrame frame = new JFrame("Main");
         Main main = new Main();
-        frame.setContentPane(main.JPanel);
+        frame.setContentPane(main.JPanelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
