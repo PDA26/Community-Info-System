@@ -53,7 +53,7 @@ public class MarketMainJPanel extends JPanel{
         constraintsForMiddle.gridy = 1;
         constraintsForMiddle.weightx = 1.0;
         constraintsForMiddle.weighty = 0;
-        constraintsForMiddle.fill = GridBagConstraints.HORIZONTAL;
+        constraintsForMiddle.fill = GridBagConstraints.CENTER;
         panelContainer.add(middleJPanel, constraintsForMiddle);
 
         GridBagConstraints constraintsForBottom = new GridBagConstraints();
@@ -67,7 +67,7 @@ public class MarketMainJPanel extends JPanel{
         JFrame jFrame = new JFrame("");
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panelContainer.setOpaque(true);
-        jFrame.setSize(new Dimension(480, 320));
+        jFrame.setSize(new Dimension(800, 800));
         jFrame.setContentPane(panelContainer);
         jFrame.setVisible(true);
 
