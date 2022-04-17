@@ -156,7 +156,7 @@ public class ViewItemMenuJPanel extends JPanel{
     }
 
     public static void main(String[] args) {
-        new ViewItemMenuJPanel();
+        //new ViewItemMenuJPanel();
     }
 
 }
