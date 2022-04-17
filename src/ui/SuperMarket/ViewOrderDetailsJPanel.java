@@ -156,7 +156,7 @@ public class ViewOrderDetailsJPanel extends JPanel{
     }
 
     public static void main(String[] args) {
-        new ViewOrderDetailsJPanel();
+        //new ViewOrderDetailsJPanel();
     }
 
 }

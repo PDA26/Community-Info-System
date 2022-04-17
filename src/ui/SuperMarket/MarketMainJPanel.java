@@ -45,7 +45,7 @@ public class MarketMainJPanel extends JPanel{
         constraintsForTop.gridy = 0;
         constraintsForTop.weightx = 0;
         constraintsForTop.weighty = 0;
-        constraintsForTop.fill = GridBagConstraints.BOTH;
+        constraintsForTop.fill = GridBagConstraints.CENTER;
         panelContainer.add(topJPanel, constraintsForTop);
 
         GridBagConstraints constraintsForMiddle = new GridBagConstraints();
@@ -76,7 +76,7 @@ public class MarketMainJPanel extends JPanel{
     private void createTopPanel() {
 
         topJPanel = new JPanel();
-        topJPanel.setLayout(new BoxLayout(topJPanel, BoxLayout.X_AXIS));
+        topJPanel.setLayout(new BoxLayout(topJPanel, BoxLayout.Y_AXIS));
 
         topJPanel.add(Box.createVerticalStrut(10));
         topJPanel.add(titleJLabel);
@@ -86,7 +86,7 @@ public class MarketMainJPanel extends JPanel{
 
     private void createMiddleJPanel() {
 
-        imagePath.setImage(imagePath.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+        imagePath.setImage(imagePath.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
         logoOfSupermarket.setIcon(imagePath);
         logoOfSupermarket.setSize(100, 100);
 
@@ -96,13 +96,15 @@ public class MarketMainJPanel extends JPanel{
         JPanel leftJPanel = new JPanel();
         leftJPanel.setLayout(new BoxLayout(leftJPanel, BoxLayout.X_AXIS));
         leftJPanel.add(logoOfSupermarket);
-        middleJPanel.add(leftJPanel);
 
         JPanel rightJPanel = new JPanel();
         rightJPanel.setLayout(new BoxLayout(rightJPanel, BoxLayout.Y_AXIS));
         rightJPanel.add(viewMenuJButton);
-        rightJPanel.add(Box.createRigidArea(new Dimension(15, 15)));
+        rightJPanel.add(Box.createRigidArea(new Dimension(15, 60)));
         rightJPanel.add(viewOrdersJButton);
+
+        middleJPanel.add(leftJPanel);
+        middleJPanel.add(Box.createHorizontalStrut(60));
         middleJPanel.add(rightJPanel);
 
     }
@@ -125,7 +127,7 @@ public class MarketMainJPanel extends JPanel{
     }
 
     public static void main(String[] args) {
-        //new MarketMainJPanel();
+        new MarketMainJPanel();
     }
 
 }
