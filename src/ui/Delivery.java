@@ -3,8 +3,12 @@ package ui;
 import javax.swing.*;
 
 public class Delivery {
-    private JButton button1;
-    private JTable table1;
-    private JButton button2;
-    private JButton button3;
+    private JButton goBackButton;
+    private JTable tableOrders;
+    private JButton chooseGroceryStoreButton;
+    private JButton updateOrderStatusButton;
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }
