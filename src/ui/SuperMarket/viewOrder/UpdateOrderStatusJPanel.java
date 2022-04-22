@@ -31,8 +31,7 @@ public class UpdateOrderStatusJPanel extends JPanel{
         CreateUpJPanel();
         CreateDownJPanel();
 
-        JPanel panelContainer = new JPanel();
-        panelContainer.setLayout(new GridBagLayout());
+        setLayout(new GridBagLayout());
 
         GridBagConstraints constraintsForUp = new GridBagConstraints();
         constraintsForUp.gridx = 0;
@@ -40,7 +39,7 @@ public class UpdateOrderStatusJPanel extends JPanel{
         constraintsForUp.weightx = 0;
         constraintsForUp.weighty = 0;
         constraintsForUp.fill = GridBagConstraints.CENTER;
-        panelContainer.add(upJPanel, constraintsForUp);
+        add(upJPanel, constraintsForUp);
 
         GridBagConstraints constraintsForDown = new GridBagConstraints();
         constraintsForDown.gridx = 0;
@@ -48,14 +47,7 @@ public class UpdateOrderStatusJPanel extends JPanel{
         constraintsForDown.weightx = 1.0;
         constraintsForDown.weighty = 0;
         constraintsForDown.fill = GridBagConstraints.HORIZONTAL;
-        panelContainer.add(downJPanel, constraintsForDown);
-
-        JFrame jFrame = new JFrame("");
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        panelContainer.setOpaque(true);
-        jFrame.setSize(new Dimension(400, 200));
-        jFrame.setContentPane(panelContainer);
-        jFrame.setVisible(true);
+        add(downJPanel, constraintsForDown);
 
     }
 

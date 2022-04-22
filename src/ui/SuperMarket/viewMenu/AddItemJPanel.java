@@ -3,7 +3,7 @@ package ui.SuperMarket.viewMenu;
 import javax.swing.*;
 import java.awt.*;
 
-public class AddItemJPanel {
+public class AddItemJPanel extends JPanel{
 
     /**
      * data
@@ -47,8 +47,7 @@ public class AddItemJPanel {
         CreateMiddleJPanel();
         CreateBottomJPanel();
 
-        JPanel panelContainer = new JPanel();
-        panelContainer.setLayout(new GridBagLayout());
+        setLayout(new GridBagLayout());
 
         GridBagConstraints constraintsForTop = new GridBagConstraints();
         constraintsForTop.gridx = 0;
@@ -56,7 +55,7 @@ public class AddItemJPanel {
         constraintsForTop.weightx = 0;
         constraintsForTop.weighty = 0;
         constraintsForTop.fill = GridBagConstraints.HORIZONTAL;
-        panelContainer.add(topJPanel, constraintsForTop);
+        add(topJPanel, constraintsForTop);
 
         GridBagConstraints constraintsForMiddle = new GridBagConstraints();
         constraintsForMiddle.gridx = 0;
@@ -64,7 +63,7 @@ public class AddItemJPanel {
         constraintsForMiddle.weightx = 1.0;
         constraintsForMiddle.weighty = 0;
         constraintsForMiddle.fill = GridBagConstraints.CENTER;
-        panelContainer.add(middleJPanel, constraintsForMiddle);
+        add(middleJPanel, constraintsForMiddle);
 
         GridBagConstraints constraintsForBottom = new GridBagConstraints();
         constraintsForBottom.gridx = 0;
@@ -72,14 +71,7 @@ public class AddItemJPanel {
         constraintsForBottom.weightx = 1.0;
         constraintsForBottom.weighty = 0;
         constraintsForBottom.fill = GridBagConstraints.CENTER;
-        panelContainer.add(bottomJPanel, constraintsForBottom);
-
-        JFrame jFrame = new JFrame("");
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        panelContainer.setOpaque(true);
-        jFrame.setSize(new Dimension(600, 350));
-        jFrame.setContentPane(panelContainer);
-        jFrame.setVisible(true);
+        add(bottomJPanel, constraintsForBottom);
 
     }
 
