@@ -127,7 +127,7 @@ public class MarketMainJPanel extends JPanel{
     }
 
     public static void main(String[] args) {
-        new MarketMainJPanel();
+        //new MarketMainJPanel();
     }
 
 }
