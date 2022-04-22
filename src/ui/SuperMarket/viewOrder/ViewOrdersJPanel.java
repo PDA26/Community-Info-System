@@ -1,6 +1,7 @@
 package ui.SuperMarket.viewOrder;
 
 import ui.SuperMarket.MainProcess;
+import ui.SuperMarket.mainJPanel.MarketMainJPanel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -99,6 +100,13 @@ public class ViewOrdersJPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainProcess.getInstance().changeFrame(new UpdateOrderStatusJPanel());
+            }
+        });
+
+        backToMarketJButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainProcess.getInstance().changeFrame(new MarketMainJPanel());
             }
         });
 

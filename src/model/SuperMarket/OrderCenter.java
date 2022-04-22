@@ -1,4 +1,6 @@
-package model;
+package model.SuperMarket;
+
+import model.Order;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
-package model;
+package model.SuperMarket;
 
 import jdk.jfr.Name;
+import model.ShopItem;
 
 import javax.swing.table.AbstractTableModel;
 import java.lang.reflect.Field;

@@ -1,8 +1,7 @@
 package ui.SuperMarket.mainJPanel;
 
 import ui.SuperMarket.MainProcess;
-import ui.SuperMarket.viewMenu.ViewItemMenuJPanel;
-import ui.SuperMarket.viewOrder.ViewOrderDetailsJPanel;
+import ui.SuperMarket.viewItemMenu.ViewItemMenuJPanel;
 import ui.SuperMarket.viewOrder.ViewOrdersJPanel;
 
 import javax.swing.*;
@@ -140,17 +139,7 @@ public class MarketMainJPanel extends JPanel{
     }
 
     public static void main(String[] args) {
-        /*JFrame a = new JFrame();
-        a.setContentPane(new MarketMainJPanel());
-
-
-        a.setVisible(true);
-        JFrame jFrame = new JFrame("");
-        jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jFrame.setSize(new Dimension(800, 800));
-        jFrame.setContentPane(new MarketMainJPanel().getPanelContainer());
-        jFrame.setVisible(true);*/
-
+       //new MarketMainJPanel();
     }
 
 }
