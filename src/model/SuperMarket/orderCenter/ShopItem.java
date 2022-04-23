@@ -1,7 +1,10 @@
-package model;
+package model.SuperMarket.orderCenter;
 
 import java.util.Date;
 
+/**
+ * Order Items
+ */
 public class ShopItem {
     String name;
     int price;
