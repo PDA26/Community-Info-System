@@ -7,9 +7,11 @@ import java.util.Map;
 
 public class Order {
     List<ShopItem> list;
-
+    static int idCount = 0;
+    int id;
     public Order() {
         this.list = new LinkedList<>();
+        id = idCount++;
     }
     public void addItem(ShopItem si){
         for(ShopItem curr : list){
