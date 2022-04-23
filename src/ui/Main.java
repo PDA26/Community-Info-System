@@ -1,13 +1,14 @@
 package ui;
 
 import model.Community;
-import model.Resident;
+import sun.awt.OSInfo;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.AccessController;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -53,11 +54,16 @@ public class Main {
     }
 
     public static void main(String[] args) {
-//        try {
-//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            OSInfo.OSType osType = AccessController.doPrivileged(OSInfo.getOSTypeAction());
+            if (osType == OSInfo.OSType.WINDOWS) {
+                UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+            } else {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         JFrame frame = new JFrame("Main");
         Main main = new Main();
         frame.setContentPane(main.JPanelMain);
