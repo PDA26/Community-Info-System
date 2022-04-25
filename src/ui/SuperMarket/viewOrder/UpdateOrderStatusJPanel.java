@@ -1,4 +1,4 @@
-package ui.SuperMarket;
+package ui.SuperMarket.viewOrder;
 
 import javax.swing.*;
 import java.awt.*;

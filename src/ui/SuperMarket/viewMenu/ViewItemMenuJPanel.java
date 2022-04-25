@@ -1,4 +1,4 @@
-package ui.SuperMarket;
+package ui.SuperMarket.viewMenu;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
