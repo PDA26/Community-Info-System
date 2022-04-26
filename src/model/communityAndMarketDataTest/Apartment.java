@@ -4,7 +4,7 @@ public class Apartment {
 
     private String aptNo;
     private String orderTime;
-    private int orderId;
+    private int orderId; //下单的id，用来获取最新的下单时间
 
     public Apartment() {
     }
