@@ -1,36 +1,42 @@
-package ui.Community;
+package ui.Community.mainJPanel;
 
+import model.CommunityData.Communities;
 import model.CommunityInfo;
+import ui.Community.communityView.communityEditor.addCommunity;
+import ui.Community.communityView.communityManagement.communityManagement;
 import ui.Main;
-import ui.ResidentEditor;
+import model.CommunityData.CommunityModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Vector;
 
 
 public class communityMain extends JPanel{
 
-    private JComboBox comboCommunity;
+    private JComboBox<String> comboCommunity;
     private JButton btnAdd;
     private JButton btnToRes;
     private JButton btnToCom;
     private JButton btnBack;
     private JPanel panelCommunityMain;
+    Communities communitiesDir;
 
     JLabel imgJLabel = new JLabel();
     private JPanel panelContent;
 
-    private CommunityInfo communityInfo;
+    CommunityInfo communityInfo;
 
 //    ImageIcon logoIcon = new ImageIcon(new ImageIcon("src/ui/Community/img/ad.png").getImage().getScaledInstance(400, 300, Image.SCALE_AREA_AVERAGING));
 //    imgJLabel.setIcon(logoIcon);
 
-
+    CommunityModel communityModel = CommunityModel.getInstance();
+    Vector<String> communityName = new Vector<>();
 
     public communityMain() {
-//        panelCommunityMain.add("addCommunity", new ui.Community.addCommunity().getPanel());
 
         JFrame jFrame = new JFrame();
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,41 +45,25 @@ public class communityMain extends JPanel{
         jFrame.setSize(new Dimension(800, 800));
         jFrame.setContentPane(panelCommunityMain);
 
-        btnAdd.addActionListener(new ActionEvent -> {
-            model.CommunityInfo p = addCommunity.showCommunityAdd(, null);
-        });
-//
-//        addButton.addActionListener(actionEvent -> {
-//            model.Resident p = ResidentEditor.showResidentEditor(tableResident, null);
-//            if (p != null) {
-//                residentDir.add(p);
-//            }
-//        });
+        btnAdd.addActionListener(actionEvent -> {
+            CommunityInfo c = addCommunity.showCommunityAdd(null, communityInfo);
+            ArrayList<String> names = new ArrayList<String>();
 
-//        btnBack.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                panelCommunityMain.add("main", new ui.Main().getPanel());
-//                ((CardLayout) panelCommunityMain.getLayout()).show(panelCommunityMain, "main");
-//            }
-//        });
+            for (CommunityInfo communityInfo: communityModel.getCommunities()) {
+                names.add(communityInfo.getCommunityName());
+            }
+
+            comboCommunity.addItem(names.get(names.size()-1));
+        });
 
         btnToCom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelCommunityMain.add("communityManagement", new ui.Community.communityManagement().getPanel());
+                panelCommunityMain.add("communityManagement", new communityManagement().getPanel());
                 ((CardLayout) panelCommunityMain.getLayout()).show(panelCommunityMain, "communityManagement");
             }
         });
-
     }
-
-
-
-//        ImageIcon logoIcon = new ImageIcon(new ImageIcon("src/ui/Community/img/ad.png").getImage().getScaledInstance(400, 300, Image.SCALE_AREA_AVERAGING));
-//        imgJLabel.setIcon(logoIcon);
-
-
 
     public static void main(String[] args) {
         new communityMain();

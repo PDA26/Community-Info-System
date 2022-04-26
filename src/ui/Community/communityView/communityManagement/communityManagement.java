@@ -1,4 +1,4 @@
-package ui.Community;
+package ui.Community.communityView.communityManagement;
 
 import javax.swing.*;
 import java.awt.*;

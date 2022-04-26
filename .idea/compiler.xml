@@ -2,7 +2,7 @@
 <project version="4">
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Info5100_FinalProject" options="--add-exports java.desktop/sun.awt=ALL-UNNAMED" />
+      <module name="Info5100_FinalProject" options="--add-exports java.desktop/sun.awt=ALL-UNNAMED --add-exports java.base/sun.net.ext=ALL-UNNAMED" />
     </option>
   </component>
 </project>

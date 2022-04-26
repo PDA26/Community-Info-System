@@ -1,4 +1,4 @@
-package ui.Community;
+package ui.Community.communityView.communityOrder;
 
 import javax.swing.*;
 

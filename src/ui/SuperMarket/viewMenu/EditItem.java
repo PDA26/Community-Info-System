@@ -2,7 +2,8 @@ package ui.SuperMarket.viewMenu;
 
 import model.SuperMarket.orderCenter.Product;
 import model.SuperMarket.orderCenter.ProductCatalog;
-import ui.SuperMarket.codeVersionUI_ignore_it.MainProcess;
+import sun.net.ext.ExtendedSocketOptions;
+import ui.SuperMarket.mainJPanel.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -48,6 +49,7 @@ public class EditItem {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                ExtendedSocketOptions MainProcess;
                 if (nameField.getText().isEmpty()
                         || priceField.getText().isEmpty()
                         || updateTimeField.getText().isEmpty()
