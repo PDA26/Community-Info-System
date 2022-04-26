@@ -1,8 +1,9 @@
-package ui.SuperMarket;
+package ui.SuperMarket.codeVersionUI_ignore_it;
 
-import ui.SuperMarket.mainJPanel.MarketMainJPanel;
+import ui.SuperMarket.codeVersionUI_ignore_it.mainJPanel_Code.MarketMainJPanel;
 
 import javax.swing.*;
+
 
 public class MainProcess {
 
@@ -26,6 +27,10 @@ public class MainProcess {
                 detail,"Error",JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * run the pure code version of the Supermarket UI
+     * @param args
+     */
     public static void main(String[] args) {
 
         MainJFrameForSupermarket frame = new MainJFrameForSupermarket();

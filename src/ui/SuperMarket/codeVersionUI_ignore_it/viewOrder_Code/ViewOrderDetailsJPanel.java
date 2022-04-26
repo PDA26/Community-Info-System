@@ -1,7 +1,6 @@
-package ui.SuperMarket.viewItemMenu;
+package ui.SuperMarket.codeVersionUI_ignore_it.viewOrder_Code;
 
-import ui.SuperMarket.MainProcess;
-import ui.SuperMarket.mainJPanel.MarketMainJPanel;
+import ui.SuperMarket.codeVersionUI_ignore_it.MainProcess;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,7 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class ViewItemMenuJPanel extends JPanel{
+
+public class ViewOrderDetailsJPanel extends JPanel{
 
     /**
      * data
@@ -19,7 +19,7 @@ public class ViewItemMenuJPanel extends JPanel{
     /**
      * table
      */
-    Vector<String> titles;
+    Vector<Object> titles;
     Vector<Vector<Object>> data;
     DefaultTableModel tableModel;
 
@@ -30,14 +30,15 @@ public class ViewItemMenuJPanel extends JPanel{
     private static JPanel middleJPanel;
     private static JPanel bottomJPanel;
 
-    JLabel titleJLabel = new JLabel("Menu of all the items");
-    JButton addItemJButton = new JButton("Add New Item");
-    JButton modifyItemJButton = new JButton("Modify Item");
-    JButton deleteItemJButton = new JButton("Delete New Item");
-    JButton backToMarketJButton = new JButton("<< Back to Market Interface");
+    JLabel titleJLabel = new JLabel("Order Details");
+    JLabel communityNameJLabel = new JLabel("Community Name: ");
+    JLabel communityName = new JLabel();
+    JLabel orderTimeJLabel = new JLabel("Order Time: ");
+    JLabel orderTime = new JLabel();
+    JButton backToOrders = new JButton("<< Back to Orders Interface");
     JTable jTable;
 
-    public ViewItemMenuJPanel() {
+    public ViewOrderDetailsJPanel() {
 
         InitData();
         InitViews();
@@ -48,10 +49,9 @@ public class ViewItemMenuJPanel extends JPanel{
 
         titles = new Vector<>();
         titles.add("Item Name");
-        titles.add("Price");
-        titles.add("Modified Date");
+        titles.add("Unit Price");
         titles.add("Quantity");
-        titles.add("Item Status");
+        titles.add("Price");
 
         data = new Vector<>();//目前还没有数据，之后还要改
 
@@ -91,24 +91,10 @@ public class ViewItemMenuJPanel extends JPanel{
         constraintsForBottom.fill = GridBagConstraints.HORIZONTAL;
         add(bottomJPanel, constraintsForBottom);
 
-        addItemJButton.addActionListener(new ActionListener() {
+        backToOrders.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainProcess.getInstance().changeFrame(new AddItemJPanel());
-            }
-        });
-
-        modifyItemJButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainProcess.getInstance().changeFrame(new UpdateItemJPanel());
-            }
-        });
-
-        backToMarketJButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainProcess.getInstance().changeFrame(new MarketMainJPanel());
+                MainProcess.getInstance().changeFrame(new ViewOrdersJPanel());
             }
         });
 
@@ -120,7 +106,7 @@ public class ViewItemMenuJPanel extends JPanel{
         topJPanel.setLayout(new BoxLayout(topJPanel, BoxLayout.Y_AXIS));
 
         topJPanel.add(Box.createVerticalStrut(10));
-        topJPanel.add(backToMarketJButton);
+        topJPanel.add(backToOrders);
         topJPanel.add(Box.createVerticalStrut(10));
 
     }
@@ -134,18 +120,20 @@ public class ViewItemMenuJPanel extends JPanel{
         upJPanel.setLayout(new BoxLayout(upJPanel, BoxLayout.X_AXIS));
         upJPanel.add(titleJLabel);
 
+        JPanel downJPanel = new JPanel();
+        downJPanel.setLayout(new BoxLayout(downJPanel, BoxLayout.X_AXIS));
+        downJPanel.add(Box.createHorizontalStrut(10));
+        downJPanel.add(communityNameJLabel);
+        downJPanel.add(Box.createHorizontalStrut(5));
+        downJPanel.add(communityName);
+        downJPanel.add(Box.createHorizontalGlue());
+        downJPanel.add(orderTimeJLabel);
+        downJPanel.add(Box.createHorizontalStrut(5));
+        downJPanel.add(orderTime);
+        downJPanel.add(Box.createHorizontalStrut(10));
+
         middleJPanel.add(Box.createVerticalStrut(10));
         middleJPanel.add(upJPanel);
-        middleJPanel.add(Box.createVerticalStrut(10));
-
-        JPanel downJPanel = new JPanel();
-        downJPanel.setLayout(new BoxLayout(downJPanel, BoxLayout.Y_AXIS));
-        jTable = new JTable(tableModel);
-        jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JScrollPane scrollPane = new JScrollPane(jTable);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        downJPanel.add(scrollPane);
-
         middleJPanel.add(Box.createVerticalStrut(10));
         middleJPanel.add(downJPanel);
         middleJPanel.add(Box.createVerticalStrut(10));
@@ -159,13 +147,11 @@ public class ViewItemMenuJPanel extends JPanel{
 
         JPanel contentJPanel = new JPanel();
         contentJPanel.setLayout(new BoxLayout(contentJPanel, BoxLayout.X_AXIS));
-        contentJPanel.add(Box.createHorizontalStrut(10));
-        contentJPanel.add(addItemJButton);
-        contentJPanel.add(Box.createHorizontalStrut(30));
-        contentJPanel.add(modifyItemJButton);
-        contentJPanel.add(Box.createHorizontalStrut(30));
-        contentJPanel.add(deleteItemJButton);
-        contentJPanel.add(Box.createHorizontalGlue());
+        jTable = new JTable(tableModel);
+        jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrollPane = new JScrollPane(jTable);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        contentJPanel.add(scrollPane);
 
         bottomJPanel.add(Box.createVerticalStrut(10));
         bottomJPanel.add(contentJPanel);
@@ -174,7 +160,7 @@ public class ViewItemMenuJPanel extends JPanel{
     }
 
     public static void main(String[] args) {
-        //new ViewItemMenuJPanel();
+        //new ViewOrderDetailsJPanel();
     }
 
 }
