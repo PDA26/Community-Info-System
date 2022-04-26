@@ -1,4 +1,4 @@
-package model;
+package model.SuperMarket;
 
 public class SuperMarket {
     Warehouse wh;

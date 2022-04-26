@@ -1,8 +1,12 @@
 package ui.SuperMarket.viewOrder;
 
+import ui.SuperMarket.MainProcess;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 public class ViewOrderDetailsJPanel extends JPanel{
@@ -85,6 +89,13 @@ public class ViewOrderDetailsJPanel extends JPanel{
         constraintsForBottom.weighty = 0;
         constraintsForBottom.fill = GridBagConstraints.HORIZONTAL;
         add(bottomJPanel, constraintsForBottom);
+
+        backToOrders.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainProcess.getInstance().changeFrame(new ViewOrdersJPanel());
+            }
+        });
 
     }
 

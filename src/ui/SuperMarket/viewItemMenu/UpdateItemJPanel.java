@@ -1,7 +1,11 @@
-package ui.SuperMarket.viewMenu;
+package ui.SuperMarket.viewItemMenu;
+
+import ui.SuperMarket.MainProcess;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class UpdateItemJPanel extends JPanel{
 
@@ -72,6 +76,13 @@ public class UpdateItemJPanel extends JPanel{
         constraintsForBottom.weighty = 0;
         constraintsForBottom.fill = GridBagConstraints.CENTER;
         add(bottomJPanel, constraintsForBottom);
+
+        backJButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainProcess.getInstance().changeFrame(new ViewItemMenuJPanel());
+            }
+        });
 
     }
 
