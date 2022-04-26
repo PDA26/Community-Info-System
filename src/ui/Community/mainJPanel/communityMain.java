@@ -5,8 +5,9 @@ import model.CommunityInfo;
 import ui.Community.communityView.communityEditor.addCommunity;
 import ui.Community.communityView.communityManagement.communityManagement;
 import ui.Community.residentView.residentManagement;
-import ui.Main;
+import ui.Login;
 import model.CommunityData.CommunityModel;
+import ui.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -100,8 +101,7 @@ public class communityMain extends JPanel{
         btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Component main = panelCommunityMain.add("main", new Main().getFrame());
-                ((CardLayout) panelCommunityMain.getLayout()).show(panelCommunityMain, "main");
+                Main.gotoPanel("Login");
             }
         });
 
