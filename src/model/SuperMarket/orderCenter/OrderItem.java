@@ -11,9 +11,6 @@ public class OrderItem {
     private double price; // unitPrice * quantityForOrder
     private int quantityForOrder;
 
-    /**
-     * delete all the codes below later
-     */
     public OrderItem() {
     }
 

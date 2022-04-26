@@ -1,4 +1,4 @@
-package model.SuperMarket.orderCenter;
+package model.SuperMarket.orderCenter.deletePending;
 
 import java.util.Date;
 
