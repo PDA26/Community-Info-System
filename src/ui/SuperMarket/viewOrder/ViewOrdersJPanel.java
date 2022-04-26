@@ -1,8 +1,12 @@
 package ui.SuperMarket.viewOrder;
 
+import ui.SuperMarket.MainProcess;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 public class ViewOrdersJPanel extends JPanel{
@@ -58,8 +62,7 @@ public class ViewOrdersJPanel extends JPanel{
         CreateMiddleJPanel();
         CreateBottomJPanel();
 
-        JPanel panelContainer = new JPanel();
-        panelContainer.setLayout(new GridBagLayout());
+        setLayout(new GridBagLayout());
 
         GridBagConstraints constraintsForTop = new GridBagConstraints();
         constraintsForTop.gridx = 0;
@@ -67,7 +70,7 @@ public class ViewOrdersJPanel extends JPanel{
         constraintsForTop.weightx = 0;
         constraintsForTop.weighty = 0;
         constraintsForTop.fill = GridBagConstraints.BOTH;
-        panelContainer.add(topJPanel, constraintsForTop);
+        add(topJPanel, constraintsForTop);
 
         GridBagConstraints constraintsForMiddle = new GridBagConstraints();
         constraintsForMiddle.gridx = 0;
@@ -75,7 +78,7 @@ public class ViewOrdersJPanel extends JPanel{
         constraintsForMiddle.weightx = 1.0;
         constraintsForMiddle.weighty = 0;
         constraintsForMiddle.fill = GridBagConstraints.CENTER;
-        panelContainer.add(middleJPanel, constraintsForMiddle);
+        add(middleJPanel, constraintsForMiddle);
 
         GridBagConstraints constraintsForBottom = new GridBagConstraints();
         constraintsForBottom.gridx = 0;
@@ -83,14 +86,21 @@ public class ViewOrdersJPanel extends JPanel{
         constraintsForBottom.weightx = 1.0;
         constraintsForBottom.weighty = 0;
         constraintsForBottom.fill = GridBagConstraints.HORIZONTAL;
-        panelContainer.add(bottomJPanel, constraintsForBottom);
+        add(bottomJPanel, constraintsForBottom);
 
-        JFrame jFrame = new JFrame("");
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        panelContainer.setOpaque(true);
-        jFrame.setSize(new Dimension(800, 800));
-        jFrame.setContentPane(panelContainer);
-        jFrame.setVisible(true);
+        viewOrderDetailsJButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainProcess.getInstance().changeFrame(new ViewOrderDetailsJPanel());
+            }
+        });
+
+        updateOrderStatusJButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainProcess.getInstance().changeFrame(new UpdateOrderStatusJPanel());
+            }
+        });
 
     }
 
