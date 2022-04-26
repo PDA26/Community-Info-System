@@ -1,13 +1,13 @@
 package ui.SuperMarket.mainJPanel;
 
-import ui.SuperMarket.viewItemMenu.ViewItemMenuForm;
+import ui.SuperMarket.viewMenu.ViewItemMenu;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMarketForm {
+public class MainMarket {
 
     /**
      * components
@@ -24,7 +24,7 @@ public class MainMarketForm {
     private JButton backToMainButton;
     private JLabel titleJLabel;
 
-    public MainMarketForm() {
+    public MainMarket() {
 
         setLogo();
 
@@ -32,16 +32,16 @@ public class MainMarketForm {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                ViewItemMenuForm viewItemMenuForm = new ViewItemMenuForm();
+                ViewItemMenu viewItemMenuForm = new ViewItemMenu();
                 JPanel panel = viewItemMenuForm.getPanel();
                 contentJPanel.add("View Item Menu", panel);
                 CardLayout layout = (CardLayout) contentJPanel.getLayout();
                 layout.next(contentJPanel);
-//                contentJPanel.add("View Item Menu", new ViewItemMenuForm().getPanel());
+//                contentJPanel.add("View Item Menu", new ViewItemMenu().getPanel());
 //                ((CardLayout) contentJPanel.getLayout()).next(contentJPanel);
 //                ((CardLayout) contentJPanel.getLayout()).show(contentJPanel, "Main Market Interface");
 
-//                MainProcess.getInstance().changeFrame(new ViewItemMenuForm().getPanel());
+//                MainProcess.getInstance().changeFrame(new ViewItemMenu().getPanel());
 
 
 

@@ -43,17 +43,17 @@ public class addCommunity {
     JLabel lblZipcode= new JLabel("Community Zipcode:");
     JLabel lblPhone = new JLabel("Community Contact Phone:");
 
-    public static CommunityInfo showCommunityInfo(Component parent, CommunityInfo communityInfo) {
-        String name = txtName.getText();
-        String address = txtAdd.getText();
-        String zipcode = txtZip.getText();
-        String phone = txtPhone.getText();
-
-        communityInfo.setCommunityName(name);
-        communityInfo.setCommunityAdd(address);
-        communityInfo.setCommunityZip(zipcode);
-        communityInfo.setCommunityPhone(phone);
-    }
+//    public static CommunityInfo showCommunityInfo(Component parent, CommunityInfo communityInfo) {
+//        String name = txtName.getText();
+//        String address = txtAdd.getText();
+//        String zipcode = txtZip.getText();
+//        String phone = txtPhone.getText();
+//
+//        communityInfo.setCommunityName(name);
+//        communityInfo.setCommunityAdd(address);
+//        communityInfo.setCommunityZip(zipcode);
+//        communityInfo.setCommunityPhone(phone);
+//    }
 
 
     public addCommunity() {

@@ -1,4 +1,4 @@
-package ui.SuperMarket.viewItemMenu;
+package ui.SuperMarket.viewMenu;
 
 import model.SuperMarket.orderCenter.Product;
 import model.SuperMarket.orderCenter.ProductCatalog;
@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddItemForm {
+public class EditItem {
 
     /**
      * data
@@ -34,7 +34,7 @@ public class AddItemForm {
     private JLabel quantityJLabel;
     private JLabel itemStatusJLabel;
 
-    public AddItemForm() {
+    public EditItem() {
 
         InitComboBox();
 
@@ -72,7 +72,7 @@ public class AddItemForm {
                     //check the data
                     //productModel.printCatalog();
 
-                    MainProcess.getInstance().changeFrame(new ViewItemMenuForm().getPanel());
+                    MainProcess.getInstance().changeFrame(new ViewItemMenu().getPanel());
 
                 }
 

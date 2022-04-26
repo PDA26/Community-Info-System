@@ -1,4 +1,4 @@
-package ui.SuperMarket.viewItemMenu;
+package ui.SuperMarket.viewMenu;
 
 import model.SuperMarket.orderCenter.ProductCatalog;
 
@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class ViewItemMenuForm extends JPanel{
+public class ViewItemMenu extends JPanel{
 
     /**
      * data
@@ -57,7 +57,7 @@ public class ViewItemMenuForm extends JPanel{
 
     }
 
-    public ViewItemMenuForm() {
+    public ViewItemMenu() {
 
         //InitTable();
 
@@ -65,7 +65,7 @@ public class ViewItemMenuForm extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                //MainProcess.getInstance().changeFrame(new AddItemForm().getPanel());
+                //MainProcess.getInstance().changeFrame(new EditItem().getPanel());
 
             }
         });
