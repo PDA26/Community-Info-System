@@ -2,6 +2,7 @@ package ui;
 
 import model.Community;
 import sun.awt.OSInfo;
+import ui.Administrator.Resident;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -27,7 +28,7 @@ public class Main {
 
 
     public Main(){
-        JPanelContent.add("Resident", new ui.Resident().getPanel());
+        JPanelContent.add("Resident", new Resident().getPanel());
         ButtonGroup buttonGroup_Main = new ButtonGroup();
         buttonGroup_Main.add(residentRadioButton);
         buttonGroup_Main.add(managementRadioButton);

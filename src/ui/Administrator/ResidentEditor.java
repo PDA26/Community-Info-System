@@ -1,4 +1,4 @@
-package ui;
+package ui.Administrator;
 
 import model.Resident;
 
