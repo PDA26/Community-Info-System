@@ -4,6 +4,7 @@ import ui.SuperMarket.codeVersionUI_ignore_it.mainJPanel_Code.MarketMainJPanel;
 
 import javax.swing.*;
 
+
 public class MainProcess {
 
     private static MainProcess instance = new MainProcess();
