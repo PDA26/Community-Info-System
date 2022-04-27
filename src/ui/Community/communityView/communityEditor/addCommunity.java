@@ -72,21 +72,19 @@ public class addCommunity extends JPanel {
                 return null;
             }
 
-//            communityInfo.setCommunityName(communityName);
-//            communityInfo.setCommunityAddress(communityAddress);
-//            communityInfo.setCommunityZipcode(communityZipcode);
-//            communityInfo.setCommunityPhone(communityPhone);
+            communityInfo.setCommunityName(communityName);
+            communityInfo.setCommunityAddress(communityAddress);
+            communityInfo.setCommunityZipcode(communityZipcode);
+            communityInfo.setCommunityPhone(communityPhone);
 
-            communityInfo.communityName = communityName;
-            communityInfo.communityAddress = communityAddress;
-            communityInfo.communityZipcode = communityZipcode;
-            communityInfo.communityPhone = communityPhone;
+//            communityInfo.communityName = communityName;
+//            communityInfo.communityAddress = communityAddress;
+//            communityInfo.communityZipcode = communityZipcode;
+//            communityInfo.communityPhone = communityPhone;
             communityModel.addNewCommunity(communityInfo);
 
             JOptionPane.showMessageDialog(addCommunity.panelAddCommunity, "Community Saved!");
-
-
-        return communityInfo;
+            return communityInfo;
         }
         else {
             return null;

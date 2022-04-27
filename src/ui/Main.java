@@ -26,6 +26,8 @@ public class Main {
     private JTable tableResident;
     private Community residentDir;
 
+    JFrame frame = new JFrame("Main");
+
 
     public Main(){
         JPanelContent.add("Resident", new Resident().getPanel());
@@ -55,9 +57,9 @@ public class Main {
         });
     }
 
-//    public JPanel getPanel() {
-//        return Main();
-//    }
+    public JFrame getFrame() {
+        return frame;
+    }
 
     public static void main(String[] args) {
         try {
@@ -70,8 +72,9 @@ public class Main {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        JFrame frame = new JFrame("Main");
+
         Main main = new Main();
+        JFrame frame = new JFrame("Main");
         frame.setContentPane(main.JPanelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
