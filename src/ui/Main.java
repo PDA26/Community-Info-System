@@ -25,6 +25,7 @@ public class Main {
     private JTable tableResident;
     private Community residentDir;
 
+
     public Main(){
         JPanelContent.add("Resident", new ui.Resident().getPanel());
         ButtonGroup buttonGroup_Main = new ButtonGroup();
@@ -53,6 +54,10 @@ public class Main {
         });
     }
 
+//    public JPanel getPanel() {
+//        return Main();
+//    }
+
     public static void main(String[] args) {
         try {
             OSInfo.OSType osType = AccessController.doPrivileged(OSInfo.getOSTypeAction());
@@ -74,6 +79,8 @@ public class Main {
         frame.setVisible(true);
 
     }
+
+
 
     private void createUIComponents() {
         DefaultTableCellRenderer DateRenderer = new DefaultTableCellRenderer() {
