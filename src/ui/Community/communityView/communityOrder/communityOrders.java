@@ -48,7 +48,7 @@ public class communityOrders {
         titleOrders.add("Order Status");
 
         dataOrders = new Vector<>();
-        dataOrders.addElement(communityOrderCatalog.getCommunityOrderCatalogMap().values());  //这一块的数据类型我实在是太搞不定了....需要帮助
+        //dataOrders.addElement(communityOrderCatalog.getCommunityOrderCatalogMap().values());  //这一块的数据类型我实在是太搞不定了....需要帮助
 
         tableModelOrders = new DefaultTableModel(dataOrders, titleOrders);
         tableOrders = new JTable(dataOrders, titleOrders);
