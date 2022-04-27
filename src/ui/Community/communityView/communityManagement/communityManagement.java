@@ -4,7 +4,7 @@ import model.Apartment;
 import model.CommunityData.CommunityModel;
 import model.CommunityInfo;
 import model.SuperMarket.orderCenter.OrderCatalog;
-import model.communityAndMarketDataTest.AptOrderCatalog;
+import model.OrderData.AptOrderCatalog;
 import ui.Community.mainJPanel.communityMain;
 
 import javax.swing.*;

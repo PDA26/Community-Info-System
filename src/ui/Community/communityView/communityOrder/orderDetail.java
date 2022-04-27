@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import model.Apartment;
-import model.communityAndMarketDataTest.AptOrderCatalog;
+import model.OrderData.AptOrderCatalog;
 import ui.Community.communityView.communityManagement.communityManagement;
 
 import java.awt.*;
@@ -42,8 +42,8 @@ public class orderDetail {
         titleOrder.add("Item Status");
         titleOrder.add("Quantity");
 
-        dataOrder = new Vector<>();
-        dataOrder.addElement(aptOrderCatalog.getCurrentApt());
+        //dataOrder = new Vector<>();
+        //dataOrder.addElement(aptOrderCatalog.getCurrentApt());
 
         tableModelOrder = new DefaultTableModel(dataOrder, titleOrder);
         tableOrder = new JTable(dataOrder, titleOrder);

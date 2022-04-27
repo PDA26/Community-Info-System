@@ -6,9 +6,8 @@ import javax.swing.table.DefaultTableModel;
 import model.CommunityData.CommunityModel;
 import model.CommunityData.CommunityOrderCatalog;
 import model.SuperMarket.orderCenter.OrderCatalog;
-import model.communityAndMarketDataTest.AptOrderCatalog;
+import model.OrderData.AptOrderCatalog;
 import ui.Community.communityView.communityManagement.communityManagement;
-import ui.Community.mainJPanel.communityMain;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
