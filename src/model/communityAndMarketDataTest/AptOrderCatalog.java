@@ -19,9 +19,21 @@ public class AptOrderCatalog {
         return instance;
     }
 
-    private AptOrderCatalog() {}
+    OrderItem currentApartment;
+
+    public AptOrderCatalog() {}
 
     private HashMap<String, OrderItem> aptOrderCatalogMap = new HashMap<>();
+
+//    public Collection<Apartment> getApts() { return aptOrderCatalogMap.values(); }
+
+    public OrderItem getCurrentApt() { return currentApartment; }
+
+    public void setCurrentApartment (Apartment apartment) {
+        this.currentApartment = aptOrderCatalogMap.get(apartment.getOrderId());
+        this.currentApartment = aptOrderCatalogMap.get(apartment.getAptNo());
+        this.currentApartment = aptOrderCatalogMap.get(apartment.getOrderTime());
+    }
 
     public void addNewOrderItem(OrderItem orderItem) {
 

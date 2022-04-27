@@ -1,9 +1,14 @@
 package model.SuperMarket.orderCenter;
 
+import model.Apartment;
+
+import java.util.Vector;
+import java.util.function.IntFunction;
+
 /**
  * New Order Items
  */
-public class OrderItem {
+public class OrderItem extends Vector<Apartment> {
 
     //    private Product product;
     private String name;
@@ -63,4 +68,8 @@ public class OrderItem {
                 '}';
     }
 
+    @Override
+    public <T> T[] toArray(IntFunction<T[]> generator) {
+        return super.toArray(generator);
+    }
 }

@@ -1,17 +1,23 @@
 package ui.Community.communityView.communityManagement;
 
+import model.Apartment;
 import model.CommunityData.CommunityModel;
+import model.CommunityInfo;
+import model.SuperMarket.orderCenter.OrderCatalog;
+import model.communityAndMarketDataTest.AptOrderCatalog;
 import ui.Community.mainJPanel.communityMain;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import ui.Community.communityView.communityOrder.communityOrders;
 import ui.Community.communityView.communityOrder.orderDetail;
 
-public class communityManagement extends JPanel {
+public class communityManagement<currentCommunity> extends JPanel {
 
 
     private JButton btnBack;
@@ -23,6 +29,12 @@ public class communityManagement extends JPanel {
     private JLabel labelShowName;
 
     JFrame jFrame = new JFrame();
+
+    Apartment apartment = new Apartment();
+
+    Vector<String> titlesOrder;
+    Vector<Object> dataOrder;
+    DefaultTableModel tableModelOrder;
 
 
     public communityManagement() {
@@ -36,6 +48,19 @@ public class communityManagement extends JPanel {
         CommunityModel communityModel = CommunityModel.getInstance();
         String currentName = communityModel.getCurrentCommunity().getCommunityName();
         labelShowName.setText(currentName);
+
+        CommunityInfo currentCommunity;
+        currentCommunity = communityModel.getCurrentCommunity();
+
+        titlesOrder.add("Apt No.");
+        titlesOrder.add("Order Time");
+        String[] columnNames = { "Apt No.", "Order Time" };
+        dataOrder = new Vector<>();
+        String apt = apartment.getAptNo();
+        String time = apartment.getOrderTime();
+        Object[][] rowData = { {apt}, {time} };
+        tableModelOrder = new DefaultTableModel(rowData, columnNames);
+        tableApt = new JTable(rowData, columnNames);
 
         btnBack.addActionListener(new ActionListener() {
             @Override
@@ -61,6 +86,22 @@ public class communityManagement extends JPanel {
             }
         });
 
+        btnConfirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                refreshData();
+                AptOrderCatalog aptOrderCatalog = new AptOrderCatalog();
+                OrderCatalog orderCatalog = new OrderCatalog();
+                String Apt = apartment.getAptNo();
+                OrderCatalog.addOrder(Apt, OrderCatalog.getInstance().getCurrentOrder());
+                JOptionPane.showMessageDialog(communityManagement.this, "Successfully confirmed!");
+            }
+        });
+
+    }
+
+    private void refreshData() {
+        dataOrder.clear();
     }
 
     public JPanel getPanel() {

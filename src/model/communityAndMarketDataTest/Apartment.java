@@ -1,6 +1,8 @@
 package model.communityAndMarketDataTest;
 
-public class Apartment {
+import java.util.Vector;
+
+public class Apartment extends Vector<model.Apartment> {
 
     private String aptNo;
     private String orderTime;
