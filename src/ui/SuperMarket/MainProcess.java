@@ -12,10 +12,10 @@ public class MainProcess {
         return instance;
     }
 
-    public static MainJFrameForSuperMarket currentFrame;
+    public static MainJFrameForSupermarket currentFrame;
 
     public void changeFrame(JPanel jPanel){
-        MainJFrameForSuperMarket frame  = new MainJFrameForSuperMarket();
+        MainJFrameForSupermarket frame  = new MainJFrameForSupermarket();
         frame.init(jPanel);
         currentFrame.dispose();
         currentFrame = frame;
@@ -28,7 +28,7 @@ public class MainProcess {
 
     public static void main(String[] args) {
 
-        MainJFrameForSuperMarket frame = new MainJFrameForSuperMarket();
+        MainJFrameForSupermarket frame = new MainJFrameForSupermarket();
         frame.init(new MarketMainJPanel());
         currentFrame = frame;
 
