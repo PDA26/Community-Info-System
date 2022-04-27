@@ -4,16 +4,14 @@ import model.CommunityInfo;
 import model.CommunityData.CommunityModel;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class addCommunity extends JPanel {
+public class addCommunity {
 
     private JTextField txtCommunityName;
     private JTextField txtCommunityAddress;
     private JTextField txtCommunityZipcode;
     private JTextField txtCommunityPhone;
     private JPanel panelAddCommunity;
-    private JPanel panelContent;
     //private CommunityModel communityModel;
 //    private JButton btnBack;
 //    private JButton btnConfirm;
@@ -21,31 +19,20 @@ public class addCommunity extends JPanel {
     public JPanel getPanel() {
         return panelAddCommunity;
     }
-
-    public addCommunity() {
-        //this.communityModel = CommunityModel.getInstance();
-//        JFrame jFrame = new JFrame();
-//        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        jFrame.setVisible(true);
-//        panelAddCommunity.setOpaque(true);
-//        jFrame.setSize(new Dimension(800, 800));
-//        jFrame.setContentPane(panelAddCommunity);
-    }
-
-    public static CommunityInfo showCommunityAdd(Component parent, CommunityInfo communityInfo) {
+    public static CommunityInfo showCommunityAdd(JComponent parent, CommunityInfo communityInfo) {
         addCommunity addCommunity = new addCommunity();
         CommunityModel communityModel = CommunityModel.getInstance();
         String title = "Please Add New Community!!";
 
         int selection = JOptionPane.showConfirmDialog(parent,
-                                    addCommunity.panelAddCommunity,
-                                    title,
-                                    JOptionPane.OK_CANCEL_OPTION,
-                                    JOptionPane.PLAIN_MESSAGE);
+                                                      addCommunity.panelAddCommunity,
+                                                      title,
+                                                      JOptionPane.OK_CANCEL_OPTION,
+                                                      JOptionPane.PLAIN_MESSAGE);
 
         if (selection == JOptionPane.OK_OPTION) {
 
-            if (communityInfo==null) {
+            if (communityInfo == null) {
                 communityInfo = new CommunityInfo();
             }
 
@@ -55,22 +42,26 @@ public class addCommunity extends JPanel {
             String communityPhone = addCommunity.txtCommunityPhone.getText();
 
             if (communityName.isBlank()) {
-                JOptionPane.showMessageDialog(addCommunity.panelAddCommunity, "Miss Community Name! Community not saved!");
+                JOptionPane.showMessageDialog(addCommunity.panelAddCommunity,
+                                              "Miss Community Name! Community not saved!");
                 return null;
             }
 
             if (communityAddress.isBlank()) {
-                JOptionPane.showMessageDialog(addCommunity.panelAddCommunity, "Miss Community Address! Community not saved!");
+                JOptionPane.showMessageDialog(addCommunity.panelAddCommunity,
+                                              "Miss Community Address! Community not saved!");
                 return null;
             }
 
             if (communityZipcode.isBlank()) {
-                JOptionPane.showMessageDialog(addCommunity.panelAddCommunity, "Miss Community Zipcode! Community not saved!");
+                JOptionPane.showMessageDialog(addCommunity.panelAddCommunity,
+                                              "Miss Community Zipcode! Community not saved!");
                 return null;
             }
 
             if (communityPhone.isBlank()) {
-                JOptionPane.showMessageDialog(addCommunity.panelAddCommunity, "Miss Community Contact Phone! Community not saved!");
+                JOptionPane.showMessageDialog(addCommunity.panelAddCommunity,
+                                              "Miss Community Contact Phone! Community not saved!");
                 return null;
             }
 
@@ -86,14 +77,10 @@ public class addCommunity extends JPanel {
             communityModel.addNewCommunity(communityInfo);
             JOptionPane.showMessageDialog(addCommunity.panelAddCommunity, "Community Saved!");
             return communityInfo;
-        }
-        else {
+        } else {
             return null;
         }
 
     }
 
-    public static void main(String[] args) {
-        new addCommunity();
-    }
 }

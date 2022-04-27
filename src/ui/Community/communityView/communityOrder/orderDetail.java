@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Apartment;
 import model.OrderData.AptOrderCatalog;
 import ui.Community.communityView.communityManagement.communityManagement;
+import ui.Main;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,7 +21,6 @@ public class orderDetail {
     private JTable tableOrder;
     private JLabel labelName;
 
-    JFrame jFrame = new JFrame();
 
     Vector<String> titleOrder;
     Vector<Vector<Apartment>> dataOrder;
@@ -28,13 +28,9 @@ public class orderDetail {
 
     public orderDetail() {
 
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setVisible(true);
-        panelOrderDetails.setOpaque(true);
-        jFrame.setSize(new Dimension(800, 800));
-        jFrame.setContentPane(panelOrderDetails);
+        // panelOrderDetails.setOpaque(true);
 
-        AptOrderCatalog aptOrderCatalog = new AptOrderCatalog();
+        // AptOrderCatalog aptOrderCatalog = new AptOrderCatalog();
 
         titleOrder = new Vector<>();
         titleOrder.add("title");
@@ -43,7 +39,7 @@ public class orderDetail {
         titleOrder.add("Quantity");
 
         //dataOrder = new Vector<>();
-        //dataOrder.addElement(aptOrderCatalog.getCurrentApt());
+        // dataOrder.addElement(aptOrderCatalog.getCurrentApt());
 
         tableModelOrder = new DefaultTableModel(dataOrder, titleOrder);
         tableOrder = new JTable(dataOrder, titleOrder);
@@ -52,27 +48,13 @@ public class orderDetail {
         String apt = apartment.getAptNo();
         labelName.setText(apt);
 
-        btnBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Component communityManagement = panelOrderDetails.add("communityManagement", new communityManagement().getFrame());
-                ((CardLayout) panelOrderDetails.getLayout()).show(panelOrderDetails, "communityManagement");
-            }
-        });
+        btnBack.addActionListener(e -> Main.gotoPanel("communityManagement"));
 
     }
 
-    public Frame getFrame() {
-        return jFrame;
+    public JPanel getPanel() {
+        return panelOrderDetails;
     }
-
-
-
-    public static void main(String[] args) {
-        new orderDetail();
-    }
-
-
 
 
 }

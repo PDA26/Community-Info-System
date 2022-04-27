@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 
-public class communityMain extends JPanel{
+public class communityMain {
 
     private JComboBox<String> comboCommunity;
     private JButton btnAdd;
@@ -25,10 +25,8 @@ public class communityMain extends JPanel{
     private JButton btnToCom;
     private JButton btnBack;
     private JPanel panelCommunityMain;
-    JLabel imgJLabel = new JLabel();
-    private JPanel panelContent;
+    JLabel imgJLabel;
 
-    JFrame jFrame = new JFrame("Community Main");
 
     Communities communitiesDir;
     CommunityInfo communityInfo;
@@ -41,16 +39,12 @@ public class communityMain extends JPanel{
 
     public communityMain() {
 
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setVisible(true);
-        panelCommunityMain.setOpaque(true);
-        jFrame.setSize(new Dimension(800, 800));
-        jFrame.setContentPane(panelCommunityMain);
+        // panelCommunityMain.setOpaque(true);
 
 //        panelContent.add("communityManagement", new communityManagement().getPanel());
 
         btnAdd.addActionListener(actionEvent -> {
-            CommunityInfo c = addCommunity.showCommunityAdd(null, null);
+            CommunityInfo c = addCommunity.showCommunityAdd(panelCommunityMain, null);
             if(c != null){
                 ArrayList<String> names = new ArrayList<String>();
 
@@ -73,6 +67,7 @@ public class communityMain extends JPanel{
 
 
 
+        Main.addPanel(new communityManagement().getPanel(), "communityManagement");
         btnToCom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -83,39 +78,22 @@ public class communityMain extends JPanel{
 //                  String name = communityName.get(index);
                     communityModel.setCurrentCommunity(index);
 
-                    Component communityManagement = panelCommunityMain.add("communityManagement", new communityManagement().getFrame());
-                    ((CardLayout) panelCommunityMain.getLayout()).show(panelCommunityMain, "communityManagement");
+                    Main.gotoPanel("communityManagement");
                 }
                 else {
-                    JOptionPane.showMessageDialog(communityMain.this, "Please select a community!");
+                    JOptionPane.showMessageDialog(panelCommunityMain, "Please select a community!");
                 }
             }
         });
 
-        btnToRes.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Component residentManagement = panelCommunityMain.add("residentManagement", new residentManagement().getFrame());
-                ((CardLayout) panelCommunityMain.getLayout()).show(panelCommunityMain, "residentManagement");
-            }
-        });
+        Main.addPanel(new residentManagement().getPanel(), "residentManagement");
+        btnToRes.addActionListener(e -> Main.gotoPanel("residentManagement"));
 
-        btnBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.gotoPanel("Login");
-            }
-        });
+        btnBack.addActionListener(e -> Main.gotoPanel("Login"));
 
     }
 
-    public Frame getFrame() {
-        return jFrame;
+    public JPanel getPanel() {
+        return panelCommunityMain;
     }
-
-    public static void main(String[] args) {
-        new communityMain();
-
-    }
-
 }

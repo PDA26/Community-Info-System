@@ -8,6 +8,8 @@ import model.CommunityData.CommunityOrderCatalog;
 import model.SuperMarket.orderCenter.OrderCatalog;
 import model.OrderData.AptOrderCatalog;
 import ui.Community.communityView.communityManagement.communityManagement;
+import ui.Community.mainJPanel.communityMain;
+import ui.Main;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,22 +25,17 @@ public class communityOrders {
     private JTable tableOrders;
     private JLabel labelName;
 
-    JFrame jFrame = new JFrame();
 
     public communityOrders() {
 
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setVisible(true);
-        panelCommunityOrders.setOpaque(true);
-        jFrame.setSize(new Dimension(800, 800));
-        jFrame.setContentPane(panelCommunityOrders);
+        // panelCommunityOrders.setOpaque(true);
 
         Vector<String> titleOrders;
         Vector<Vector<CommunityOrderCatalog>> dataOrders;
         DefaultTableModel tableModelOrders;
 
         CommunityOrderCatalog communityOrderCatalog = new CommunityOrderCatalog();
-        AptOrderCatalog aptOrderCatalog = new AptOrderCatalog();
+        // AptOrderCatalog aptOrderCatalog = new AptOrderCatalog();
         OrderCatalog orderCatalog = new OrderCatalog();
 
         titleOrders = new Vector<>();
@@ -56,27 +53,12 @@ public class communityOrders {
         String currentName = communityModel.getCurrentCommunity().getCommunityName();
         labelName.setText(currentName);
 
-        btnBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Component communityManagement = panelCommunityOrders.add("communityManagement", new communityManagement().getFrame());
-                ((CardLayout) panelCommunityOrders.getLayout()).show(panelCommunityOrders, "communityManagement");
-            }
-        });
+        btnBack.addActionListener(e -> Main.gotoPanel("communityManagement"));
 
     }
 
-    public Frame getFrame() {
-        return jFrame;
+    public JPanel getPanel() {
+        return panelCommunityOrders;
     }
-
-
-
-    public static void main(String[] args) {
-        new communityOrders();
-    }
-
-
-
 
 }

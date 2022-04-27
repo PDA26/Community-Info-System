@@ -15,8 +15,9 @@ import model.SuperMarket.orderCenter.Product;
 import model.SuperMarket.orderCenter.ProductCatalog;
 import model.OrderData.AptOrderCatalog;
 import ui.Community.mainJPanel.communityMain;
+import ui.Main;
 
-public class residentManagement extends Component {
+public class residentManagement {
 
 
     private JPanel panelResidentManagement;
@@ -29,7 +30,6 @@ public class residentManagement extends Component {
     private JTextField txtAptNo;
     private JButton btnAdd;
 
-    JFrame jFrame = new JFrame();
 
     Vector<String> titlesMenu;
     Vector<Vector<Product>> dataMenu;
@@ -46,11 +46,7 @@ public class residentManagement extends Component {
 
     public residentManagement() {
 
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setVisible(true);
-        panelResidentManagement.setOpaque(true);
-        jFrame.setSize(new Dimension(800, 800));
-        jFrame.setContentPane(panelResidentManagement);
+        // panelResidentManagement.setOpaque(true);
 
         titlesMenu = new Vector<>();
         titlesMenu.add("Item Name");
@@ -69,8 +65,7 @@ public class residentManagement extends Component {
         btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Component communityMain = panelResidentManagement.add("communityMain", new communityMain().getFrame());
-                ((CardLayout) panelResidentManagement.getLayout()).show(panelResidentManagement, "communityMain");
+                Main.gotoPanel("CommunityMain");
             }
         });
 
@@ -80,17 +75,17 @@ public class residentManagement extends Component {
 
                 int row = tableItem.getSelectedRow();
                 int len = tableItem.getColumnCount();
-                for (int i=0; i<len; i++) {
+                for (int i = 0; i < len; i++) {
                     dataCart.addElement((Vector<Product>) tableItem.getValueAt(row, i));
                 }
                 order.setName(String.valueOf(tableItem.getValueAt(row, 0)));
-                order.setUnitPrice((Double)tableItem.getValueAt(row, 1));
-                order.setPrice((Integer)tableItem.getValueAt(row, 2));
-                order.setQuantityForOrder((Integer)tableItem.getValueAt(row, 3));
+                order.setUnitPrice((Double) tableItem.getValueAt(row, 1));
+                order.setPrice((Integer) tableItem.getValueAt(row, 2));
+                order.setQuantityForOrder((Integer) tableItem.getValueAt(row, 3));
                 OrderCatalog.getInstance().setCurrentOrder(order);
                 tableCart = new JTable(dataCart, titlesCart);
 
-                JOptionPane.showMessageDialog(residentManagement.this, "Successfully add to cart!");
+                JOptionPane.showMessageDialog(panelResidentManagement, "Successfully add to cart!");
             }
         });
 
@@ -99,13 +94,13 @@ public class residentManagement extends Component {
             public void actionPerformed(ActionEvent e) {
                 int row = tableCart.getSelectedRow();
 
-                if (row>0) {
+                if (row > 0) {
                     String item = String.valueOf(tableCart.getValueAt(row, 0));
                     OrderCatalog.deleteOrder(OrderCatalog.getInstance().getCurrentOrder(), item);
-                    JOptionPane.showMessageDialog(residentManagement.this, "Successfully deleted!");
-                }
-                else {
-                    JOptionPane.showMessageDialog(residentManagement.this, "Please select an item!");
+                    JOptionPane.showMessageDialog(panelResidentManagement, "Successfully deleted!");
+                } else {
+                    JOptionPane.showMessageDialog(panelResidentManagement,
+                                                  "Please select an item!");
                 }
             }
         });
@@ -118,10 +113,10 @@ public class residentManagement extends Component {
 
                 while (true) {
                     if (Apt.isBlank()) {
-                        JOptionPane.showMessageDialog(residentManagement.this, "Please enter Apt No!");
+                        JOptionPane.showMessageDialog(panelResidentManagement,
+                                                      "Please enter Apt No!");
                         break;
-                    }
-                    else {
+                    } else {
                         id += 1;
                         SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         apartment.setAptNo(Apt);
@@ -129,10 +124,9 @@ public class residentManagement extends Component {
                         apartment.setOrderId(id);
                         OrderCatalog.addOrder(Apt, order);
                         AptOrderCatalog.getInstance().addNewOrderItem(order);
-                        JOptionPane.showMessageDialog(residentManagement.this, "Successfully confirmed!");
-                        jFrame.setVisible(false);
-                        panelResidentManagement.add("CommunityMain", new ui.Community.mainJPanel.communityMain().getFrame());
-                        ((CardLayout) panelResidentManagement.getLayout()).show(panelResidentManagement, "CommunityMain");
+                        JOptionPane.showMessageDialog(panelResidentManagement,
+                                                      "Successfully confirmed!");
+                        Main.gotoPanel("CommunityMain");
                     }
                 }
             }
@@ -142,15 +136,5 @@ public class residentManagement extends Component {
 
     public JPanel getPanel() {
         return panelResidentManagement;
-    }
-
-
-
-    public static void main(String[] args) {
-        new residentManagement();
-    }
-
-    public Frame getFrame() {
-        return jFrame;
     }
 }

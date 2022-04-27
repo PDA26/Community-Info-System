@@ -1,15 +1,13 @@
 package ui;
 
 import model.Community;
-import sun.awt.OSInfo;
 import ui.Administrator.Resident;
+import ui.Community.mainJPanel.communityMain;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.AccessController;
 import java.text.DateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -20,7 +18,7 @@ public class Login {
     private JButton signInButton;
     private JButton signUpButton;
     private JRadioButton residentRadioButton;
-    private JRadioButton managementRadioButton;
+    private JRadioButton communityRadioButton;
     private JRadioButton marketRadioButton;
     private JPanel panel;
     private JTable tableResident;
@@ -34,9 +32,10 @@ public class Login {
 
     public Login() {
         Main.addPanel(new Resident().getPanel(), "Resident");
+        Main.addPanel(new communityMain().getPanel(), "communityMain");
         ButtonGroup buttonGroup_Main = new ButtonGroup();
         buttonGroup_Main.add(residentRadioButton);
-        buttonGroup_Main.add(managementRadioButton);
+        buttonGroup_Main.add(communityRadioButton);
         buttonGroup_Main.add(marketRadioButton);
 
         signInButton.addActionListener(new ActionListener() {
@@ -47,6 +46,8 @@ public class Login {
                     && Arrays.equals(textFieldPwd.getPassword(), "1".toCharArray())) {
                     //jump to resident
                     Main.gotoPanel("Resident");
+                } else if (buttonGroup_Main.isSelected(communityRadioButton.getModel())) {
+                    Main.gotoPanel("communityMain");
                 } else {
                     JOptionPane.showMessageDialog(panel, "Wrong username or pwd!!!");
                 }

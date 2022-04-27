@@ -17,8 +17,9 @@ import java.util.List;
 
 import ui.Community.communityView.communityOrder.communityOrders;
 import ui.Community.communityView.communityOrder.orderDetail;
+import ui.Main;
 
-public class communityManagement extends JPanel {
+public class communityManagement {
 
 
     private JButton btnBack;
@@ -26,11 +27,9 @@ public class communityManagement extends JPanel {
     private JButton btnViewDetails;
     private JButton btnConfirm;
     private JButton btnViewOrders;
-    private JPanel panelCommunityManagement;
+    private JPanel panel;
     private JLabel labelShowName;
 
-    JFrame jFrame = new JFrame();
-    //TODO
     Apartment apartment = new Apartment();
 
     private List<String> titlesOrder;
@@ -40,15 +39,11 @@ public class communityManagement extends JPanel {
 
     public communityManagement() {
 
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setVisible(true);
-        panelCommunityManagement.setOpaque(true);
-        jFrame.setSize(new Dimension(800, 800));
-        jFrame.setContentPane(panelCommunityManagement);
+        // panel.setOpaque(true);
 
         CommunityModel communityModel = CommunityModel.getInstance();
         String currentName = "";
-        if(communityModel.getCurrentCommunity() != null)
+        if (communityModel.getCurrentCommunity() != null)
             currentName = communityModel.getCurrentCommunity().getCommunityName();
         labelShowName.setText(currentName);
 
@@ -60,40 +55,21 @@ public class communityManagement extends JPanel {
 
         titlesOrder.add("Apt No.");
         titlesOrder.add("Order Time");
-        String[] columnNames = { "Apt No.", "Order Time" };
+        String[] columnNames = {"Apt No.", "Order Time"};
         //TODO
         String apt = apartment.getAptNo();
         String time = apartment.getOrderTime();
-        Object[][] rowData = { {apt}, {time} };
+        Object[][] rowData = {{apt}, {time}};
         tableModelOrder = new DefaultTableModel(rowData, columnNames);
         tableApt = new JTable(rowData, columnNames);
 
-        btnBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //TODO
-                Component communityMain = panelCommunityManagement.add("communityMain", new communityMain().getFrame());
-                ((CardLayout) panelCommunityManagement.getLayout()).show(panelCommunityManagement, "communityMain");
-            }
-        });
+        btnBack.addActionListener(e -> Main.gotoPanel("communityMain"));
 
-        btnViewDetails.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //TODO
-                Component orderDetails = panelCommunityManagement.add("orderDetails", new orderDetail().getFrame());
-                ((CardLayout) panelCommunityManagement.getLayout()).show(panelCommunityManagement, "orderDetails");
-            }
-        });
+        Main.addPanel(new orderDetail().getPanel(), "orderDetails");
+        btnViewDetails.addActionListener(e -> Main.gotoPanel("orderDetails"));
 
-        btnViewOrders.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //TODO
-                Component orders = panelCommunityManagement.add("orders", new communityOrders().getFrame());
-                ((CardLayout) panelCommunityManagement.getLayout()).show(panelCommunityManagement, "orders");
-            }
-        });
+        Main.addPanel(new communityOrders().getPanel(), "orders");
+        btnViewOrders.addActionListener(e -> Main.gotoPanel("orders"));
 
         btnConfirm.addActionListener(new ActionListener() {
             @Override
@@ -103,7 +79,7 @@ public class communityManagement extends JPanel {
                 OrderCatalog orderCatalog = new OrderCatalog();
                 String Apt = apartment.getAptNo();
                 OrderCatalog.addOrder(Apt, OrderCatalog.getInstance().getCurrentOrder());
-                JOptionPane.showMessageDialog(communityManagement.this, "Successfully confirmed!");
+                JOptionPane.showMessageDialog(panel, "Successfully confirmed!");
             }
         });
 
@@ -114,16 +90,7 @@ public class communityManagement extends JPanel {
     }
 
     public JPanel getPanel() {
-        return panelCommunityManagement;
+        return panel;
     }
 
-    public JFrame getFrame() {
-        return jFrame;
-    }
-
-
-
-    public static void main(String[] args) {
-        new communityManagement();
-    }
 }
