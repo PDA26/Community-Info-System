@@ -1,12 +1,16 @@
-package model;
+package model.SuperMarket.wareHouse;
 
 import jdk.jfr.Name;
+import model.SuperMarket.orderCenter.ShopItem;
 
 import javax.swing.table.AbstractTableModel;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Warehouse: Inventory Directory OR Inventory Catalog
+ */
 public class Warehouse extends AbstractTableModel {
     List<ShopItem> dir;
 

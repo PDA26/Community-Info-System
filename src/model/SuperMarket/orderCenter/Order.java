@@ -1,11 +1,18 @@
-package model;
+package model.SuperMarket.orderCenter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
+/**
+ * Order
+ */
 public class Order {
+
+    private HashMap<String, ArrayList<OrderItem>> orderMap;
+
+    /*
     List<ShopItem> list;
     static int idCount = 0;
     int id;
@@ -22,4 +29,5 @@ public class Order {
         }
         list.add(si);
     }
+    */
 }
