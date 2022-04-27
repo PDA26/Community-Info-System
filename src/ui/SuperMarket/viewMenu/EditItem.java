@@ -48,18 +48,15 @@ public class EditItem {
         addJButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                ExtendedSocketOptions MainProcess;
                 if (nameField.getText().isEmpty()
-                        || priceField.getText().isEmpty()
-                        || updateTimeField.getText().isEmpty()
-                        || quantityField.getText().isEmpty()
-                        || itemStatusComboBox.getSelectedIndex() == 0) {
+                    || priceField.getText().isEmpty()
+                    || updateTimeField.getText().isEmpty()
+                    || quantityField.getText().isEmpty()
+                    || itemStatusComboBox.getSelectedIndex() == 0) {
 
-                    MainProcess.getInstance().showDialog("information cannot be empty");
+                    JOptionPane.showMessageDialog(contentJPanel, "information cannot be empty");
 
-                }else {
-
+                } else {
                     Product product = new Product();
                     product.setName(nameField.getText());
                     product.setPrice(Double.parseDouble(priceField.getText()));
@@ -69,13 +66,14 @@ public class EditItem {
 
                     productModel.addNewProduct(product);
 
-                    MainProcess.getInstance().showDialog("New Item Profile Inserted Successfully!!");
+                    JOptionPane.showMessageDialog(contentJPanel,
+                                                  "New Item Profile Inserted Successfully!!");
 
                     //check the data
                     //productModel.printCatalog();
 
-                    MainProcess.getInstance().changeFrame(new ViewItemMenu().getPanel());
-
+                    // TODO
+                    // MainProcess.getInstance().changeFrame(new ViewItemMenu().getPanel());
                 }
 
             }
