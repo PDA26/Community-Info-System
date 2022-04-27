@@ -12,12 +12,13 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import ui.Community.communityView.communityOrder.communityOrders;
 import ui.Community.communityView.communityOrder.orderDetail;
 
-public class communityManagement<currentCommunity> extends JPanel {
+public class communityManagement extends JPanel {
 
 
     private JButton btnBack;
@@ -32,8 +33,8 @@ public class communityManagement<currentCommunity> extends JPanel {
 
     Apartment apartment = new Apartment();
 
-    Vector<String> titlesOrder;
-    Vector<Object> dataOrder;
+    private List<String> titlesOrder;
+    private List<Object> dataOrder;
     DefaultTableModel tableModelOrder;
 
 
@@ -52,10 +53,12 @@ public class communityManagement<currentCommunity> extends JPanel {
         CommunityInfo currentCommunity;
         currentCommunity = communityModel.getCurrentCommunity();
 
+        this.titlesOrder = new ArrayList<>();
+        this.dataOrder = new ArrayList<>();
+
         titlesOrder.add("Apt No.");
         titlesOrder.add("Order Time");
         String[] columnNames = { "Apt No.", "Order Time" };
-        dataOrder = new Vector<>();
         String apt = apartment.getAptNo();
         String time = apartment.getOrderTime();
         Object[][] rowData = { {apt}, {time} };

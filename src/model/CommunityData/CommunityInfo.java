@@ -9,8 +9,11 @@ public class CommunityInfo {
     public int id;
     @Name("Name")
     public String communityName;
+    @Name("Address")
     public String communityAddress;
+    @Name("ZipCode")
     public String communityZipcode;
+    @Name("PhoneNum")
     public String communityPhone;
 
     public CommunityInfo() {

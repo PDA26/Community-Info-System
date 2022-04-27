@@ -50,13 +50,15 @@ public class communityMain extends JPanel{
 //        panelContent.add("communityManagement", new communityManagement().getPanel());
 
         btnAdd.addActionListener(actionEvent -> {
-            CommunityInfo c = addCommunity.showCommunityAdd(null, communityInfo);
-            ArrayList<String> names = new ArrayList<String>();
+            CommunityInfo c = addCommunity.showCommunityAdd(null, null);
+            if(c != null){
+                ArrayList<String> names = new ArrayList<String>();
 
-            for (CommunityInfo communityInfo: communityModel.getCommunities()) {
-                names.add(communityInfo.getCommunityName());
+                for (CommunityInfo communityInfo: communityModel.getCommunities()) {
+                    names.add(communityInfo.getCommunityName());
+                }
+                comboCommunity.addItem(names.get(names.size()-1));
             }
-            comboCommunity.addItem(names.get(names.size()-1));
         });
 
 //        System.out.println("test1");
