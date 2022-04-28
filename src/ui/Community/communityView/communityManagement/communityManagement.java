@@ -30,7 +30,7 @@ public class communityManagement extends JPanel {
     private JLabel labelShowName;
 
     JFrame jFrame = new JFrame();
-
+    //TODO
     Apartment apartment = new Apartment();
 
     private List<String> titlesOrder;
@@ -61,6 +61,7 @@ public class communityManagement extends JPanel {
         titlesOrder.add("Apt No.");
         titlesOrder.add("Order Time");
         String[] columnNames = { "Apt No.", "Order Time" };
+        //TODO
         String apt = apartment.getAptNo();
         String time = apartment.getOrderTime();
         Object[][] rowData = { {apt}, {time} };
@@ -70,6 +71,7 @@ public class communityManagement extends JPanel {
         btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //TODO
                 Component communityMain = panelCommunityManagement.add("communityMain", new communityMain().getFrame());
                 ((CardLayout) panelCommunityManagement.getLayout()).show(panelCommunityManagement, "communityMain");
             }
@@ -78,7 +80,7 @@ public class communityManagement extends JPanel {
         btnViewDetails.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //TODO
                 Component orderDetails = panelCommunityManagement.add("orderDetails", new orderDetail().getFrame());
                 ((CardLayout) panelCommunityManagement.getLayout()).show(panelCommunityManagement, "orderDetails");
             }
@@ -87,6 +89,7 @@ public class communityManagement extends JPanel {
         btnViewOrders.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //TODO
                 Component orders = panelCommunityManagement.add("orders", new communityOrders().getFrame());
                 ((CardLayout) panelCommunityManagement.getLayout()).show(panelCommunityManagement, "orders");
             }
