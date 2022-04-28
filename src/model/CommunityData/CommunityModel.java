@@ -1,6 +1,6 @@
 package model.CommunityData;
 
-import model.CommunityInfo;
+import model.CommunityData.CommunityInfo;
 
 import java.util.Collection;
 import java.util.HashMap;

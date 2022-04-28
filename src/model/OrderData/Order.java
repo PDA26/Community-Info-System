@@ -36,6 +36,14 @@ public class Order {
     public void setItemList(List<Product> itemList) {
         this.itemList = itemList;
     }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
     /*
     List<ShopItem> list;
     static int idCount = 0;

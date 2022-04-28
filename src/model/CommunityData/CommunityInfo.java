@@ -1,4 +1,4 @@
-package model;
+package model.CommunityData;
 
 import jdk.jfr.Name;
 

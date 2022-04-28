@@ -1,7 +1,6 @@
 package ui;
 
 import model.Community;
-import model.CommunityData.CommunityInfo;
 import model.SignUp.AccountInfo;
 import model.SignUp.AccountCatalog;
 import sun.awt.OSInfo;
