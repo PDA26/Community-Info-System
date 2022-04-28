@@ -38,11 +38,6 @@ public class communityMain {
         imgJLabel.setIcon(logoIcon);
         imgJLabel.setSize(100, 100);
 
-        btnBack.setSize(10, 5);
-        btnToRes.setSize(10, 5);
-        btnToCom.setSize(10, 5);
-        btnAdd.setSize(10, 5);
-
         updateComboBox(comboCommunity);
 
         btnAdd.addActionListener(actionEvent -> {

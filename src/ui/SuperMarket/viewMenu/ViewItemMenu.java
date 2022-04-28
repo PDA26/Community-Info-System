@@ -25,6 +25,7 @@ public class ViewItemMenu {
 
 
     public ViewItemMenu() {
+        itemTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         addItemJButton.addActionListener(e -> {
             Product product = EditItem.showEditItem(viewItemMenuJPanel, null);
             if (product != null) {

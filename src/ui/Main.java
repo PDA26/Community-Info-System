@@ -27,11 +27,6 @@ public class Main {
             e.printStackTrace();
         }
 
-        frame.setLayout(new CardLayout());
-
-        SignIn signIn = new SignIn();
-        frame.add(signIn.getPanel(), "SignIn");
-        gotoPanel("SignIn");
         SuperMarket market = SuperMarket.getInstance();
         Warehouse wh = market.getWh();
         //String name, double price, String modifiedDate, int quantity, boolean isInStock
@@ -65,6 +60,12 @@ public class Main {
         cm.addNewCommunity(ci1);
         cm.addNewCommunity(ci2);
         cm.addNewCommunity(ci3);
+
+        frame.setLayout(new CardLayout());
+
+        SignIn signIn = new SignIn();
+        frame.add(signIn.getPanel(), "SignIn");
+        gotoPanel("SignIn");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 800);
         frame.setLocationRelativeTo(null);

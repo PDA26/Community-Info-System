@@ -1,6 +1,7 @@
 package ui.SignUp;
 
 //import com.google.gson.*;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -43,23 +44,22 @@ public class CommunitySignUp {
                 System.out.println(Username);
                 System.out.println(Password);
 
-                JsonParser parser = new JsonParser();
                 JsonObject sign_up_object = null;
-                try {
-                    sign_up_object = (JsonObject)parser.parse(new FileReader("LogAndSign.json"));
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                try (FileReader reader = new FileReader("LogAndSign.json")) {
+                    sign_up_object = JsonParser.parseReader(reader).getAsJsonObject();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
-                JsonObject finalSign_up_object = sign_up_object;
-                JsonArray array = finalSign_up_object.get("resident").getAsJsonArray();
-                for(int i = 0; i < array.size(); i++) {
+                assert sign_up_object != null;
+
+                JsonArray array = sign_up_object.get("resident").getAsJsonArray();
+                for (int i = 0; i < array.size(); i++) {
                     JsonObject curr = array.get(i).getAsJsonObject();
                     if (Username.equals(curr.get("usr").getAsString()) &&
-                            Password.equals(curr.get("pwd").getAsString())) {
+                        Password.equals(curr.get("pwd").getAsString())) {
                         //System.out.println("Overlapped usr and pwd");
-                        JOptionPane.showMessageDialog(CommunitySignUp.this.panelCommunitySignUp, "Overlapped usr and pwd!");
+                        JOptionPane.showMessageDialog(CommunitySignUp.this.panelCommunitySignUp,
+                                                      "Overlapped usr and pwd!");
                         txtPassword.setText("");
                         txtUsername.setText("");
                         return;
@@ -69,17 +69,17 @@ public class CommunitySignUp {
                 res.addProperty("usr", Username);
                 res.addProperty("pwd", Password);
                 array.add(res);
-                finalSign_up_object.add("resident", array);
+                sign_up_object.add("resident", array);
                 //String str = finalSign_up_object.getAsString();
                 Gson gson = new Gson();
-                try {
-                    Writer writer = new FileWriter("LogAndSign.json");
-                    gson.toJson(finalSign_up_object, writer);
+                try (Writer writer = new FileWriter("LogAndSign.json")) {
+                    gson.toJson(sign_up_object, writer);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 System.out.println("New usr and pwd successfully added!");
-                JOptionPane.showMessageDialog(CommunitySignUp.this.panelCommunitySignUp, "Account saved!");
+                JOptionPane.showMessageDialog(CommunitySignUp.this.panelCommunitySignUp,
+                                              "Account saved!");
                 txtPassword.setText("");
                 txtUsername.setText("");
                 Main.gotoPanel("SignIn");
