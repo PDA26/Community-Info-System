@@ -45,6 +45,7 @@ public class Order extends AbstractTableModel {
             }
         }
         itemList.add(p);
+        fireTableRowsInserted(itemList.size() - 1, itemList.size() - 1);
         return p.getQuantity();
     }
 

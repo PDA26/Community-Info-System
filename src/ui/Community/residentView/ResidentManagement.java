@@ -51,7 +51,7 @@ public class ResidentManagement {
         this.communityInfo = communityModel.getCurrentCommunity();
         String[] titleCart = {"Item Name", "Price", "Manufacture Date", "Quantity", "Item Status"};
         String[][] dataCart = new String[5][];
-        tableCart = new JTable(dataCart, titleCart);
+        tableCart.setModel(curr_order);
         SuperMarket market = SuperMarket.getInstance();
 
         btnBack.addActionListener(new ActionListener() {
@@ -87,7 +87,6 @@ public class ResidentManagement {
 
                 //TODO update tableCart
                 curr_order.addProduct(curr_product);
-                tableCart = new JTable(curr_order);
 
                 JOptionPane.showMessageDialog(panelResidentManagement, "Successfully add to cart!");
             }
@@ -138,7 +137,7 @@ public class ResidentManagement {
 //                        OrderCatalog.addOrder(Apt, order);
 //                        AptOrderCatalog.getInstance().addNewOrderItem(order);
 
-                        //TODO COMFIRM APT ORDERS
+                        //TODO CONFIRM APT ORDERS
                         int len = tableCart.getRowCount();
                         List<Order> curr_order = null;
 
@@ -171,9 +170,7 @@ public class ResidentManagement {
 //        tableItem = new JTable(market.getWh());
 //    }
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         SuperMarket market = SuperMarket.getInstance();
         tableItem = new JTable(market.getWh());
-        tableCart = new JTable(curr_order);
     }
 }
