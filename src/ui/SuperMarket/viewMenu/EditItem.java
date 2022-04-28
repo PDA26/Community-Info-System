@@ -1,9 +1,7 @@
 package ui.SuperMarket.viewMenu;
 
-import model.SuperMarket.orderCenter.Product;
+import model.Product;
 import model.SuperMarket.orderCenter.ProductCatalog;
-import sun.net.ext.ExtendedSocketOptions;
-import ui.SuperMarket.mainJPanel.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

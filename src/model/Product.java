@@ -1,4 +1,4 @@
-package model.SuperMarket.orderCenter;
+package model;
 
 /**
  * Product

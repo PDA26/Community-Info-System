@@ -41,4 +41,5 @@ public class OrderCenter {
     public void setMap(Map<String, CommunityOrderCatalog> map) {
         this.map = map;
     }
+
 }

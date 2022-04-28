@@ -2,7 +2,6 @@ package ui.Community.residentView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -11,10 +10,9 @@ import java.util.Vector;
 import model.Apartment;
 import model.SuperMarket.orderCenter.OrderCatalog;
 import model.SuperMarket.orderCenter.OrderItem;
-import model.SuperMarket.orderCenter.Product;
+import model.Product;
 import model.SuperMarket.orderCenter.ProductCatalog;
 import model.OrderData.AptOrderCatalog;
-import ui.Community.mainJPanel.communityMain;
 import ui.Main;
 
 public class residentManagement {

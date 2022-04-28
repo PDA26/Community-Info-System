@@ -1,7 +1,7 @@
 package model.SuperMarket.wareHouse;
 
 import jdk.jfr.Name;
-import model.SuperMarket.orderCenter.deletePending.ShopItem;
+import model.Product;
 
 import javax.swing.table.AbstractTableModel;
 import java.lang.reflect.Field;
@@ -12,13 +12,13 @@ import java.util.List;
  * Warehouse: Inventory Directory OR Inventory Catalog
  */
 public class Warehouse extends AbstractTableModel {
-    List<ShopItem> dir;
+    List<Product> dir;
 
     public Warehouse() {
         this.dir = new ArrayList<>();
     }
 
-    public void add(ShopItem p){
+    public void add(Product p){
         dir.add(p);
         fireTableRowsInserted(dir.size() - 1, dir.size() - 1);
     }
@@ -28,13 +28,18 @@ public class Warehouse extends AbstractTableModel {
         fireTableRowsDeleted(idx, idx);
     }
 
-    public void delete(ShopItem p) {
+    public void delete(Product p) {
         int row = dir.indexOf(p);
         delete(row);
     }
 
-    public ShopItem get(int i) {
-        return dir.get(i);
+    public Product getByName(String s) {
+        for(Product p : dir){
+            if(p.getName().compareTo(s) == 0){
+                return p;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -44,13 +49,13 @@ public class Warehouse extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return ShopItem.class.getFields().length;
+        return Product.class.getFields().length;
     }
 
     @Override
     public Object getValueAt(int row, int col) {
         try {
-            return ShopItem.class.getFields()[col].get(dir.get(row));
+            return Product.class.getFields()[col].get(dir.get(row));
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -59,7 +64,7 @@ public class Warehouse extends AbstractTableModel {
 
     @Override
     public String getColumnName(int column) {
-        Field field = ShopItem.class.getFields()[column];
+        Field field = Product.class.getFields()[column];
         Name name = field.getAnnotation(Name.class);
         if (name != null) {
             return name.value();
@@ -69,13 +74,13 @@ public class Warehouse extends AbstractTableModel {
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        return ShopItem.class.getFields()[columnIndex].getType();
+        return Product.class.getFields()[columnIndex].getType();
     }
 }
 
 //    private int idCnt = 0;
-//    Map<Integer, ShopItem> map;
-//    List<ShopItem> list;
+//    Map<Integer, Product> map;
+//    List<Product> list;
 //
 //    public Warehouse() {
 //        this.map = new HashMap<>();
@@ -83,8 +88,8 @@ public class Warehouse extends AbstractTableModel {
 //    }
 //
 //    public boolean addItem(String name, int price, String spec, Date mfg, Date exp, String description){
-//        ShopItem tmp = new ShopItem(name, price, spec, mfg, exp, description);
-//        for(ShopItem si : list){
+//        Product tmp = new Product(name, price, spec, mfg, exp, description);
+//        for(Product si : list){
 //            if(si.isSame(tmp)){
 //                return false;
 //            }
@@ -92,15 +97,15 @@ public class Warehouse extends AbstractTableModel {
 //        map.put(idCnt++, tmp);
 //        list.add(tmp);
 //    }
-//    public List<ShopItem> getItemByName(String name){
-//        List<ShopItem> res = new ArrayList<>();
-//        for(ShopItem si : list){
+//    public List<Product> getItemByName(String name){
+//        List<Product> res = new ArrayList<>();
+//        for(Product si : list){
 //            if(si.getName().compareTo(name) == 0){
 //                res.add(si);
 //            }
 //        }
 //        return res;
 //    }
-//    public ShopItem getItemById(int id){
+//    public Product getItemById(int id){
 //        return map.getOrDefault(id, null);
 //    }

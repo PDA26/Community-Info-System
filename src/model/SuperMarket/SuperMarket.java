@@ -8,4 +8,34 @@ public class SuperMarket {
     Warehouse wh;
     OrderCenter oc;
     FinCenter fc;
+
+    public SuperMarket() {
+        this.wh = new Warehouse();
+        this.oc = new OrderCenter();
+        this.fc = new FinCenter();
+    }
+
+    public Warehouse getWh() {
+        return wh;
+    }
+
+    public void setWh(Warehouse wh) {
+        this.wh = wh;
+    }
+
+    public OrderCenter getOc() {
+        return oc;
+    }
+
+    public void setOc(OrderCenter oc) {
+        this.oc = oc;
+    }
+
+    public FinCenter getFc() {
+        return fc;
+    }
+
+    public void setFc(FinCenter fc) {
+        this.fc = fc;
+    }
 }

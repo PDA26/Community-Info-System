@@ -1,6 +1,6 @@
 package model.OrderData;
 
-import model.SuperMarket.orderCenter.Product;
+import model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,15 +45,15 @@ public class Order {
         this.status = status;
     }
     /*
-    List<ShopItem> list;
+    List<Product> list;
     static int idCount = 0;
     int id;
     public Order() {
         this.list = new LinkedList<>();
         id = idCount++;
     }
-    public void addItem(ShopItem si){
-        for(ShopItem curr : list){
+    public void addItem(Product si){
+        for(Product curr : list){
             if(curr.isSame(si)) {
                 curr.setCnt(curr.getCnt() + si.getCnt());
                 return;
