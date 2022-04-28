@@ -18,6 +18,10 @@ public class Warehouse extends AbstractTableModel {
         this.dir = new ArrayList<>();
     }
 
+    public Product get(int idx) {
+        return dir.get(idx);
+    }
+
     public void add(Product p){
         dir.add(p);
         fireTableRowsInserted(dir.size() - 1, dir.size() - 1);

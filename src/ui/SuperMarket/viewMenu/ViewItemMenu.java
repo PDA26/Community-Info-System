@@ -1,72 +1,43 @@
 package ui.SuperMarket.viewMenu;
 
-import model.SuperMarket.orderCenter.ProductCatalog;
+import model.Product;
+import model.SuperMarket.wareHouse.Warehouse;
+import ui.Main;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
 
-public class ViewItemMenu extends JPanel{
-
-    /**
-     * data
-     */
-    ProductCatalog productModel = ProductCatalog.getInstance();
-
-    /**
-     * table
-     */
-    Vector<String> titles;
-    Vector<Vector<Object>> data;
-    DefaultTableModel tableModel;
+public class ViewItemMenu {
 
     /**
      * components
      */
     private JPanel viewItemMenuJPanel;
-    private JPanel contentJPanel;
-    private JTable jTable;
     private JButton addItemJButton;
     private JButton modifyItemJButton;
     private JButton deleteItemJButton;
     private JButton backToMarketJButton;
     private JLabel titleJLabel;
-    private JTable table1;
+    private JTable itemTable;
 
-    private void InitTable() {
+    private Warehouse currentWarehouse;
 
-        titles = new Vector<>();
-        titles.add("Item Name");
-        titles.add("Price");
-        titles.add("Modified Date");
-        titles.add("Quantity");
-        titles.add("Item Status");
-
-        data = new Vector<>();
-        data.addAll(productModel.getData());
-
-        tableModel = new DefaultTableModel(data, titles);
-
-        jTable = new JTable(tableModel);
-        jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//        JScrollPane scrollPane = new JScrollPane(jTable);
-//        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-//        tableJPanel.add(scrollPane);
-
-    }
 
     public ViewItemMenu() {
-
-        //InitTable();
-
-        addItemJButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                //MainProcess.getInstance().changeFrame(new EditItem().getPanel());
-
+        addItemJButton.addActionListener(e -> {
+            Product product = EditItem.showEditItem(viewItemMenuJPanel, null);
+            currentWarehouse.add(product);
+        });
+        backToMarketJButton.addActionListener(actionEvent -> Main.gotoPanel("Market"));
+        modifyItemJButton.addActionListener(actionEvent -> {
+            int row = itemTable.getSelectedRow();
+            if (row != -1) {
+                Product product = currentWarehouse.get(row);
+                product = EditItem.showEditItem(viewItemMenuJPanel, product);
+                if (product != null) {
+                    currentWarehouse.fireTableRowsUpdated(row, row);
+                }
             }
         });
     }
@@ -74,5 +45,8 @@ public class ViewItemMenu extends JPanel{
     public JPanel getPanel() {
         return viewItemMenuJPanel;
     }
-
+    public void setCurrentWarehouse(Warehouse currentWarehouse) {
+        this.currentWarehouse = currentWarehouse;
+        itemTable.setModel(currentWarehouse);
+    }
 }

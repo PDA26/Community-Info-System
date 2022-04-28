@@ -1,5 +1,7 @@
 package ui.SuperMarket.mainJPanel;
 
+import model.SuperMarket.SuperMarket;
+import ui.Main;
 import ui.SuperMarket.viewMenu.ViewItemMenu;
 
 import javax.swing.*;
@@ -9,6 +11,7 @@ import java.awt.event.ActionListener;
 
 public class MainMarket {
 
+    private final ViewItemMenu viewItemMenu;
     /**
      * components
      */
@@ -18,56 +21,33 @@ public class MainMarket {
     ImageIcon imagePath = new ImageIcon("src/resources/logoOfMarket/logo of Walmart.jpg");
 
     private JPanel mainMarketJPanel;
-    private JPanel contentJPanel;
     private JButton viewItemMenuButton;
     private JButton viewOrderButton;
     private JButton backToMainButton;
-    private JLabel titleJLabel;
+
+    private SuperMarket currentSuperMarket;
 
     public MainMarket() {
 
         setLogo();
 
-        viewItemMenuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                ViewItemMenu viewItemMenuForm = new ViewItemMenu();
-                JPanel panel = viewItemMenuForm.getPanel();
-                contentJPanel.add("View Item Menu", panel);
-                CardLayout layout = (CardLayout) contentJPanel.getLayout();
-                layout.next(contentJPanel);
-//                contentJPanel.add("View Item Menu", new ViewItemMenu().getPanel());
-//                ((CardLayout) contentJPanel.getLayout()).next(contentJPanel);
-//                ((CardLayout) contentJPanel.getLayout()).show(contentJPanel, "Main Market Interface");
-
-//                MainProcess.getInstance().changeFrame(new ViewItemMenu().getPanel());
-
-
-
-            }
+        viewItemMenu = new ViewItemMenu();
+        Main.addPanel(viewItemMenu.getPanel(), "ViewItemMenu");
+        viewItemMenuButton.addActionListener(e -> {
+            viewItemMenu.setCurrentWarehouse(currentSuperMarket.getWh());
+            Main.gotoPanel("ViewItemMenu");
         });
 
-        viewOrderButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        viewOrderButton.addActionListener(e -> {
 
-            }
         });
 
-        backToMainButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+        backToMainButton.addActionListener(e -> Main.gotoPanel("Login"));
 
     }
 
     public JPanel getPanel() {
-
         return mainMarketJPanel;
-
     }
 
     public void setLogo() {
@@ -78,4 +58,7 @@ public class MainMarket {
 
     }
 
+    public void setCurrentSuperMarket(SuperMarket currentSuperMarket) {
+        this.currentSuperMarket = currentSuperMarket;
+    }
 }

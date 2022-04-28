@@ -3,20 +3,18 @@ package ui;
 import model.Community;
 import model.SignUp.AccountInfo;
 import model.SignUp.AccountCatalog;
-import sun.awt.OSInfo;
+import model.SignUp.AccountInfo;
 import ui.Administrator.Resident;
 import ui.Community.mainJPanel.communityMain;
-import ui.SuperMarket.mainJPanel.MainMarket;
 import ui.SignUp.CommunitySignUp;
-import ui.SignUp.MarketSignUp;
 import ui.SignUp.DeliverySignUp;
+import ui.SignUp.MarketSignUp;
+import ui.SuperMarket.mainJPanel.MainMarket;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.AccessController;
 import java.text.DateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -65,54 +63,60 @@ public class Login {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (buttonGroup_Main.isSelected(residentRadioButton.getModel())) {
-                    if (accountCatalog.getAccounts().size()>0) {
-                        for (int i=0; i<accountCatalog.getAccounts().size(); i++) {
-                            if ( textFieldUsr.getText().equals(model.SignUp.AccountCatalog.getAccounts().get(i).Username) && Arrays.equals(textFieldPwd.getPassword(), model.SignUp.AccountCatalog.getAccounts().get(i).Password.toCharArray()) ) {
+                    if (accountCatalog.getAccounts().size() > 0) {
+                        for (int i = 0; i < accountCatalog.getAccounts().size(); i++) {
+                            if (textFieldUsr.getText()
+                                            .equals(model.SignUp.AccountCatalog.getAccounts()
+                                                                               .get(i).Username) &&
+                                Arrays.equals(textFieldPwd.getPassword(),
+                                              model.SignUp.AccountCatalog.getAccounts()
+                                                                         .get(i).Password.toCharArray())) {
                                 //jump to resident
                                 Main.gotoPanel("Resident");
-                            }
-                            else {
-                                JOptionPane.showMessageDialog(panel, "Wrong username or pwd of Delivery!!!");
+                            } else {
+                                JOptionPane.showMessageDialog(panel,
+                                                              "Wrong username or pwd of Delivery!!!");
                                 break;
                             }
                         }
                     }
-                }
-//                else if (buttonGroup_Main.isSelected(managementRadioButton.getModel())
-//                        && textFieldUsr.getText().equals("22")
-//                        && Arrays.equals(textFieldPwd.getPassword(), "22".toCharArray())) {
-//                    //jump to resident
-//                    Main.gotoPanel("Community");
-//                }
-                else if (buttonGroup_Main.isSelected(managementRadioButton.getModel())) {
-                    if (accountCatalog.getAccounts().size()>0) {
-                        for (int i=0; i<accountCatalog.getAccounts().size(); i++) {
-                            if ( textFieldUsr.getText().equals(model.SignUp.AccountCatalog.getAccounts().get(i).Username) && Arrays.equals(textFieldPwd.getPassword(), model.SignUp.AccountCatalog.getAccounts().get(i).Password.toCharArray()) ) {
+                } else if (buttonGroup_Main.isSelected(managementRadioButton.getModel())) {
+                    if (accountCatalog.getAccounts().size() > 0) {
+                        for (int i = 0; i < accountCatalog.getAccounts().size(); i++) {
+                            if (textFieldUsr.getText()
+                                            .equals(model.SignUp.AccountCatalog.getAccounts()
+                                                                               .get(i).Username) &&
+                                Arrays.equals(textFieldPwd.getPassword(),
+                                              model.SignUp.AccountCatalog.getAccounts()
+                                                                         .get(i).Password.toCharArray())) {
                                 //jump to resident
                                 Main.gotoPanel("Community");
-                            }
-                            else {
-                                JOptionPane.showMessageDialog(panel, "Wrong username or pwd of Community!!!");
+                            } else {
+                                JOptionPane.showMessageDialog(panel,
+                                                              "Wrong username or pwd of Community!!!");
                                 break;
                             }
                         }
                     }
-                }
-                else if (buttonGroup_Main.isSelected(marketRadioButton.getModel())) {
-                    if (accountCatalog.getAccounts().size()>0) {
-                        for (int i=0; i<accountCatalog.getAccounts().size(); i++) {
-                            if ( textFieldUsr.getText().equals(model.SignUp.AccountCatalog.getAccounts().get(i).Username) && Arrays.equals(textFieldPwd.getPassword(), model.SignUp.AccountCatalog.getAccounts().get(i).Password.toCharArray()) ) {
+                } else if (buttonGroup_Main.isSelected(marketRadioButton.getModel())) {
+                    if (accountCatalog.getAccounts().size() > 0) {
+                        for (int i = 0; i < accountCatalog.getAccounts().size(); i++) {
+                            if (textFieldUsr.getText()
+                                            .equals(model.SignUp.AccountCatalog.getAccounts()
+                                                                               .get(i).Username) &&
+                                Arrays.equals(textFieldPwd.getPassword(),
+                                              model.SignUp.AccountCatalog.getAccounts()
+                                                                         .get(i).Password.toCharArray())) {
                                 //jump to resident
                                 Main.gotoPanel("Market");
-                            }
-                            else {
-                                JOptionPane.showMessageDialog(panel, "Wrong username or pwd of Market!!!");
+                            } else {
+                                JOptionPane.showMessageDialog(panel,
+                                                              "Wrong username or pwd of Market!!!");
                                 break;
                             }
                         }
                     }
-                }
-                else {
+                } else {
                     JOptionPane.showMessageDialog(panel, "Wrong enter!!!");
                 }
             }
@@ -123,12 +127,10 @@ public class Login {
                 if (buttonGroup_Main.isSelected(managementRadioButton.getModel())) {
                     //jump to Community Sign Up
                     Main.gotoPanel("SignUpCommunity");
-                }
-                else if (buttonGroup_Main.isSelected(marketRadioButton.getModel())) {
+                } else if (buttonGroup_Main.isSelected(marketRadioButton.getModel())) {
                     //jump to Community Sign Up
                     Main.gotoPanel("SignUpMarket");
-                }
-                else if (buttonGroup_Main.isSelected(residentRadioButton.getModel())) {
+                } else if (buttonGroup_Main.isSelected(residentRadioButton.getModel())) {
                     //jump to Community Sign Up
                     Main.gotoPanel("SignUpDelivery");
                 }

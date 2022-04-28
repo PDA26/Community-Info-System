@@ -9,17 +9,17 @@ public class Product {
     private double price; //商品的价格
     private String modifiedDate; //商品信息更新的时间
     private int quantity; //商品数量
-    private int itemStatus; //商品状态，quantity 归零变为 out of stock; 1 = in stock; 2 = out of stock
+    private boolean isInStock; //商品状态，quantity 归零变为 out of stock;
 
     public Product() {
     }
 
-    public Product(String name, double price, String modifiedDate, int quantity, int itemStatus) {
+    public Product(String name, double price, String modifiedDate, int quantity, boolean isInStock) {
         this.name = name;
         this.price = price;
         this.modifiedDate = modifiedDate;
         this.quantity = quantity;
-        this.itemStatus = itemStatus;
+        this.isInStock = isInStock;
     }
 
     public String getName() {
@@ -54,23 +54,23 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public int getItemStatus() {
-        return itemStatus;
+    public boolean getInStock() {
+        return isInStock;
     }
 
-    public void setItemStatus(int itemStatus) {
-        this.itemStatus = itemStatus;
+    public void setInStock(boolean inStock) {
+        this.isInStock = inStock;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "name='" + name + '\'' +
-                ", price='" + price + '\'' +
-                ", modifiedDate='" + modifiedDate + '\'' +
-                ", quantity=" + quantity +
-                ", itemStatus=" + itemStatus +
-                '}';
+               "name='" + name + '\'' +
+               ", price='" + price + '\'' +
+               ", modifiedDate='" + modifiedDate + '\'' +
+               ", quantity=" + quantity +
+               ", itemStatus=" + isInStock +
+               '}';
     }
 
 }
