@@ -14,6 +14,7 @@ public class addCommunity extends JPanel {
     private JTextField txtCommunityPhone;
     private JPanel panelAddCommunity;
     private JPanel panelContent;
+    //private CommunityModel communityModel;
 //    private JButton btnBack;
 //    private JButton btnConfirm;
 
@@ -22,6 +23,7 @@ public class addCommunity extends JPanel {
     }
 
     public addCommunity() {
+        //this.communityModel = CommunityModel.getInstance();
 //        JFrame jFrame = new JFrame();
 //        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        jFrame.setVisible(true);
@@ -82,7 +84,6 @@ public class addCommunity extends JPanel {
 //            communityInfo.communityZipcode = communityZipcode;
 //            communityInfo.communityPhone = communityPhone;
             communityModel.addNewCommunity(communityInfo);
-
             JOptionPane.showMessageDialog(addCommunity.panelAddCommunity, "Community Saved!");
             return communityInfo;
         }

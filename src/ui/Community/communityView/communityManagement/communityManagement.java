@@ -47,7 +47,9 @@ public class communityManagement extends JPanel {
         jFrame.setContentPane(panelCommunityManagement);
 
         CommunityModel communityModel = CommunityModel.getInstance();
-        String currentName = communityModel.getCurrentCommunity().getCommunityName();
+        String currentName = "";
+        if(communityModel.getCurrentCommunity() != null)
+            currentName = communityModel.getCurrentCommunity().getCommunityName();
         labelShowName.setText(currentName);
 
         CommunityInfo currentCommunity;
@@ -76,6 +78,7 @@ public class communityManagement extends JPanel {
         btnViewDetails.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 Component orderDetails = panelCommunityManagement.add("orderDetails", new orderDetail().getFrame());
                 ((CardLayout) panelCommunityManagement.getLayout()).show(panelCommunityManagement, "orderDetails");
             }

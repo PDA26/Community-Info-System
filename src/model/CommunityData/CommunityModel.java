@@ -7,18 +7,25 @@ import java.util.HashMap;
 
 public class CommunityModel {
 
-    private static CommunityModel instance = new CommunityModel();
+    private static CommunityModel instance;
+    private CommunityInfo currentCommunity;
+    private HashMap<String, CommunityInfo> communityInfoHashMap;
+    public static CommunityModel getInstance() {
+        if(instance == null){
+            instance = new CommunityModel();
+        }
+        return instance;
+    }
 
-    public static CommunityModel getInstance() { return instance; }
-
-    public CommunityModel() { };
-
-    CommunityInfo currentCommunity;
-    HashMap<String, CommunityInfo> communityInfoHashMap = new HashMap<>();
+    public CommunityModel() {
+        this.communityInfoHashMap = new HashMap<>();
+    };
 
     public Collection<CommunityInfo> getCommunities() { return communityInfoHashMap.values(); }
 
-    public void addNewCommunity(CommunityInfo communityInfo) { communityInfoHashMap.putIfAbsent(communityInfo.communityName, communityInfo); }
+    public void addNewCommunity(CommunityInfo communityInfo) {
+        communityInfoHashMap.putIfAbsent(communityInfo.communityName, communityInfo);
+    }
 
     public CommunityInfo getCurrentCommunity() { return currentCommunity; }
 

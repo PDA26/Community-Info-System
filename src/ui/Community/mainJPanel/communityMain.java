@@ -80,7 +80,7 @@ public class communityMain extends JPanel{
                 String index = (String) comboCommunity.getSelectedItem();
 
                 if (index!=null) {
-//                    String name = communityName.get(index);
+//                  String name = communityName.get(index);
                     communityModel.setCurrentCommunity(index);
 
                     Component communityManagement = panelCommunityMain.add("communityManagement", new communityManagement().getFrame());

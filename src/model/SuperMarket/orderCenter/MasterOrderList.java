@@ -98,7 +98,6 @@ public class MasterOrderList {
 
             vector.add(orderStatus);
             ID ++;
-
         }
 
         return vectors;

@@ -8,7 +8,7 @@ import java.util.function.IntFunction;
 /**
  * New Order Items
  */
-public class OrderItem extends Vector<Apartment> {
+public class OrderItem {
 
     //    private Product product;
     private String name;
@@ -67,9 +67,9 @@ public class OrderItem extends Vector<Apartment> {
                 ", quantityForOrder=" + quantityForOrder +
                 '}';
     }
-
-    @Override
-    public <T> T[] toArray(IntFunction<T[]> generator) {
-        return super.toArray(generator);
-    }
+//
+//    @Override
+//    public <T> T[] toArray(IntFunction<T[]> generator) {
+//        return super.toArray(generator);
+//    }
 }
