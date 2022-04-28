@@ -63,10 +63,10 @@
               <text value="Resident"/>
             </properties>
           </component>
-          <component id="9f3ad" class="javax.swing.JRadioButton" binding="communityRadioButton">
+          <component id="9f3ad" class="javax.swing.JRadioButton" binding="managementRadioButton" default-binding="true">
             <constraints/>
             <properties>
-              <text value="Community"/>
+              <text value="Management"/>
             </properties>
           </component>
           <component id="88065" class="javax.swing.JRadioButton" binding="marketRadioButton" default-binding="true">
