@@ -32,7 +32,7 @@
           <text value="Apt No."/>
         </properties>
       </component>
-      <component id="bdacd" class="javax.swing.JTable" binding="tableCart">
+      <component id="bdacd" class="javax.swing.JTable" binding="tableCart" custom-create="true">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="5" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -86,14 +86,6 @@
         </constraints>
         <properties>
           <text value="Delete"/>
-        </properties>
-      </component>
-      <component id="9b0e6" class="javax.swing.JButton" binding="btnUpdate">
-        <constraints>
-          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Update"/>
         </properties>
       </component>
     </children>
