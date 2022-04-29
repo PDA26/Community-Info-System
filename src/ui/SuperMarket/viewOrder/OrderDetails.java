@@ -37,7 +37,7 @@ public class OrderDetails {
     private String communityName;
     private String time;
 
-    private AptOrderCatalog currentAptOrderCatalog;
+    private AptOrderCatalog currentAptOrderCatalog = new AptOrderCatalog();
 
     private void InitTable() {
 

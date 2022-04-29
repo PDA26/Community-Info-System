@@ -37,7 +37,7 @@ public class ViewOrder {
     private JButton backToMarketInterfaceButton;
     private JPanel viewOrderPanel;
 
-    private OrderCenter currentOrderCenter;
+    private OrderCenter currentOrderCenter = new OrderCenter();
 
 
     private void InitTable() {

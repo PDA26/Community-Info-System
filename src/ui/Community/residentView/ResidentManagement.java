@@ -45,7 +45,7 @@ public class ResidentManagement {
 //    ProductCatalog productCatalog = ProductCatalog.getInstance();
 //    OrderItem order = new OrderItem();
 
-    Warehouse warehouse;
+    Warehouse warehouse = new Warehouse();
     Order orders;
     AptOrderCatalog aptOrderCatalog;
     CommunityModel communityModel;
@@ -54,9 +54,6 @@ public class ResidentManagement {
     int id = 0;
 
     public ResidentManagement() {
-
-        // panelResidentManagement.setOpaque(true);
-
 
 //        titlesMenu = new Vector<>();
 //        titlesMenu.add("Item Name");
@@ -92,7 +89,7 @@ public class ResidentManagement {
         btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.gotoPanel("CommunityMain");
+                Main.gotoPanel("Community");
             }
         });
 
@@ -181,7 +178,7 @@ public class ResidentManagement {
 
                         JOptionPane.showMessageDialog(panelResidentManagement,
                                                       "Successfully confirmed!");
-                        Main.gotoPanel("CommunityMain");
+                        Main.gotoPanel("Community");
                     }
                 }
             }
@@ -193,7 +190,5 @@ public class ResidentManagement {
         return panelResidentManagement;
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
+
 }

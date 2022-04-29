@@ -29,7 +29,9 @@ public class AptOrderCatalog {
         }
         return list.get(list.size() - 1).getDate();
     }
-
+    public AptOrderCatalog() {
+        this.list = new ArrayList<>();
+    }
     public AptOrderCatalog(String aptNo) {
         this.aptNo = aptNo;
         this.list = new ArrayList<>();

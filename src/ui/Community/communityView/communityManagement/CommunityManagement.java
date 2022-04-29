@@ -15,6 +15,7 @@ import model.OrderData.CommunityOrderCatalog;
 import model.OrderData.Order;
 import ui.Community.communityView.communityOrder.CommunityOrders;
 import ui.Community.communityView.communityOrder.OrderDetail;
+import ui.Community.mainJPanel.communityMain;
 import ui.Main;
 
 public class CommunityManagement {
@@ -62,7 +63,15 @@ public class CommunityManagement {
         //tableModelOrder = new DefaultTableModel(rowData, columnNames);
         tableApt = new JTable(rowData, columnNames);
 
-        btnBack.addActionListener(e -> Main.gotoPanel("communityMain"));
+//        btnBack.addActionListener(e -> Main.gotoPanel("communityMain"));
+
+//        Main.addPanel(new communityMain().getPanel(), "communityMain");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.gotoPanel("Community");
+            }
+        });
 
         OrderDetail orderDetail = new OrderDetail();
         Main.addPanel(orderDetail.getPanel(), "orderDetail");

@@ -20,15 +20,22 @@ public class OrderDetail {
     private JTable tableOrder;
     private JLabel labelName;
 
-    String key;
-    CommunityModel communityModel;
+//    private String key;
+    private CommunityModel communityModel = CommunityModel.getInstance();
+
+    private AptOrderCatalog curr_aptOrderCatalog = new AptOrderCatalog();
 
     public OrderDetail() {
 
         //generate Table
-        communityModel = CommunityModel.getInstance();
-        key = communityModel.getCurrentAptNo();
-        AptOrderCatalog curr_aptOrderCatalog = communityModel.getCommunityByKey(key).getOrders().getByAptNo(key);
+//        communityModel = CommunityModel.getInstance();
+        String key = communityModel.getCurrentAptNo();
+//        AptOrderCatalog curr_aptOrderCatalog = communityModel.getCommunityByKey(key).getOrders().getByAptNo(key);
+
+        /**
+         * 这里怎么获取当前的 curr_aptOrderCatalog 方法是有问题的
+         */
+//        curr_aptOrderCatalog = communityModel.getCommunityByKey(key).getOrders().getByAptNo(key);
 
         String[] titleOrder = {"ID", "Date", "Name", "Quantity", "Unit Price", "Total Price", "Status"};
         String[][] curr_list = curr_aptOrderCatalog.getAllOrderDetails();
@@ -43,6 +50,8 @@ public class OrderDetail {
         btnBack.addActionListener(e -> Main.gotoPanel("CommunityManagement"));
 
     }
+
+
 
     public JPanel getPanel() {
         return panelOrderDetails;

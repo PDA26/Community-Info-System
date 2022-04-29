@@ -25,11 +25,14 @@ public class CommunityInfo {
 
     public CommunityInfo() {
 
+        aptList = new ArrayList<>();
+        orders = new CommunityOrderCatalog();
+
     }
 
 
     public CommunityInfo(String communityName, String communityAddress, String communityZipcode, String communityPhone) {
-        id = idCount ++;
+        id = idCount++;
         this.communityName = communityName;
         this.communityAddress = communityAddress;
         this.communityZipcode = communityZipcode;

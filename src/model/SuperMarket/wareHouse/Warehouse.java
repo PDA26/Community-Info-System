@@ -12,10 +12,10 @@ import java.util.List;
  * Warehouse: Inventory Directory OR Inventory Catalog
  */
 public class Warehouse extends AbstractTableModel {
-    List<Product> dir;
+    List<Product> dir = new ArrayList<>();;
 
     public Warehouse() {
-        this.dir = new ArrayList<>();
+//        this.dir = new ArrayList<>();
     }
 
     public Product get(int idx) {

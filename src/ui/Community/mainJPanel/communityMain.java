@@ -7,6 +7,7 @@ import model.CommunityData.CommunityModel;
 import ui.Main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -21,20 +22,27 @@ public class communityMain {
     private JButton btnToCom;
     private JButton btnBack;
     private JPanel panelCommunityMain;
-    JLabel imgJLabel;
+    private JLabel imgJLabel;
 
 
     //CommunityModel communitiesDir;
     //CommunityInfo communityInfo;
 
-//    ImageIcon logoIcon = new ImageIcon(new ImageIcon("src/ui/Community/img/ad.png").getImage().getScaledInstance(400, 300, Image.SCALE_AREA_AVERAGING));
-//    imgJLabel.setIcon(logoIcon);
+    ImageIcon logoIcon = new ImageIcon(new ImageIcon("src/ui/Community/img/ad.png").getImage().getScaledInstance(400, 300, Image.SCALE_AREA_AVERAGING));
+
 
     CommunityModel communityModel = CommunityModel.getInstance();
     //Vector<String> communityName = new Vector<>();
 
     public communityMain() {
 
+        imgJLabel.setIcon(logoIcon);
+        imgJLabel.setSize(100, 100);
+
+        btnBack.setSize(10, 5);
+        btnToRes.setSize(10, 5);
+        btnToCom.setSize(10, 5);
+        btnAdd.setSize(10, 5);
 
         btnAdd.addActionListener(actionEvent -> {
             CommunityInfo c = AddCommunity.showCommunityAdd(panelCommunityMain, null);
@@ -77,5 +85,9 @@ public class communityMain {
 
     public JPanel getPanel() {
         return panelCommunityMain;
+    }
+
+    public static void main(String[] args) {
+        new communityMain();
     }
 }

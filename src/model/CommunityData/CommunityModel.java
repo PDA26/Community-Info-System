@@ -7,19 +7,19 @@ import java.util.HashMap;
 
 public class CommunityModel {
 
-    private static CommunityModel instance;
-    private CommunityInfo currentCommunity;
+    private static CommunityModel instance = new CommunityModel();
+    private CommunityInfo currentCommunity = new CommunityInfo();
     private String currentAptNo;
-    private HashMap<String, CommunityInfo> communityInfoHashMap;
+    private HashMap<String, CommunityInfo> communityInfoHashMap = new HashMap<>();
     public static CommunityModel getInstance() {
-        if(instance == null){
-            instance = new CommunityModel();
-        }
+//        if(instance == null){
+//            instance = new CommunityModel();
+//        }
         return instance;
     }
 
     public CommunityModel() {
-        this.communityInfoHashMap = new HashMap<>();
+//        this.communityInfoHashMap = new HashMap<>();
     };
 
     public Collection<CommunityInfo> getCommunities() { return communityInfoHashMap.values(); }
