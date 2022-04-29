@@ -3,6 +3,7 @@ package ui.SuperMarket.mainJPanel;
 import model.SuperMarket.SuperMarket;
 import ui.Main;
 import ui.SuperMarket.viewMenu.ViewItemMenu;
+import ui.SuperMarket.viewOrder.ViewOrder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,13 +12,13 @@ import java.awt.event.ActionListener;
 
 public class MainMarket {
 
-    private final ViewItemMenu viewItemMenu;
+    private ViewItemMenu viewItemMenu;
+    private ViewOrder viewOrder;
     /**
      * components
      */
     //logo of supermarket
     private JLabel logoOfSuperMarket;
-//    ImageIcon imagePath = new ImageIcon("src/resources/logoOfMarket/logo of Walmart.jpg");
     ImageIcon imagePath = new ImageIcon("src/resources/logoOfMarket/logo of Walmart.jpg");
 
     private JPanel mainMarketJPanel;
@@ -30,6 +31,8 @@ public class MainMarket {
     public MainMarket() {
 
         setLogo();
+        //TODO
+        currentSuperMarket = new SuperMarket();
 
         viewItemMenu = new ViewItemMenu();
         Main.addPanel(viewItemMenu.getPanel(), "ViewItemMenu");
@@ -38,8 +41,12 @@ public class MainMarket {
             Main.gotoPanel("ViewItemMenu");
         });
 
+        viewOrder = new ViewOrder();
+        Main.addPanel(viewOrder.getPanel(), "ViewOrder");
         viewOrderButton.addActionListener(e -> {
-
+            //TODO view all orders in this market
+            viewOrder.setCurrentOrderCenter(currentSuperMarket.getOc());
+            Main.gotoPanel("ViewOrder");
         });
 
         backToMainButton.addActionListener(e -> Main.gotoPanel("Login"));
@@ -61,4 +68,5 @@ public class MainMarket {
     public void setCurrentSuperMarket(SuperMarket currentSuperMarket) {
         this.currentSuperMarket = currentSuperMarket;
     }
+
 }

@@ -1,11 +1,11 @@
-package ui.Community.communityView.communityEditor;
+package ui.Community.mainJPanel;
 
-import model.CommunityInfo;
+import model.CommunityData.CommunityInfo;
 import model.CommunityData.CommunityModel;
 
 import javax.swing.*;
 
-public class addCommunity {
+public class AddCommunity {
 
     private JTextField txtCommunityName;
     private JTextField txtCommunityAddress;
@@ -20,7 +20,7 @@ public class addCommunity {
         return panelAddCommunity;
     }
     public static CommunityInfo showCommunityAdd(JComponent parent, CommunityInfo communityInfo) {
-        addCommunity addCommunity = new addCommunity();
+        AddCommunity addCommunity = new AddCommunity();
         CommunityModel communityModel = CommunityModel.getInstance();
         String title = "Please Add New Community!!";
 

@@ -4,13 +4,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import model.Apartment;
-import model.OrderData.AptOrderCatalog;
-import ui.Community.communityView.communityManagement.communityManagement;
 import ui.Main;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Vector;
 
 public class orderDetail {
@@ -48,7 +43,7 @@ public class orderDetail {
         String apt = apartment.getAptNo();
         labelName.setText(apt);
 
-        btnBack.addActionListener(e -> Main.gotoPanel("communityManagement"));
+        btnBack.addActionListener(e -> Main.gotoPanel("CommunityManagement"));
 
     }
 
