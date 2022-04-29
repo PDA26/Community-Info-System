@@ -7,7 +7,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="dbd87" class="org.jxmapviewer.JXMapKit" binding="JXMapKit1" default-binding="true">
+      <component id="dbd87" class="org.jxmapviewer.JXMapKit" binding="jxMapKit" default-binding="true">
         <constraints border-constraint="Center"/>
         <properties/>
       </component>
@@ -25,13 +25,15 @@
               <text value="Address"/>
             </properties>
           </component>
-          <component id="8703b" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="8703b" class="javax.swing.JTextField" binding="textFieldAddress" default-binding="true">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="5967" class="javax.swing.JLabel">
             <constraints>
@@ -41,7 +43,7 @@
               <text value="Selected Grocery"/>
             </properties>
           </component>
-          <component id="a8415" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+          <component id="a8415" class="javax.swing.JComboBox" binding="comboBoxGrocery" default-binding="true">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>

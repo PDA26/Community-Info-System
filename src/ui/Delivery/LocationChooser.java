@@ -1,63 +1,92 @@
 package ui.Delivery;
 
+import model.OrderData.Order;
+import model.SuperMarket.SuperMarket;
 import org.jxmapviewer.JXMapKit;
 import org.jxmapviewer.OSMTileFactoryInfo;
-import org.jxmapviewer.VirtualEarthTileFactoryInfo;
-import org.jxmapviewer.WMSTileFactoryInfo;
 import org.jxmapviewer.viewer.*;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class LocationChooser {
-    private JXMapKit JXMapKit1;
+    private JXMapKit jxMapKit;
     private JPanel panel;
-    private JTextField textField1;
-    private JComboBox<SwingWaypoint> comboBox1;
+    private JTextField textFieldAddress;
+    private JComboBox<String> comboBoxGrocery;
 
-    private void setupTest() {
-        /*
+    public static String show(JComponent parent) {
+        LocationChooser chooser = new LocationChooser();
+        int option = JOptionPane.showConfirmDialog(parent,
+                                                   chooser.panel,
+                                                   "Choose Grocery",
+                                                   JOptionPane.OK_CANCEL_OPTION,
+                                                   JOptionPane.PLAIN_MESSAGE);
+        if (option == JOptionPane.OK_OPTION) {
+            return chooser.getAddress();
+        }
+        return null;
+    }
+
+    public String getAddress() {
+        return textFieldAddress.getText();
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public LocationChooser() {
         TileFactoryInfo info = new OSMTileFactoryInfo();
         DefaultTileFactory factory = new DefaultTileFactory(info);
         factory.setThreadPoolSize(Runtime.getRuntime().availableProcessors());
-        locationChooser.JXMapKit1.setTileFactory(factory);
-        */
+        jxMapKit.setTileFactory(factory);
 
-        GeoPosition frankfurt = new GeoPosition(50,  7, 0, 8, 41, 0);
-        GeoPosition wiesbaden = new GeoPosition(50,  5, 0, 8, 14, 0);
-        GeoPosition mainz     = new GeoPosition(50,  0, 0, 8, 16, 0);
-        GeoPosition darmstadt = new GeoPosition(49, 52, 0, 8, 39, 0);
-        GeoPosition offenbach = new GeoPosition(50,  6, 0, 8, 46, 0);
+        GeoPosition walgreens = new GeoPosition(42.4247377,-71.0704437);
+        GeoPosition seven11 = new GeoPosition(42.4292229,-71.0631881);
+        GeoPosition walmart = new GeoPosition(42.4437264,-71.0713724);
 
-        JXMapKit1.setAddressLocation(frankfurt);
+        GeoPosition median = new GeoPosition(
+                (walgreens.getLatitude() + seven11.getLatitude() + walmart.getLatitude()) / 3.0,
+                (walgreens.getLongitude() + seven11.getLongitude() + walmart.getLongitude()) / 3.0
+        );
 
-        SwingWaypoint.ClickedListener listener = waypoint -> comboBox1.setSelectedItem(waypoint);
+        jxMapKit.setMiniMapVisible(false);
+        jxMapKit.setAddressLocation(median);
+        jxMapKit.setZoom(5);
+
+        SwingWaypoint.ClickedListener listener = waypoint -> comboBoxGrocery.setSelectedItem(waypoint.getText());
         Set<SwingWaypoint> waypoints = new HashSet<>(Arrays.asList(
-                new SwingWaypoint("Frankfurt", frankfurt, listener),
-                new SwingWaypoint("Wiesbaden", wiesbaden, listener),
-                new SwingWaypoint("Mainz", mainz, listener),
-                new SwingWaypoint("Darmstadt", darmstadt, listener),
-                new SwingWaypoint("Offenbach", offenbach, listener)
+                new SwingWaypoint("Walgreens", walgreens, listener),
+                new SwingWaypoint("7-11", seven11, listener),
+                new SwingWaypoint("Walmart", walmart, listener)
         ));
 
         WaypointPainter<SwingWaypoint> waypointPainter = new SwingWaypointOverlayPainter();
         waypointPainter.setWaypoints(waypoints);
 
-        JXMapKit1.getMainMap().setOverlayPainter(waypointPainter);
+        jxMapKit.getMainMap().setOverlayPainter(waypointPainter);
 
         for (SwingWaypoint waypoint : waypoints) {
-            JXMapKit1.getMainMap().add(waypoint.getButton());
+            jxMapKit.getMainMap().add(waypoint.getButton());
         }
 
+        comboBoxGrocery.addItem("Walgreens");
+        comboBoxGrocery.addItem("7-11");
+        comboBoxGrocery.addItem("Walmart");
+        comboBoxGrocery.setSelectedIndex(-1);
+        Map<String, String> address = new HashMap<>();
+        address.put("Walgreens", "185 Centre St, Malden, MA 02148");
+        address.put("7-11", "169 Salem St, Malden, MA 02148");
+        address.put("Walmart", "100 Main St, Melrose, MA 02176");
+        comboBoxGrocery.addActionListener(actionEvent -> {
+            textFieldAddress.setText(address.get((String) comboBoxGrocery.getSelectedItem()));
+        });
 
     }
 
     public static void main(String[] args) {
         LocationChooser locationChooser = new LocationChooser();
-        locationChooser.setupTest();
 
         JFrame frame = new JFrame("LocationChooser");
         frame.setContentPane(locationChooser.panel);

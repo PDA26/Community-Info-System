@@ -17,6 +17,10 @@ public class SwingWaypoint extends DefaultWaypoint {
     private final JButton button;
     private final String text;
 
+    public String getText() {
+        return text;
+    }
+
     interface ClickedListener {
         void clicked(SwingWaypoint waypoint);
     }
@@ -24,9 +28,9 @@ public class SwingWaypoint extends DefaultWaypoint {
     public SwingWaypoint(String text, GeoPosition coord, ClickedListener listener) {
         super(coord);
         this.text = text;
-        button = new JButton(text.substring(0, 1));
-        button.setSize(24, 24);
-        button.setPreferredSize(new Dimension(24, 24));
+        button = new JButton(text);
+        // button.setSize(24, 24);
+        // button.setPreferredSize(new Dimension(24, 24));
         button.addActionListener(actionEvent -> listener.clicked(this));
         button.setVisible(true);
     }

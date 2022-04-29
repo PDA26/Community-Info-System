@@ -31,9 +31,7 @@ public class OrderCenter {
         List<Order> res = new ArrayList<>();
         for(CommunityOrderCatalog coc : map.values()){
             for(AptOrderCatalog aoc : coc.getMap().values()){
-                for(Order o : aoc.getList()){
-                    res.add(o);
-                }
+                res.addAll(aoc.getList());
             }
         }
         return res;

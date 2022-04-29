@@ -9,6 +9,7 @@ import model.SignUp.AccountCatalog;
 import ui.Administrator.Resident;
 import ui.Community.communityView.communityManagement.CommunityManagement;
 import ui.Community.mainJPanel.communityMain;
+import ui.Delivery.Delivery;
 import ui.SignUp.CommunitySignUp;
 import ui.SignUp.DeliverySignUp;
 import ui.SignUp.MarketSignUp;
@@ -21,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Map;
 
 public class SignIn {
     private JTextField textFieldUsr;
@@ -45,6 +47,7 @@ public class SignIn {
     public SignIn() {
         Main.addPanel(new Resident().getPanel(), "Resident");
         Main.addPanel(new communityMain().getPanel(), "Community");
+        Main.addPanel(new Delivery().getPanel(), "Delivery");
         Main.addPanel(new MainMarket().getPanel(), "Market");
         Main.addPanel(new CommunitySignUp().getPanel(), "SignUpCommunity");
         Main.addPanel(new MarketSignUp().getPanel(), "SignUpMarket");

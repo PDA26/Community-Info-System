@@ -5,10 +5,8 @@ import jdk.jfr.Name;
 
 import javax.swing.table.AbstractTableModel;
 import java.lang.reflect.Field;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.DuplicateFormatFlagsException;
 import java.util.List;
 
 /**
@@ -19,7 +17,21 @@ public class Order extends AbstractTableModel {
     private final int id;
     private Date date;
     private List<Product> itemList;
-    private String community_name;
+    private String communityName;
+
+    public String getGroceryAddress() {
+        return groceryAddress;
+    }
+
+    public void setGroceryAddress(String groceryAddress) {
+        this.groceryAddress = groceryAddress;
+    }
+
+    private String groceryAddress;
+
+    public String getCommunityName() {
+        return communityName;
+    }
 
     public enum OrderStatus{
         PENDING, ACCEPTED, FINISHED
@@ -43,7 +55,7 @@ public class Order extends AbstractTableModel {
         this.itemList = new ArrayList<>();
         status = OrderStatus.PENDING;
         this.date = new Date();
-        this.community_name = name;
+        this.communityName = name;
     }
     public int addProduct(Product p){
         for(Product curr : itemList){
