@@ -32,7 +32,7 @@ public class MainMarket {
 
         setLogo();
         //TODO
-        currentSuperMarket = new SuperMarket();
+        currentSuperMarket = SuperMarket.getInstance();
 
         viewItemMenu = new ViewItemMenu();
         Main.addPanel(viewItemMenu.getPanel(), "ViewItemMenu");

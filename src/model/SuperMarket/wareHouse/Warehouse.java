@@ -81,35 +81,3 @@ public class Warehouse extends AbstractTableModel {
         return Product.class.getFields()[columnIndex].getType();
     }
 }
-
-//    private int idCnt = 0;
-//    Map<Integer, Product> map;
-//    List<Product> list;
-//
-//    public Warehouse() {
-//        this.map = new HashMap<>();
-//        this.list = new ArrayList<>();
-//    }
-//
-//    public boolean addItem(String name, int price, String spec, Date mfg, Date exp, String description){
-//        Product tmp = new Product(name, price, spec, mfg, exp, description);
-//        for(Product si : list){
-//            if(si.isSame(tmp)){
-//                return false;
-//            }
-//        }
-//        map.put(idCnt++, tmp);
-//        list.add(tmp);
-//    }
-//    public List<Product> getItemByName(String name){
-//        List<Product> res = new ArrayList<>();
-//        for(Product si : list){
-//            if(si.getName().compareTo(name) == 0){
-//                res.add(si);
-//            }
-//        }
-//        return res;
-//    }
-//    public Product getItemById(int id){
-//        return map.getOrDefault(id, null);
-//    }

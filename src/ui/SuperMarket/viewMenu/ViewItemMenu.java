@@ -42,6 +42,18 @@ public class ViewItemMenu {
                 }
             }
         });
+        deleteItemJButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selected = itemTable.getSelectedRow();
+                if(selected != -1){
+                    currentWarehouse.delete(selected);
+
+                }else{
+                    JOptionPane.showMessageDialog(null, "Please select a row!");
+                }
+            }
+        });
     }
 
     public JPanel getPanel() {

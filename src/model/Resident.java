@@ -18,14 +18,17 @@ public class Resident {
     public String address;
     @Name("Community")
     public String community;
+    @Name("Community")
+    public String AptNo;
 
-    public Resident(String name, String gender, Date dob, String address, String community) {
+    public Resident(String name, String gender, Date dob, String address, String community, String AptNo) {
         id = idCount++;
         this.name = name;
         this.gender = gender;
         this.dob = dob;
         this.address = address;
         this.community = community;
+        this.AptNo = AptNo;
     }
 
     public Resident() {
@@ -70,5 +73,17 @@ public class Resident {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getAptNo() {
+        return AptNo;
+    }
+
+    public void setAptNo(String aptNo) {
+        AptNo = aptNo;
+    }
+
+    public int getId() {
+        return id;
     }
 }

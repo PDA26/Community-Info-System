@@ -1,10 +1,15 @@
 package model.SuperMarket;
 
+import model.OrderData.MasterOrderList;
 import model.SuperMarket.finCenter.FinCenter;
 import model.OrderData.OrderCenter;
 import model.SuperMarket.wareHouse.Warehouse;
 
 public class SuperMarket {
+    private static SuperMarket instance = new SuperMarket();
+    public static SuperMarket getInstance() {
+        return instance;
+    }
     Warehouse wh;
     OrderCenter oc;
     FinCenter fc;

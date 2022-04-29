@@ -8,14 +8,19 @@ import java.util.HashMap;
 public class CommunityModel {
 
     private static CommunityModel instance = new CommunityModel();
+    public static CommunityModel getInstance() {
+        return instance;
+    }
     private CommunityInfo currentCommunity = new CommunityInfo();
     private String currentAptNo;
     private HashMap<String, CommunityInfo> communityInfoHashMap = new HashMap<>();
-    public static CommunityModel getInstance() {
-//        if(instance == null){
-//            instance = new CommunityModel();
-//        }
-        return instance;
+
+    public HashMap<String, CommunityInfo> getCommunityInfoHashMap() {
+        return communityInfoHashMap;
+    }
+
+    public void setCommunityInfoHashMap(HashMap<String, CommunityInfo> communityInfoHashMap) {
+        this.communityInfoHashMap = communityInfoHashMap;
     }
 
     public CommunityModel() {

@@ -32,7 +32,6 @@ public class communityMain {
 
 
     CommunityModel communityModel = CommunityModel.getInstance();
-    //Vector<String> communityName = new Vector<>();
 
     public communityMain() {
 
@@ -43,6 +42,8 @@ public class communityMain {
         btnToRes.setSize(10, 5);
         btnToCom.setSize(10, 5);
         btnAdd.setSize(10, 5);
+
+        updateComboBox(comboCommunity);
 
         btnAdd.addActionListener(actionEvent -> {
             CommunityInfo c = AddCommunity.showCommunityAdd(panelCommunityMain, null);
@@ -81,6 +82,13 @@ public class communityMain {
 
         btnBack.addActionListener(e -> Main.gotoPanel("SignIn"));
 
+    }
+    public static void updateComboBox(JComboBox<String> comboCommunity){
+        CommunityModel communityModel = CommunityModel.getInstance();
+        for(CommunityInfo ci : communityModel.getCommunityInfoHashMap().values()){
+            comboCommunity.addItem(ci.getCommunityName());
+        }
+        comboCommunity.setSelectedIndex(-1);
     }
 
     public JPanel getPanel() {
