@@ -1,8 +1,8 @@
 package ui;
 
-//import com.google.gson.JsonArray;
-//import com.google.gson.JsonObject;
-//import com.google.gson.JsonParser;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import model.Community;
 import model.SignUp.AccountInfo;
 import model.SignUp.AccountCatalog;
@@ -57,92 +57,70 @@ public class SignIn {
         buttonGroup_Main.add(marketRadioButton);
 
         //json
-//        JsonParser parser = new JsonParser();
-//        JsonObject login_object = null;
-//        try {
-//            login_object = (JsonObject)parser.parse(new FileReader("LogAndSign.json"));
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        JsonObject finalLogin_object = login_object;
-//        signInButton.addActionListener(new ActionListener() {
-//
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if (buttonGroup_Main.isSelected(communityRadioButton.getModel())) {
-//                    JsonArray array = finalLogin_object.get("resident").getAsJsonArray();
-//                    for(int i = 0; i < array.size(); i++) {
-//                        JsonObject curr = array.get(i).getAsJsonObject();
-//                        if (textFieldUsr.getText().equals(curr.get("usr").getAsString()) &&
-//                                new String(textFieldPwd.getPassword()).equals(curr.get("pwd").getAsString())) {
-//                            //jump to resident
-//                            Main.gotoPanel("Community");
-//                            System.out.println("Log-in to Community succeeded");
-//                            return;
-//                        }
-//                    }
-//                    JOptionPane.showMessageDialog(panel,
-//                            "Wrong username or pwd of Community!!!");
-//                } else if (buttonGroup_Main.isSelected(deliveryRadioButton.getModel())) {
-//                    JsonArray array = finalLogin_object.get("delivery").getAsJsonArray();
-//                    for(int i = 0; i < array.size(); i++) {
-//                        JsonObject curr = array.get(i).getAsJsonObject();
-//                        if (textFieldUsr.getText().equals(curr.get("usr").getAsString()) &&
-//                                new String(textFieldPwd.getPassword()).equals(curr.get("pwd").getAsString())) {
-//                            //jump to resident
-//                            Main.gotoPanel("Delivery");
-//                            System.out.println("Log-in to Delivery succeeded");
-//                            return;
-//                        }
-//                    }
-//                    JOptionPane.showMessageDialog(panel,
-//                            "Wrong username or pwd of Delivery!!!");
-//                } else if (buttonGroup_Main.isSelected(marketRadioButton.getModel())) {
-//                    JsonArray array = finalLogin_object.get("market").getAsJsonArray();
-//                    for(int i = 0; i < array.size(); i++) {
-//                        JsonObject curr = array.get(i).getAsJsonObject();
-//                        if (textFieldUsr.getText().equals(curr.get("usr").getAsString()) &&
-//                                new String(textFieldPwd.getPassword()).equals(curr.get("pwd").getAsString())) {
-//                            //jump to resident
-//                            Main.gotoPanel("Market");
-//                            System.out.println("Log-in to Market succeeded");
-//                            return;
-//                        }
-//                    }
-//                    JOptionPane.showMessageDialog(panel,
-//                            "Wrong username or pwd of Market!!!");
-//                } else {
-//                    JOptionPane.showMessageDialog(panel, "Wrong enter!!!");
-//                }
-//            }
-//        });
+       JsonParser parser = new JsonParser();
+       JsonObject login_object = null;
+       try {
+           login_object = (JsonObject)parser.parse(new FileReader("LogAndSign.json"));
 
-        signInButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (buttonGroup_Main.isSelected(communityRadioButton.getModel())
-                        && textFieldUsr.getText().equals("2")
-                        && Arrays.equals(textFieldPwd.getPassword(), "2".toCharArray())) {
-                    //jump to resident
-                    Main.gotoPanel("Community");
-                }
-                else if (buttonGroup_Main.isSelected(marketRadioButton.getModel())
-                        && textFieldUsr.getText().equals("3")
-                        && Arrays.equals(textFieldPwd.getPassword(), "3".toCharArray())) {
-                    //jump to resident
-                    Main.gotoPanel("Market");
-                }
-                else {
-                    JOptionPane.showMessageDialog(panel, "Wrong username or pwd!!!");
-                }
+       } catch (FileNotFoundException e) {
+           e.printStackTrace();
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
 
-            }
-        });
+       JsonObject finalLogin_object = login_object;
+       signInButton.addActionListener(new ActionListener() {
+
+
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               if (buttonGroup_Main.isSelected(communityRadioButton.getModel())) {
+                   JsonArray array = finalLogin_object.get("resident").getAsJsonArray();
+                   for(int i = 0; i < array.size(); i++) {
+                       JsonObject curr = array.get(i).getAsJsonObject();
+                       if (textFieldUsr.getText().equals(curr.get("usr").getAsString()) &&
+                               new String(textFieldPwd.getPassword()).equals(curr.get("pwd").getAsString())) {
+                           //jump to resident
+                           Main.gotoPanel("Community");
+                           System.out.println("Log-in to Community succeeded");
+                           return;
+                       }
+                   }
+                   JOptionPane.showMessageDialog(panel,
+                           "Wrong username or pwd of Community!!!");
+               } else if (buttonGroup_Main.isSelected(deliveryRadioButton.getModel())) {
+                   JsonArray array = finalLogin_object.get("delivery").getAsJsonArray();
+                   for(int i = 0; i < array.size(); i++) {
+                       JsonObject curr = array.get(i).getAsJsonObject();
+                       if (textFieldUsr.getText().equals(curr.get("usr").getAsString()) &&
+                               new String(textFieldPwd.getPassword()).equals(curr.get("pwd").getAsString())) {
+                           //jump to resident
+                           Main.gotoPanel("Delivery");
+                           System.out.println("Log-in to Delivery succeeded");
+                           return;
+                       }
+                   }
+                   JOptionPane.showMessageDialog(panel,
+                           "Wrong username or pwd of Delivery!!!");
+               } else if (buttonGroup_Main.isSelected(marketRadioButton.getModel())) {
+                   JsonArray array = finalLogin_object.get("market").getAsJsonArray();
+                   for(int i = 0; i < array.size(); i++) {
+                       JsonObject curr = array.get(i).getAsJsonObject();
+                       if (textFieldUsr.getText().equals(curr.get("usr").getAsString()) &&
+                               new String(textFieldPwd.getPassword()).equals(curr.get("pwd").getAsString())) {
+                           //jump to resident
+                           Main.gotoPanel("Market");
+                           System.out.println("Log-in to Market succeeded");
+                           return;
+                       }
+                   }
+                   JOptionPane.showMessageDialog(panel,
+                           "Wrong username or pwd of Market!!!");
+               } else {
+                   JOptionPane.showMessageDialog(panel, "Wrong enter!!!");
+               }
+           }
+       });
 
         signUpButton.addActionListener(new ActionListener() {
             @Override

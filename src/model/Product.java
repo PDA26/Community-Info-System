@@ -5,11 +5,11 @@ package model;
  */
 public class Product {
 
-    private String name; //商品的名称
-    private double price; //商品的价格
-    private String modifiedDate; //商品信息更新的时间
-    private int quantity; //商品数量
-    private boolean isInStock; //商品状态，quantity 归零变为 out of stock;
+    public String name; //商品的名称
+    public double price; //商品的价格
+    public String modifiedDate; //商品信息更新的时间
+    public int quantity; //商品数量
+    public boolean isInStock; //商品状态，quantity 归零变为 out of stock;
 
     public Product() {
     }

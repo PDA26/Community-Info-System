@@ -27,7 +27,9 @@ public class ViewItemMenu {
     public ViewItemMenu() {
         addItemJButton.addActionListener(e -> {
             Product product = EditItem.showEditItem(viewItemMenuJPanel, null);
-            currentWarehouse.add(product);
+            if (product != null) {
+                currentWarehouse.add(product);
+            }
         });
         backToMarketJButton.addActionListener(actionEvent -> Main.gotoPanel("Market"));
         modifyItemJButton.addActionListener(actionEvent -> {

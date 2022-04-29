@@ -31,7 +31,8 @@ public class EditItem {
         int option = JOptionPane.showConfirmDialog(parent,
                                                    editItem.getPanel(),
                                                    "Add Item",
-                                                   JOptionPane.OK_CANCEL_OPTION);
+                                                   JOptionPane.OK_CANCEL_OPTION,
+                                                   JOptionPane.PLAIN_MESSAGE);
         if (option == JOptionPane.OK_OPTION) {
             return editItem.checkValidAndCreate(originalProduct);
         }
