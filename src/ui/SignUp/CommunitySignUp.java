@@ -41,8 +41,8 @@ public class CommunitySignUp {
                 String Username = CommunitySignUp.this.txtUsername.getText();
                 String Password = String.valueOf(CommunitySignUp.this.txtPassword.getPassword());
 
-                System.out.println(Username);
-                System.out.println(Password);
+                //System.out.println(Username);
+                //System.out.println(Password);
 
                 JsonObject sign_up_object = null;
                 try (FileReader reader = new FileReader("LogAndSign.json")) {

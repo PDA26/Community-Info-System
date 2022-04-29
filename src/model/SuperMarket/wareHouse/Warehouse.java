@@ -45,6 +45,10 @@ public class Warehouse extends AbstractTableModel {
         }
         return null;
     }
+    public Product getClone(Product p){
+        //String name, double price, String modifiedDate, int quantity, boolean isInStock
+        return new Product(p.name, p.price, p.modifiedDate, p.quantity, p.isInStock);
+    }
 
     @Override
     public int getRowCount() {

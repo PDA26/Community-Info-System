@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -14,6 +15,7 @@ import model.Apartment;
 import model.CommunityData.CommunityInfo;
 import model.CommunityData.CommunityModel;
 import model.Product;
+import model.SuperMarket.SuperMarket;
 import model.SuperMarket.wareHouse.Warehouse;
 import model.OrderData.Order;
 import model.OrderData.AptOrderCatalog;
@@ -34,57 +36,23 @@ public class ResidentManagement {
     private JButton btnAdd;
 
 
-//    Vector<String> titlesMenu;
-//    Vector<Vector<Product>> dataMenu;
-//    DefaultTableModel tableModelMenu;
-//
-//    Vector<String> titlesCart;
-//    Vector<Vector<Product>> dataCart;
-//    DefaultTableModel tableModelCart;
-
-//    ProductCatalog productCatalog = ProductCatalog.getInstance();
-//    OrderItem order = new OrderItem();
-
     Warehouse warehouse = new Warehouse();
     Order orders;
     AptOrderCatalog aptOrderCatalog;
     CommunityModel communityModel;
     CommunityInfo communityInfo;
-
+    Order curr_order;
     int id = 0;
 
     public ResidentManagement() {
 
-//        titlesMenu = new Vector<>();
-//        titlesMenu.add("Item Name");
-//        titlesMenu.add("Price");
-//        titlesMenu.add("Item Status");
-//        titlesMenu.add("Quantity");
-
-        String[] titleProduct = {"Item Name", "Price", "Manufacture Date", "Quantity", "Item Status"};
-        int len_row = warehouse.getRowCount();
-        int len_col = warehouse.getColumnCount();
-        String[][] dataProduct = new String[len_row][];
-
-        for (int i=0; i<len_row; i++) {
-            for (int j=0; j<len_col; j++) {
-                dataProduct[i][j] = (String) warehouse.getValueAt(i, j);
-            }
-        }
-
-        tableItem = new JTable(dataProduct, titleProduct);
-
+        this.curr_order = new Order();
+        this.communityModel = CommunityModel.getInstance();
+        this.communityInfo = communityModel.getCurrentCommunity();
         String[] titleCart = {"Item Name", "Price", "Manufacture Date", "Quantity", "Item Status"};
         String[][] dataCart = new String[5][];
         tableCart = new JTable(dataCart, titleCart);
-
-//        dataMenu.addElement((Vector<Product>) productCatalog.getProducts());
-//        tableModelMenu = new DefaultTableModel(dataMenu, titlesMenu);
-////        tableItem = new JTable(tableModelMenu);
-//        tableItem = new JTable(dataMenu, titlesMenu);
-//        tableItem.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//        JScrollPane scrollPaneMenu = new JScrollPane(tableItem);
-//        scrollPaneMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        SuperMarket market = SuperMarket.getInstance();
 
         btnBack.addActionListener(new ActionListener() {
             @Override
@@ -98,20 +66,28 @@ public class ResidentManagement {
             public void actionPerformed(ActionEvent e) {
 
                 //TODO ADD ITEMS TO CART
-                int row = tableItem.getSelectedRow();
-//                Product curr_product = warehouse.get(row);
-                int len_col = tableItem.getColumnCount();
-
-                for (int i=0; i<len_col; i++) {
-                    dataCart[row][i] = (String) tableItem.getValueAt(row, i);
+                String curr_aptNo = txtAptNo.getText();
+                boolean tag = false;
+                for(String name : communityInfo.getAptList()){
+                    if(curr_aptNo.equals(name)){
+                        tag = true;
+                    }
                 }
-//                order.setName(String.valueOf(tableItem.getValueAt(row, 0)));
-//                order.setUnitPrice((Double) tableItem.getValueAt(row, 1));
-//                order.setPrice((Integer) tableItem.getValueAt(row, 2));
-//                order.setQuantityForOrder((Integer) tableItem.getValueAt(row, 3));
-//                OrderCatalog.getInstance().setCurrentOrder(order);
-//                warehouse.add(curr_product);
-                tableCart = new JTable(dataCart, titleCart);
+                if(!tag){
+                    JOptionPane.showMessageDialog(panelResidentManagement, "Wrong input of aptNo!");
+                    return;
+                }
+                int row = tableItem.getSelectedRow();
+                if(row == -1){
+                    JOptionPane.showMessageDialog(panelResidentManagement, "Please select a row!");
+                    return;
+                }
+
+                Product curr_product = market.getWh().getClone(market.getWh().get(row));
+
+                //TODO update tableCart
+                curr_order.addProduct(curr_product);
+                tableCart = new JTable(curr_order);
 
                 JOptionPane.showMessageDialog(panelResidentManagement, "Successfully add to cart!");
             }
@@ -190,5 +166,14 @@ public class ResidentManagement {
         return panelResidentManagement;
     }
 
-
+//    public static void updateTableItem(JTable tableItem){
+//        SuperMarket market = SuperMarket.getInstance();
+//        tableItem = new JTable(market.getWh());
+//    }
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+        SuperMarket market = SuperMarket.getInstance();
+        tableItem = new JTable(market.getWh());
+        tableCart = new JTable(curr_order);
+    }
 }

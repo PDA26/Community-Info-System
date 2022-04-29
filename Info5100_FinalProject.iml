@@ -10,6 +10,6 @@
     <orderEntry type="library" exported="" name="org.jxmapviewer:jxmapviewer2:2.6" level="project" />
     <orderEntry type="library" exported="" name="google.code.gson" level="project" />
     <orderEntry type="library" exported="" name="json" level="project" />
-    <orderEntry type="library" name="gson-2.2.4" level="project" />
+    <orderEntry type="library" name="gson-2.9.0" level="project" />
   </component>
 </module>

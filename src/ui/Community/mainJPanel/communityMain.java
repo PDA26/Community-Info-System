@@ -48,7 +48,10 @@ public class communityMain {
                 for (CommunityInfo communityInfo: communityModel.getCommunities()) {
                     names.add(communityInfo.getCommunityName());
                 }
-                comboCommunity.addItem(names.get(names.size()-1));
+                comboCommunity.removeAllItems();
+                for(String s : names){
+                    comboCommunity.addItem(s);
+                }
             }
         });
 
@@ -71,16 +74,26 @@ public class communityMain {
                 }
             }
         });
-        ResidentManagement residentManagement = new ResidentManagement();
-        Main.addPanel(residentManagement.getPanel(), "ResidentManagement");
-        btnToRes.addActionListener(e -> Main.gotoPanel("ResidentManagement"));
+        btnToRes.addActionListener(e -> {
+            String index = (String) comboCommunity.getSelectedItem();
+            if (index!=null) {
+                communityModel.setCurrentCommunity(index);
+                ResidentManagement residentManagement = new ResidentManagement();
+                Main.addPanel(residentManagement.getPanel(), "ResidentManagement");
+                Main.gotoPanel("ResidentManagement");
+            }
+            else {
+                JOptionPane.showMessageDialog(panelCommunityMain, "Please select a community!");
+                return;
+            }
+        });
 
         btnBack.addActionListener(e -> Main.gotoPanel("SignIn"));
 
     }
     public static void updateComboBox(JComboBox<String> comboCommunity){
         CommunityModel communityModel = CommunityModel.getInstance();
-        for(CommunityInfo ci : communityModel.getCommunityInfoHashMap().values()){
+        for(CommunityInfo ci : communityModel.getCommunities()){
             comboCommunity.addItem(ci.getCommunityName());
         }
         comboCommunity.setSelectedIndex(-1);
@@ -90,7 +103,4 @@ public class communityMain {
         return panelCommunityMain;
     }
 
-    public static void main(String[] args) {
-        new communityMain();
-    }
 }

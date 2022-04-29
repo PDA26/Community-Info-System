@@ -10,6 +10,7 @@ import sun.awt.OSInfo;
 import javax.swing.*;
 import java.awt.*;
 import java.security.AccessController;
+import java.util.List;
 
 public class Main {
 
@@ -26,6 +27,8 @@ public class Main {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+
+        frame.setLayout(new CardLayout());
 
         SuperMarket market = SuperMarket.getInstance();
         Warehouse wh = market.getWh();
@@ -60,8 +63,18 @@ public class Main {
         cm.addNewCommunity(ci1);
         cm.addNewCommunity(ci2);
         cm.addNewCommunity(ci3);
-
-        frame.setLayout(new CardLayout());
+        List<String> tmp1 = ci1.getAptList();
+        tmp1.add("101");
+        tmp1.add("102");
+        tmp1.add("103");
+        List<String> tmp2 = ci1.getAptList();
+        tmp2.add("104");
+        tmp2.add("105");
+        tmp2.add("106");
+        List<String> tmp3 = ci1.getAptList();
+        tmp3.add("107");
+        tmp3.add("108");
+        tmp3.add("109");
 
         SignIn signIn = new SignIn();
         frame.add(signIn.getPanel(), "SignIn");
