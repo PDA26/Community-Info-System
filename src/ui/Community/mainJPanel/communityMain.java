@@ -24,14 +24,14 @@ public class communityMain {
     JLabel imgJLabel;
 
 
-    CommunityModel communitiesDir;
-    CommunityInfo communityInfo;
+    //CommunityModel communitiesDir;
+    //CommunityInfo communityInfo;
 
 //    ImageIcon logoIcon = new ImageIcon(new ImageIcon("src/ui/Community/img/ad.png").getImage().getScaledInstance(400, 300, Image.SCALE_AREA_AVERAGING));
 //    imgJLabel.setIcon(logoIcon);
 
     CommunityModel communityModel = CommunityModel.getInstance();
-    Vector<String> communityName = new Vector<>();
+    //Vector<String> communityName = new Vector<>();
 
     public communityMain() {
 

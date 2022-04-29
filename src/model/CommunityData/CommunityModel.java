@@ -9,6 +9,7 @@ public class CommunityModel {
 
     private static CommunityModel instance;
     private CommunityInfo currentCommunity;
+    private String currentAptNo;
     private HashMap<String, CommunityInfo> communityInfoHashMap;
     public static CommunityModel getInstance() {
         if(instance == null){
@@ -26,10 +27,20 @@ public class CommunityModel {
     public void addNewCommunity(CommunityInfo communityInfo) {
         communityInfoHashMap.putIfAbsent(communityInfo.communityName, communityInfo);
     }
-
+    public CommunityInfo getCommunityByKey(String key){
+        return communityInfoHashMap.getOrDefault(key, null);
+    }
     public CommunityInfo getCurrentCommunity() { return currentCommunity; }
 
     public void setCurrentCommunity(String communityInfo) {
         this.currentCommunity = communityInfoHashMap.get(communityInfo);
+    }
+
+    public String getCurrentAptNo() {
+        return currentAptNo;
+    }
+
+    public void setCurrentAptNo(String currentAptNo) {
+        this.currentAptNo = currentAptNo;
     }
 }
