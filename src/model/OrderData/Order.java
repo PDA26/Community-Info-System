@@ -39,19 +39,25 @@ public class Order extends AbstractTableModel {
     OrderStatus status;
 
     public Order(List<Product> input) {
-        this.id = idCount++;
+//        this.id = idCount++;
+        idCount++;
+        this.id = idCount;
         this.itemList = input;
         status = OrderStatus.PENDING;
         this.date = new Date();
     }
     public Order() {
-        this.id = idCount++;
+        //        this.id = idCount++;
+        idCount++;
+        this.id = idCount;
         this.itemList = new ArrayList<>();
         status = OrderStatus.PENDING;
         this.date = new Date();
     }
     public Order(String name) {
-        this.id = idCount++;
+        //        this.id = idCount++;
+        idCount++;
+        this.id = idCount;
         this.itemList = new ArrayList<>();
         status = OrderStatus.PENDING;
         this.date = new Date();
