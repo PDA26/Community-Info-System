@@ -87,7 +87,6 @@ public class LocationChooser {
 
     public static void main(String[] args) {
         LocationChooser locationChooser = new LocationChooser();
-
         JFrame frame = new JFrame("LocationChooser");
         frame.setContentPane(locationChooser.panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

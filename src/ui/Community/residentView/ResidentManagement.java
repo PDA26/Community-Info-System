@@ -39,7 +39,6 @@ public class ResidentManagement {
     private JSpinner spinnerCount;
 
 
-    Warehouse warehouse = new Warehouse();
     Order orders;
     AptOrderCatalog aptOrderCatalog;
     CommunityModel communityModel;
@@ -49,11 +48,10 @@ public class ResidentManagement {
 
     public ResidentManagement() {
 
-        this.curr_order = new Order(communityInfo.communityName);
         this.communityModel = CommunityModel.getInstance();
         this.communityInfo = communityModel.getCurrentCommunity();
-        String[] titleCart = {"Item Name", "Price", "Manufacture Date", "Quantity", "Item Status"};
-        String[][] dataCart = new String[5][];
+        this.curr_order = new Order(communityInfo.communityName);
+
         tableCart.setModel(curr_order);
         SuperMarket market = SuperMarket.getInstance();
 
@@ -109,11 +107,13 @@ public class ResidentManagement {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String curr_aptNo = txtAptNo.getText();
-                    //pull curr_order to aptOrderCatalog
-                    AptOrderCatalog curr_aoc = communityInfo.getOrders().getByAptNo(curr_aptNo);
-                    curr_aoc.addOrder(curr_order);
-                    //curr_order stored
-                    curr_order = new Order(communityInfo.communityName);
+                //pull curr_order to aptOrderCatalog
+                AptOrderCatalog curr_aoc = communityInfo.getOrders().getByAptNo(curr_aptNo);
+                curr_aoc.addOrder(curr_order);
+                //curr_order stored
+                curr_order = new Order(communityInfo.communityName);
+                JOptionPane.showMessageDialog(panelResidentManagement, "Please select an item!");
+                tableCart.setModel(curr_order);
             }
         });
 
