@@ -48,6 +48,10 @@ public class Order extends AbstractTableModel {
         fireTableRowsInserted(itemList.size() - 1, itemList.size() - 1);
         return p.getQuantity();
     }
+    public void removeItem(int row){
+        itemList.remove(row);
+        fireTableRowsDeleted(row, row);
+    }
 
     public List<Product> getItemList() {
         return itemList;

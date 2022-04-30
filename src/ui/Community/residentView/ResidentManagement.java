@@ -1,6 +1,8 @@
 package ui.Community.residentView;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,6 +36,8 @@ public class ResidentManagement {
     private JButton btnDelete;
     private JTextField txtAptNo;
     private JButton btnAdd;
+    private JSpinner spinnerCount;
+    private JButton btnRefresh;
 
 
     Warehouse warehouse = new Warehouse();
@@ -64,8 +68,6 @@ public class ResidentManagement {
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                //TODO ADD ITEMS TO CART
                 String curr_aptNo = txtAptNo.getText();
                 boolean tag = false;
                 for(String name : communityInfo.getAptList()){
@@ -82,10 +84,8 @@ public class ResidentManagement {
                     JOptionPane.showMessageDialog(panelResidentManagement, "Please select a row!");
                     return;
                 }
-
                 Product curr_product = market.getWh().getClone(market.getWh().get(row));
 
-                //TODO update tableCart
                 curr_order.addProduct(curr_product);
 
                 JOptionPane.showMessageDialog(panelResidentManagement, "Successfully add to cart!");
@@ -96,23 +96,12 @@ public class ResidentManagement {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = tableCart.getSelectedRow();
-                int len_col = tableCart.getColumnCount();
-                int len_row = tableCart.getRowCount();
-
-                if (row > 0) {
-                    for (int i=0; i<len_row; i++) {
-
-                        if (i==row) { i += 1; }
-                        for (int j=0; j<len_col; j++) {
-                            dataCart[i][j] = (String) tableItem.getValueAt(i, j);
-                        }
-                    }
-                    dataCart[-1] = new String[]{};
-                    tableCart = new JTable(dataCart, titleCart);
+                if(row != -1){
+                    //curr_order.getItemList().remove(row);
+                    curr_order.removeItem(row);
                     JOptionPane.showMessageDialog(panelResidentManagement, "Successfully deleted!");
-                } else {
-                    JOptionPane.showMessageDialog(panelResidentManagement,
-                                                  "Please select an item!");
+                }else {
+                    JOptionPane.showMessageDialog(panelResidentManagement, "Please select an item!");
                 }
             }
         });
@@ -120,45 +109,36 @@ public class ResidentManagement {
         btnConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Apartment apartment = new Apartment();
-                String Apt = txtAptNo.getText();
-
-                while (true) {
-                    if (Apt.isBlank()) {
-                        JOptionPane.showMessageDialog(panelResidentManagement,
-                                                      "Please enter Apt No!");
-                        break;
-                    } else {
-                        id += 1;
-//                        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                        apartment.setAptNo(Apt);
-//                        apartment.setOrderTime(String.valueOf(time));
-//                        apartment.setOrderId(id);
-//                        OrderCatalog.addOrder(Apt, order);
-//                        AptOrderCatalog.getInstance().addNewOrderItem(order);
-
-                        //TODO CONFIRM APT ORDERS
-                        int len = tableCart.getRowCount();
-                        List<Order> curr_order = null;
-
-                        for (int i=0; i<len; i++) {
-                            Product curr_product = warehouse.get(i);
-                            orders.addProduct(curr_product);
-                            curr_order.add(orders);
-                        }
-
-                        aptOrderCatalog.setList(curr_order);
-                        aptOrderCatalog.setAptNo(Apt);
-
-
-                        JOptionPane.showMessageDialog(panelResidentManagement,
-                                                      "Successfully confirmed!");
-                        Main.gotoPanel("Community");
-                    }
-                }
+                String curr_aptNo = txtAptNo.getText();
+                    tableCart = new JTable(curr_order);
             }
         });
 
+
+        spinnerCount.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int row = tableCart.getSelectedRow();
+                if(row != -1){
+                    int cnt = (int)spinnerCount.getValue();
+                    Product cc = market.getWh().getByName(curr_order.getItemList().get(row).getName());
+                    if(cc != null){
+                        cnt = Math.min(cnt, cc.getQuantity());
+                    }
+                    curr_order.getItemList().get(row).quantity = cnt;
+                    JOptionPane.showMessageDialog(panelResidentManagement, "Successfully Edited count of item!");
+                }else {
+                    JOptionPane.showMessageDialog(panelResidentManagement, "Please select an item!");
+                }
+
+            }
+        });
+        btnRefresh.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     public JPanel getPanel() {

@@ -47,7 +47,7 @@ public class Warehouse extends AbstractTableModel {
     }
     public Product getClone(Product p){
         //String name, double price, String modifiedDate, int quantity, boolean isInStock
-        return new Product(p.name, p.price, p.modifiedDate, p.quantity, p.isInStock);
+        return new Product(p.name, p.price, p.modifiedDate, 1, p.isInStock);
     }
 
     @Override
