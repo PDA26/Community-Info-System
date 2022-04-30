@@ -20,7 +20,7 @@ public class OrderDetails {
     /**
      * table
      */
-    Vector<Vector<Object>> data;
+//    Vector<Vector<Object>> data;
     static DefaultTableModel tableModel;
     static {
         tableModel = new DefaultTableModel();
@@ -47,10 +47,25 @@ public class OrderDetails {
 
     private void InitTable() {
 
-        data = new Vector<>();
+//        data = new Vector<>();
 //        data.addAll(productModel.getData());
         orderDetailsJTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         orderDetailsJTable.setModel(tableModel);
+//        tableModel.addColumn("Product Name");
+//        tableModel.addColumn("Price");
+//        tableModel.addColumn("Modified Date");
+//        tableModel.addColumn("Quantity");
+////        tableModel.addColumn("Unit Price");
+//        tableModel.addColumn("Status");
+
+    }
+
+    static {
+
+//        data = new Vector<>();
+//        data.addAll(productModel.getData());
+//        orderDetailsJTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//        orderDetailsJTable.setModel(tableModel);
         tableModel.addColumn("Product Name");
         tableModel.addColumn("Price");
         tableModel.addColumn("Modified Date");
@@ -103,26 +118,33 @@ public class OrderDetails {
 
 //            Set<Map.Entry<String, AptOrderCatalog>> entries1 = value.getMap().entrySet();
 
-            AptOrderCatalog aptOrderCatalog = value.getMap().get(communityName);
-            if (aptOrderCatalog != null) {
+//            AptOrderCatalog aptOrderCatalog = value.getMap().get(communityName);
+            Set<Map.Entry<String, AptOrderCatalog>> entries1 = value.getMap().entrySet();
+            for (Map.Entry<String, AptOrderCatalog> stringAptOrderCatalogEntry : entries1) {
 
-                List<Order> list = aptOrderCatalog.getList();
-                for (Order order : list) {
+                AptOrderCatalog aptOrderCatalog = stringAptOrderCatalogEntry.getValue();
 
-                    if (order.getId() == orderID){
+                if (aptOrderCatalog != null) {
+
+                    List<Order> list = aptOrderCatalog.getList();
+                    for (Order order : list) {
+
+                        if (order.getId() == orderID){
 
 //                        System.out.println(order);
-                        List<Product> itemList = order.getItemList();
-                        for (Product product : itemList) {
+                            List<Product> itemList = order.getItemList();
+                            for (Product product : itemList) {
 //                            System.out.println(product);
-                            Object[ ] row = new Object[5];
-                            row[0] = product.getName();
-                            row[1] = product.getPrice();
-                            row[2] = product.getModifiedDate();
-                            row[3] = product.getQuantity();
-                            row[4] = product.getInStock();
+                                Object[ ] row = new Object[5];
+                                row[0] = product.getName();
+                                row[1] = product.getPrice();
+                                row[2] = product.getModifiedDate();
+                                row[3] = product.getQuantity();
+                                row[4] = product.getInStock();
 
-                            model.addRow(row);
+                                model.addRow(row);
+
+                            }
 
                         }
 
@@ -131,6 +153,8 @@ public class OrderDetails {
                 }
 
             }
+
+
 
         }
 

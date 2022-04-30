@@ -49,6 +49,18 @@ public class ViewOrder {
 //        data.addAll(productModel.getData());
         orderJTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         orderJTable.setModel(tableModel);
+//        tableModel.addColumn("ID");
+//        tableModel.addColumn("Community");
+//        tableModel.addColumn("Order Time");
+//        tableModel.addColumn("Apartment Number");
+//        tableModel.addColumn("Order Status");
+
+    }
+
+    static {
+
+//        orderJTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//        orderJTable.setModel(tableModel);
         tableModel.addColumn("ID");
         tableModel.addColumn("Community");
         tableModel.addColumn("Order Time");
@@ -163,7 +175,7 @@ public class ViewOrder {
                     List<Order> list = aptOrderCatalog.getList();
                     for (Order order : list) {
 
-                        if ((order.getId()) + 1 == IDForUpdateStatus){
+                        if (order.getId() == IDForUpdateStatus){
 
 //                        System.out.println(order);
 
