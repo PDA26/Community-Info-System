@@ -46,7 +46,7 @@ public class MarketSignUp {
                     JOptionPane.showMessageDialog(MarketSignUp.this.panelMarketSignUp, "Account saved!");
                     txtPassword.setText("");
                     txtUsername.setText("");
-                    Main.gotoPanel("Login");
+                    Main.gotoPanel("SignIn");
                 }
             }
         });
@@ -54,7 +54,7 @@ public class MarketSignUp {
         btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.gotoPanel("Login");
+                Main.gotoPanel("SignIn");
             }
         });
 

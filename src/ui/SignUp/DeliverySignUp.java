@@ -46,7 +46,7 @@ public class DeliverySignUp {
                     JOptionPane.showMessageDialog(DeliverySignUp.this.panelDeliverySignUp, "Account saved!");
                     txtPassword.setText("");
                     txtUsername.setText("");
-                    Main.gotoPanel("Login");
+                    Main.gotoPanel("SignIn");
                 }
             }
         });
@@ -54,7 +54,7 @@ public class DeliverySignUp {
         btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.gotoPanel("Login");
+                Main.gotoPanel("SignIn");
             }
         });
 

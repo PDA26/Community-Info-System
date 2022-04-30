@@ -8,10 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import model.Apartment;
-import model.SuperMarket.orderCenter.OrderCatalog;
-import model.SuperMarket.orderCenter.OrderItem;
+
 import model.Product;
-import model.SuperMarket.orderCenter.ProductCatalog;
 import model.OrderData.AptOrderCatalog;
 import ui.Main;
 
@@ -37,8 +35,8 @@ public class ResidentManagement {
     Vector<Vector<Product>> dataCart;
     DefaultTableModel tableModelCart;
 
-    ProductCatalog productCatalog = ProductCatalog.getInstance();
-    OrderItem order = new OrderItem();
+//    ProductCatalog productCatalog = ProductCatalog.getInstance();
+//    OrderItem order = new OrderItem();
 
     int id = 0;
 
@@ -52,7 +50,7 @@ public class ResidentManagement {
         titlesMenu.add("Item Status");
         titlesMenu.add("Quantity");
         //TODO
-        dataMenu.addElement((Vector<Product>) productCatalog.getProducts());
+//        dataMenu.addElement((Vector<Product>) productCatalog.getProducts());
         tableModelMenu = new DefaultTableModel(dataMenu, titlesMenu);
 //        tableItem = new JTable(tableModelMenu);
         tableItem = new JTable(dataMenu, titlesMenu);
@@ -76,12 +74,12 @@ public class ResidentManagement {
                 for (int i = 0; i < len; i++) {
                     dataCart.addElement((Vector<Product>) tableItem.getValueAt(row, i));
                 }
-                order.setName(String.valueOf(tableItem.getValueAt(row, 0)));
-                order.setUnitPrice((Double) tableItem.getValueAt(row, 1));
-                order.setPrice((Integer) tableItem.getValueAt(row, 2));
-                order.setQuantityForOrder((Integer) tableItem.getValueAt(row, 3));
-                OrderCatalog.getInstance().setCurrentOrder(order);
-                tableCart = new JTable(dataCart, titlesCart);
+//                order.setName(String.valueOf(tableItem.getValueAt(row, 0)));
+//                order.setUnitPrice((Double) tableItem.getValueAt(row, 1));
+//                order.setPrice((Integer) tableItem.getValueAt(row, 2));
+//                order.setQuantityForOrder((Integer) tableItem.getValueAt(row, 3));
+//                OrderCatalog.getInstance().setCurrentOrder(order);
+//                tableCart = new JTable(dataCart, titlesCart);
 
                 JOptionPane.showMessageDialog(panelResidentManagement, "Successfully add to cart!");
             }
@@ -94,7 +92,7 @@ public class ResidentManagement {
 
                 if (row > 0) {
                     String item = String.valueOf(tableCart.getValueAt(row, 0));
-                    OrderCatalog.deleteOrder(OrderCatalog.getInstance().getCurrentOrder(), item);
+//                    OrderCatalog.deleteOrder(OrderCatalog.getInstance().getCurrentOrder(), item);
                     JOptionPane.showMessageDialog(panelResidentManagement, "Successfully deleted!");
                 } else {
                     JOptionPane.showMessageDialog(panelResidentManagement,
@@ -118,10 +116,10 @@ public class ResidentManagement {
                         id += 1;
                         SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         apartment.setAptNo(Apt);
-                        apartment.setOrderTime(String.valueOf(time));
-                        apartment.setOrderId(id);
-                        OrderCatalog.addOrder(Apt, order);
-                        AptOrderCatalog.getInstance().addNewOrderItem(order);
+//                        apartment.setOrderTime(String.valueOf(time));
+//                        apartment.setOrderId(id);
+//                        OrderCatalog.addOrder(Apt, order);
+//                        AptOrderCatalog.getInstance().addNewOrderItem(order);
                         JOptionPane.showMessageDialog(panelResidentManagement,
                                                       "Successfully confirmed!");
                         Main.gotoPanel("CommunityMain");

@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="jxmapviewer.jxmapviewer2" level="project" />
     <orderEntry type="library" name="org.jxmapviewer:jxmapviewer2:2.6" level="project" />
+    <orderEntry type="library" name="gson-2.2.4" level="project" />
   </component>
 </module>

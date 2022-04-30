@@ -1,5 +1,6 @@
 package ui.SignUp;
 
+import com.google.gson.*;
 import model.SignUp.AccountCatalog;
 import model.SignUp.AccountInfo;
 import ui.Main;
@@ -8,7 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.Arrays;
+import java.util.Map;
 
 public class CommunitySignUp {
 
@@ -27,39 +30,62 @@ public class CommunitySignUp {
 
         btnConfirm.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent ee) {
 
 
                 String Username = CommunitySignUp.this.txtUsername.getText();
                 String Password = String.valueOf(CommunitySignUp.this.txtPassword.getPassword());
 
-                if (Username.isBlank()) {
-                    JOptionPane.showMessageDialog(CommunitySignUp.this.panelCommunitySignUp, "Miss Username! Account not saved.");
-                }
-                else if (Password.isBlank()) {
-                    JOptionPane.showMessageDialog(CommunitySignUp.this.panelCommunitySignUp, "Miss Password! Account not saved.");
-                }
-                else {
-                    accountInfo.setUsername(Username);
-                    accountInfo.setPassword(Password);
-                    model.SignUp.AccountCatalog.addAccount(accountInfo);
-//                    for (int i=0; i<model.SignUp.AccountCatalog.getAccounts().size(); i++) {
-//                        System.out.println(model.SignUp.AccountCatalog.getAccounts().get(i).Username);
-//                        System.out.println(model.SignUp.AccountInfo.Username);
-//                    }
+                System.out.println(Username);
+                System.out.println(Password);
 
-                    JOptionPane.showMessageDialog(CommunitySignUp.this.panelCommunitySignUp, "Account saved!");
-                    txtPassword.setText("");
-                    txtUsername.setText("");
-                    Main.gotoPanel("Login");
+                JsonParser parser = new JsonParser();
+                JsonObject sign_up_object = null;
+                try {
+                    sign_up_object = (JsonObject)parser.parse(new FileReader("LogAndSign.json"));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+                JsonObject finalSign_up_object = sign_up_object;
+                JsonArray array = finalSign_up_object.get("resident").getAsJsonArray();
+                for(int i = 0; i < array.size(); i++) {
+                    JsonObject curr = array.get(i).getAsJsonObject();
+                    if (Username.equals(curr.get("usr").getAsString()) &&
+                            Password.equals(curr.get("pwd").getAsString())) {
+                        //System.out.println("Overlapped usr and pwd");
+                        JOptionPane.showMessageDialog(CommunitySignUp.this.panelCommunitySignUp, "Overlapped usr and pwd!");
+                        txtPassword.setText("");
+                        txtUsername.setText("");
+                        return;
+                    }
+                }
+                JsonObject res = new JsonObject();
+                res.addProperty("usr", Username);
+                res.addProperty("pwd", Password);
+                array.add(res);
+                finalSign_up_object.add("resident", array);
+                //String str = finalSign_up_object.getAsString();
+                Gson gson = new Gson();
+                try {
+                    Writer writer = new FileWriter("LogAndSign.json");
+                    gson.toJson(finalSign_up_object, writer);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("New usr and pwd successfully added!");
+                JOptionPane.showMessageDialog(CommunitySignUp.this.panelCommunitySignUp, "Account saved!");
+                txtPassword.setText("");
+                txtUsername.setText("");
+                Main.gotoPanel("SignIn");
             }
         });
 
         btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.gotoPanel("Login");
+                Main.gotoPanel("SignIn");
             }
         });
 

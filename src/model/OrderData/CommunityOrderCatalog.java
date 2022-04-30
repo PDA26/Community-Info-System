@@ -52,7 +52,7 @@ public class CommunityOrderCatalog {
             AptOrderCatalog aoc = map.get(key);
             if(map.get(key).getMostRecentOrderDate() != null) {
                 String[][] tmp = aoc.getAllOrderDetails();
-                res[i][0] = aoc.aptNo;
+                res[i][0] = aoc.getAptNo();
                 for(int j = 0; j < 6; j++){
                     res[i][j + 1] = tmp[i][j];
                 }
