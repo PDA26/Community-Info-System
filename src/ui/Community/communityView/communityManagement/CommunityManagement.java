@@ -84,6 +84,7 @@ public class CommunityManagement {
             CurrentApt currentApt = CurrentApt.getInstance();
             currentApt.setCurrentApt(key);
 
+            // FIXME
             OrderDetail orderDetail = new OrderDetail();
             Main.addPanel(orderDetail.getPanel(), "orderDetail");
             Main.gotoPanel("orderDetail");
@@ -91,6 +92,7 @@ public class CommunityManagement {
 
 
         btnViewOrders.addActionListener(e -> {
+            // FIXME
             CommunityOrders communityOrders = new CommunityOrders();
             Main.addPanel(communityOrders.getPanel(), "orders");
             Main.gotoPanel("orders");
@@ -134,7 +136,6 @@ public class CommunityManagement {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         CommunityModel communityModel = CommunityModel.getInstance();
         this.communityInfo = communityModel.getCurrentCommunity();
         currentCommunity = communityModel.getCurrentCommunity();
