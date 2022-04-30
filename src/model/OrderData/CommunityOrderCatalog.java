@@ -57,7 +57,7 @@ public class CommunityOrderCatalog {
         return res;
     }
 
-    public String[][] getFull(){
+    public String[][] getPending(){
         int n = 0, i = 0;
         for(String key : map.keySet()){
             AptOrderCatalog aoc = map.get(key);
@@ -81,29 +81,26 @@ public class CommunityOrderCatalog {
         return res;
     }
 
-    public String[][] getPending(){
+
+    public String[][] getFull(){
         int n = 0, i = 0;
         for(String key : map.keySet()){
             AptOrderCatalog aoc = map.get(key);
-            for(Order o : aoc.getList()){
-                if(o.getStatus() == Order.OrderStatus.PENDING){
-                    n += o.getItemList().size();
-                }
+            if(aoc.getList().size() != 0){
+                n += aoc.getList().size();
             }
         }
         String[][] res = new String[n][7];
         //String[] titleOrders = {"AptNo", "ID", "Date", "Name", "Quantity", "Unit Price", "Total Price", "Status"};
         for(String key : map.keySet()){
             AptOrderCatalog aoc = map.get(key);
-            for(Order o : aoc.getList()) {
-                if(o.getStatus() == Order.OrderStatus.PENDING){
-                    String[][] tmp = aoc.getAllPendingDetails();
-                    res[i][0] = aoc.getAptNo();
-                    for(int j = 0; j < 6; j++){
-                        res[i][j + 1] = tmp[i][j];
-                    }
-                    i++;
+            if(map.get(key).getList().size() != 0) {
+                String[][] tmp = aoc.getAllOrderDetails();
+                res[i][0] = aoc.getAptNo();
+                for(int j = 0; j < 6; j++){
+                    res[i][j + 1] = tmp[i][j];
                 }
+                i++;
             }
         }
         return res;

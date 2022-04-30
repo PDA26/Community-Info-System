@@ -67,22 +67,6 @@ public class AptOrderCatalog {
     }
 
 
-    public String getAptNo() {
-        return aptNo;
-    }
-
-    public void setAptNo(String aptNo) {
-        this.aptNo = aptNo;
-    }
-
-    public List<Order> getList() {
-        return list;
-    }
-
-    public void setList(List<Order> list) {
-        this.list = list;
-    }
-
     public String[][] getAllPendingDetails(){
         int n = 0, i = 0;
         for(Order o : list){
@@ -111,4 +95,22 @@ public class AptOrderCatalog {
         }
         return res;
     }
+
+    public String getAptNo() {
+        return aptNo;
+    }
+
+    public void setAptNo(String aptNo) {
+        this.aptNo = aptNo;
+    }
+
+    public List<Order> getList() {
+        return list;
+    }
+
+    public void setList(List<Order> list) {
+        this.list = list;
+    }
+
+
 }
