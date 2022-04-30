@@ -11,6 +11,7 @@ public class DeliveryTableModel extends AbstractTableModel {
     private List<Order> orders = new ArrayList<>();
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+        fireTableDataChanged();
     }
 
     public void setStatus(int idx, Order.OrderStatus status) {
@@ -31,6 +32,23 @@ public class DeliveryTableModel extends AbstractTableModel {
     @Override
     public int getColumnCount() {
         return 5;
+    }
+
+    @Override
+    public String getColumnName(int column) {
+        switch (column) {
+            case 0:
+                return "ID";
+            case 1:
+                return "Community Name";
+            case 2:
+                return "Address";
+            case 3:
+                return "Order Status";
+            case 4:
+                return "Grocery Address";
+        }
+        return null;
     }
 
     @Override

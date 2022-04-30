@@ -59,6 +59,15 @@ public class SignIn {
         buttonGroup_Main.add(deliveryRadioButton);
         buttonGroup_Main.add(marketRadioButton);
 
+        // clear input fields when selection change
+        ActionListener listener = event -> {
+            textFieldPwd.setText("");
+            textFieldUsr.setText("");
+        };
+        communityRadioButton.addActionListener(listener);
+        deliveryRadioButton.addActionListener(listener);
+        marketRadioButton.addActionListener(listener);
+
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,6 +96,8 @@ public class SignIn {
                     }
                     JOptionPane.showMessageDialog(panel,
                                                   "Wrong username or pwd of Community!!!");
+                    textFieldPwd.setText("");
+                    textFieldPwd.requestFocus();
                 } else if (buttonGroup_Main.isSelected(deliveryRadioButton.getModel())) {
                     JsonArray array = login_object.get("delivery").getAsJsonArray();
                     for(int i = 0; i < array.size(); i++) {
@@ -101,6 +112,8 @@ public class SignIn {
                     }
                     JOptionPane.showMessageDialog(panel,
                                                   "Wrong username or pwd of Delivery!!!");
+                    textFieldPwd.setText("");
+                    textFieldPwd.requestFocus();
                 } else if (buttonGroup_Main.isSelected(marketRadioButton.getModel())) {
                     JsonArray array = login_object.get("market").getAsJsonArray();
                     for(int i = 0; i < array.size(); i++) {
@@ -115,11 +128,14 @@ public class SignIn {
                     }
                     JOptionPane.showMessageDialog(panel,
                                                   "Wrong username or pwd of Market!!!");
+                    textFieldPwd.setText("");
+                    textFieldPwd.requestFocus();
                 } else {
                     JOptionPane.showMessageDialog(panel, "Wrong enter!!!");
+                    textFieldPwd.setText("");
+                    textFieldUsr.setText("");
+                    textFieldUsr.requestFocus();
                 }
-                textFieldPwd.setText("");
-                textFieldUsr.setText("");
             }
         });
 

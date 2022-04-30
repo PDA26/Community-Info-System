@@ -89,7 +89,7 @@ public class ResidentManagement {
 
                 curr_order.addProduct(curr_product);
 
-                JOptionPane.showMessageDialog(panelResidentManagement, "Successfully add to cart!");
+                // JOptionPane.showMessageDialog(panelResidentManagement, "Successfully add to cart!");
             }
         });
 
@@ -100,7 +100,7 @@ public class ResidentManagement {
                 if(row != -1){
                     //curr_order.getItemList().remove(row);
                     curr_order.removeItem(row);
-                    JOptionPane.showMessageDialog(panelResidentManagement, "Successfully deleted!");
+                    // JOptionPane.showMessageDialog(panelResidentManagement, "Successfully deleted!");
                 }else {
                     JOptionPane.showMessageDialog(panelResidentManagement, "Please select an item!");
                 }

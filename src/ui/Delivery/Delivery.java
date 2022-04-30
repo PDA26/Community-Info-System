@@ -11,6 +11,8 @@ import javax.swing.event.AncestorListener;
 import javax.swing.table.AbstractTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,25 +26,32 @@ public class Delivery {
 
     public Delivery() {
         chooseGroceryStoreButton.addActionListener(actionEvent -> {
-            int row = tableOrders.getSelectedRow();
-            if (row != -1) {
+            int[] rows = tableOrders.getSelectedRows();
+            if (rows.length > 0) {
                 String address = LocationChooser.show(tableOrders);
-                deliveryTableModel.setAddress(row, address);
+                for (int row: rows) {
+                    deliveryTableModel.setAddress(row, address);
+                }
+            } else {
+                JOptionPane.showMessageDialog(panel, "None of orders selected!");
             }
         });
         updateOrderStatusButton.addActionListener(e -> {
-            int selected = tableOrders.getSelectedRow();
-            if (selected != -1) {
+            int[] rows = tableOrders.getSelectedRows();
+            if (rows.length > 0) {
                 int tag = JOptionPane.showConfirmDialog(
                         tableOrders,
-                        "Are you sure to complete this order",
+                        "Are you sure to complete selected order(s)?",
                         "Confirmation",
                         JOptionPane.YES_NO_OPTION
                 );
                 if (tag == JOptionPane.YES_OPTION) {
-                    //deal with order
-                    deliveryTableModel.setStatus(selected, Order.OrderStatus.FINISHED);
+                    for (int row : rows) {
+                        deliveryTableModel.setStatus(row, Order.OrderStatus.FINISHED);
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(panel, "None of orders selected!");
             }
         });
         goBackButton.addActionListener(actionEvent -> Main.gotoPanel("SignIn"));
@@ -50,8 +59,13 @@ public class Delivery {
         tableOrders.addAncestorListener(new AncestorListener() {
             @Override
             public void ancestorAdded(AncestorEvent ancestorEvent) {
-                List<Order> orderss = SuperMarket.getInstance().getOc().getAllOrders();
-                List<Order> orders = orderss.stream().filter(order -> order.getStatus() == Order.OrderStatus.SHIPPED).collect(Collectors.toList());
+                List<Order> orders = SuperMarket.getInstance()
+                                                .getOc()
+                                                .getAllOrders()
+                                                .stream()
+                                                .filter(order -> order.getStatus() ==
+                                                                 Order.OrderStatus.SHIPPED)
+                                                .collect(Collectors.toList());
 
                 deliveryTableModel.setOrders(orders);
             }
@@ -70,10 +84,5 @@ public class Delivery {
 
     public JPanel getPanel() {
         return panel;
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-
     }
 }

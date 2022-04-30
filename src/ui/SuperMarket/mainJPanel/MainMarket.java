@@ -71,9 +71,9 @@ public class MainMarket {
 
     public void setLogo() {
 
-        imagePath.setImage(imagePath.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+        imagePath.setImage(imagePath.getImage().getScaledInstance(480, 270, Image.SCALE_DEFAULT));
         logoOfSuperMarket.setIcon(imagePath);
-        logoOfSuperMarket.setSize(100, 100);
+        // logoOfSuperMarket.setSize(100, 100);
 
     }
 

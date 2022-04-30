@@ -53,7 +53,7 @@ public class LocationChooser {
 
         jxMapKit.setMiniMapVisible(false);
         jxMapKit.setAddressLocation(median);
-        jxMapKit.setZoom(5);
+        jxMapKit.setZoom(6);
 
         SwingWaypoint.ClickedListener listener = waypoint -> comboBoxGrocery.setSelectedItem(waypoint.getText());
         Set<SwingWaypoint> waypoints = new HashSet<>(Arrays.asList(
@@ -83,15 +83,5 @@ public class LocationChooser {
             textFieldAddress.setText(address.get((String) comboBoxGrocery.getSelectedItem()));
         });
 
-    }
-
-    public static void main(String[] args) {
-        LocationChooser locationChooser = new LocationChooser();
-        JFrame frame = new JFrame("LocationChooser");
-        frame.setContentPane(locationChooser.panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
     }
 }
