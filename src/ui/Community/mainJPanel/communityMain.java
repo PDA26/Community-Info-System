@@ -55,8 +55,7 @@ public class communityMain {
             }
         });
 
-        CommunityManagement communityManagement = new CommunityManagement();
-        Main.addPanel(communityManagement.getPanel(), "CommunityManagement");
+
         btnToCom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,6 +66,8 @@ public class communityMain {
 //                  String name = communityName.get(index);
                     communityModel.setCurrentCommunity(index);
 
+                    CommunityManagement communityManagement = new CommunityManagement();
+                    Main.addPanel(communityManagement.getPanel(), "CommunityManagement");
                     Main.gotoPanel("CommunityManagement");
                 }
                 else {

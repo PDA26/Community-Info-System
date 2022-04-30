@@ -41,7 +41,7 @@ public class AptOrderCatalog {
         list.add(o);
         return true;
     }
-    public String[][] getAllOrderDetails(){
+    public String[][] getAllOrderDetails() {
         int n = 0, i = 0;
         for(Order o : list){
             for(Product p : o.getItemList()){
@@ -66,6 +66,7 @@ public class AptOrderCatalog {
         return res;
     }
 
+
     public String getAptNo() {
         return aptNo;
     }
@@ -80,5 +81,34 @@ public class AptOrderCatalog {
 
     public void setList(List<Order> list) {
         this.list = list;
+    }
+
+    public String[][] getAllPendingDetails(){
+        int n = 0, i = 0;
+        for(Order o : list){
+            if(o.getStatus() == Order.OrderStatus.PENDING){
+                for(Product p : o.getItemList()){
+                    n++;
+                }
+            }
+        }
+        //String[] titleOrder = {"ID", "Date", "Name", "Quantity", "Unit Price", "Status"};
+        String[][] res = new String[n][6];
+        for(Order o : list){
+            int id = o.getId();
+            Date date = o.getDate();
+            if(o.getStatus() == Order.OrderStatus.PENDING){
+                for(Product p : o.getItemList()) {
+                    res[i][0] = String.valueOf(id);
+                    res[i][1] = date.toString();
+                    res[i][2] = p.getName();
+                    res[i][3] = String.valueOf(p.getQuantity());
+                    res[i][4] = String.valueOf(p.getPrice());
+                    res[i][5] = o.getStatus().toString();
+                    i++;
+                }
+            }
+        }
+        return res;
     }
 }

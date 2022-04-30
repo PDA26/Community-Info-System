@@ -27,34 +27,49 @@ public class CommunityOrderCatalog {
         if(map.containsKey(s))  return;
         map.put(s, new AptOrderCatalog(s));
     }
+
     public String[][] getDigest(){
         int n = 0, i = 0;
         for(String key : map.keySet()){
-            if(map.get(key).getMostRecentOrderDate() != null)   n++;
+            if(map.get(key).getMostRecentOrderDate() != null){
+                AptOrderCatalog aoc = map.get(key);
+                for(Order o : aoc.getList()){
+                    if(o.getStatus() == Order.OrderStatus.PENDING){
+                        n++;
+                    }
+                }
+            }
         }
+
         String[][] res = new String[n][2];
         for(String key : map.keySet()){
-            if(map.get(key).getMostRecentOrderDate() != null) {
-                res[i][0] = key;
-                res[i][1] = map.get(key).getMostRecentOrderDate().toString();
-                i++;
+            if(map.get(key).getMostRecentOrderDate() != null){
+                AptOrderCatalog aoc = map.get(key);
+                for(Order o : aoc.getList()){
+                    if(o.getStatus() == Order.OrderStatus.PENDING){
+                        res[i][0] = key;
+                        res[i][1] = o.getDate().toString();
+                        i++;
+                    }
+                }
             }
         }
         return res;
     }
+
     public String[][] getFull(){
         int n = 0, i = 0;
         for(String key : map.keySet()){
             AptOrderCatalog aoc = map.get(key);
-            if(aoc.getMostRecentOrderDate() != null){
-                n += aoc.getAllOrderDetails().length;
+            if(aoc.getList().size() != 0){
+                n += aoc.getList().size();
             }
         }
         String[][] res = new String[n][7];
         //String[] titleOrders = {"AptNo", "ID", "Date", "Name", "Quantity", "Unit Price", "Total Price", "Status"};
         for(String key : map.keySet()){
             AptOrderCatalog aoc = map.get(key);
-            if(map.get(key).getMostRecentOrderDate() != null) {
+            if(map.get(key).getList().size() != 0) {
                 String[][] tmp = aoc.getAllOrderDetails();
                 res[i][0] = aoc.getAptNo();
                 for(int j = 0; j < 6; j++){
@@ -65,6 +80,37 @@ public class CommunityOrderCatalog {
         }
         return res;
     }
+
+    public String[][] getPending(){
+        int n = 0, i = 0;
+        for(String key : map.keySet()){
+            AptOrderCatalog aoc = map.get(key);
+            for(Order o : aoc.getList()){
+                if(o.getStatus() == Order.OrderStatus.PENDING){
+                    n += o.getItemList().size();
+                }
+            }
+        }
+        String[][] res = new String[n][7];
+        //String[] titleOrders = {"AptNo", "ID", "Date", "Name", "Quantity", "Unit Price", "Total Price", "Status"};
+        for(String key : map.keySet()){
+            AptOrderCatalog aoc = map.get(key);
+            for(Order o : aoc.getList()) {
+                if(o.getStatus() == Order.OrderStatus.PENDING){
+                    String[][] tmp = aoc.getAllPendingDetails();
+                    res[i][0] = aoc.getAptNo();
+                    for(int j = 0; j < 6; j++){
+                        res[i][j + 1] = tmp[i][j];
+                    }
+                    i++;
+                }
+            }
+        }
+        return res;
+    }
+
+
+
     public AptOrderCatalog getByAptNo(String key){
         return map.getOrDefault(key, null);
     }

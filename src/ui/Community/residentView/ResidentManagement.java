@@ -66,6 +66,7 @@ public class ResidentManagement {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String curr_aptNo = txtAptNo.getText();
+                communityInfo.addApt(curr_aptNo);
                 boolean tag = false;
                 for(String name : communityInfo.getAptList()){
                     if(curr_aptNo.equals(name)){
@@ -76,6 +77,7 @@ public class ResidentManagement {
                     JOptionPane.showMessageDialog(panelResidentManagement, "Wrong input of aptNo!");
                     return;
                 }
+
                 int row = tableItem.getSelectedRow();
                 if(row == -1){
                     JOptionPane.showMessageDialog(panelResidentManagement, "Please select a row!");
@@ -107,12 +109,19 @@ public class ResidentManagement {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String curr_aptNo = txtAptNo.getText();
+                communityInfo.addApt(curr_aptNo);
                 //pull curr_order to aptOrderCatalog
                 AptOrderCatalog curr_aoc = communityInfo.getOrders().getByAptNo(curr_aptNo);
+
+                if (curr_aptNo.isBlank()) {
+                    JOptionPane.showMessageDialog(panelResidentManagement, "Miss AptNo! Cart Not Saved!");
+                    return;
+                }
+
                 curr_aoc.addOrder(curr_order);
                 //curr_order stored
                 curr_order = new Order(communityInfo.communityName);
-                JOptionPane.showMessageDialog(panelResidentManagement, "Please select an item!");
+                JOptionPane.showMessageDialog(panelResidentManagement, "Cart saved!!");
                 tableCart.setModel(curr_order);
             }
         });

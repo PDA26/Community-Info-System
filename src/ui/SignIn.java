@@ -52,7 +52,7 @@ public class SignIn {
         Main.addPanel(new CommunitySignUp().getPanel(), "SignUpCommunity");
         Main.addPanel(new MarketSignUp().getPanel(), "SignUpMarket");
         Main.addPanel(new DeliverySignUp().getPanel(), "SignUpDelivery");
-        Main.addPanel(new CommunityManagement().getPanel(), "CommunityManagement");
+//        Main.addPanel(new CommunityManagement().getPanel(), "CommunityManagement");
 
         ButtonGroup buttonGroup_Main = new ButtonGroup();
         buttonGroup_Main.add(communityRadioButton);

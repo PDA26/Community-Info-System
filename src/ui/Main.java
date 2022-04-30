@@ -72,6 +72,7 @@ public class Main {
         ci3.addApt("101");
         ci3.addApt("102");
         ci3.addApt("103");
+        ci1.setAptList(ci1.getAptList());
         //market.getOc().addSingleCommunity(cm)
         market.getOc().addAll(cm);
 

@@ -34,7 +34,7 @@ public class Order extends AbstractTableModel {
     }
 
     public enum OrderStatus{
-        PENDING, ACCEPTED, FINISHED
+        PENDING, ACCEPTED, SHIPPED, FINISHED
     }
     OrderStatus status;
 

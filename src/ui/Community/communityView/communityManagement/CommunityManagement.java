@@ -3,16 +3,21 @@ package ui.Community.communityView.communityManagement;
 import model.Apartment;
 import model.CommunityData.CommunityModel;
 import model.CommunityData.CommunityInfo;
+import model.CurrentApt;
 import model.OrderData.AptOrderCatalog;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.List;
 
 import model.OrderData.CommunityOrderCatalog;
 import model.OrderData.Order;
+import model.OrderData.OrderCenter;
+import model.Product;
+import model.SuperMarket.SuperMarket;
 import ui.Community.communityView.communityOrder.CommunityOrders;
 import ui.Community.communityView.communityOrder.OrderDetail;
 import ui.Community.mainJPanel.communityMain;
@@ -35,13 +40,19 @@ public class CommunityManagement {
     private List<Object> dataOrder;
     DefaultTableModel tableModelOrder;
 
-    CommunityModel communityModel;
+//    CommunityModel communityModel;
     CommunityInfo currentCommunity;
+    CommunityInfo communityInfo;
+//    List<String> apts;
+    AptOrderCatalog aptOrderCatalog;
+    CommunityOrderCatalog communityOrderCatalog;
+
+    private String aptNo;
+    private List<Order> list;
 
     public CommunityManagement() {
 
-
-        this.communityModel = CommunityModel.getInstance();
+        CommunityModel communityModel = CommunityModel.getInstance();
 
         String currentName = "";
         if (communityModel.getCurrentCommunity() != null)
@@ -50,22 +61,6 @@ public class CommunityManagement {
 
         currentCommunity = communityModel.getCurrentCommunity();
 
-        //this.titlesOrder = new ArrayList<>();
-        //this.dataOrder = new ArrayList<>();
-
-        //titlesOrder.add("Apt No.");
-        //titlesOrder.add("Order Time");
-        String[] columnNames = {"Apt No.", "Order Time"};
-
-        //String apt = apartment.getAptNo();
-        //String time = apartment.getOrderTime();
-        String[][] rowData = currentCommunity.getOrders().getDigest();
-        //tableModelOrder = new DefaultTableModel(rowData, columnNames);
-        tableApt = new JTable(rowData, columnNames);
-
-//        btnBack.addActionListener(e -> Main.gotoPanel("communityMain"));
-
-//        Main.addPanel(new communityMain().getPanel(), "communityMain");
         btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,8 +68,8 @@ public class CommunityManagement {
             }
         });
 
-        OrderDetail orderDetail = new OrderDetail();
-        Main.addPanel(orderDetail.getPanel(), "orderDetail");
+
+        String finalCurrentName = currentName;
         btnViewDetails.addActionListener(e ->{
             //get AptNo
             int idx = tableApt.getSelectedRow();
@@ -83,13 +78,23 @@ public class CommunityManagement {
                 return;
             }
             String key = (String)tableApt.getValueAt(idx, 0);
-            communityModel.setCurrentAptNo(key);
+//            SuperMarket market = SuperMarket.getInstance();
+//            OrderCenter oc = market.getOc();
+//            CommunityOrderCatalog coc = oc.getMap().get(finalCurrentName);
+//            AptOrderCatalog aoc = coc.getByAptNo(key);
+////            communityModel.setCurrentAptNo(key);
+            CurrentApt currentApt = CurrentApt.getInstance();
+            currentApt.setCurrentApt(key);
+
+            OrderDetail orderDetail = new OrderDetail();
+            Main.addPanel(orderDetail.getPanel(), "orderDetail");
             Main.gotoPanel("orderDetail");
         });
-        CommunityOrders communityOrders = new CommunityOrders();
-        Main.addPanel(communityOrders.getPanel(), "orders");
-        btnViewOrders.addActionListener(e -> {
 
+
+        btnViewOrders.addActionListener(e -> {
+            CommunityOrders communityOrders = new CommunityOrders();
+            Main.addPanel(communityOrders.getPanel(), "orders");
             Main.gotoPanel("orders");
         });
 
@@ -109,6 +114,9 @@ public class CommunityManagement {
                         o.setStatus(Order.OrderStatus.ACCEPTED);
                     }
                 }
+
+//                AptOrderCatalog aptOrderCatalog = new AptOrderCatalog();
+
                 JOptionPane.showMessageDialog(panel, "Successfully confirmed!");
             }
         });
@@ -116,11 +124,23 @@ public class CommunityManagement {
     }
 
     private void refreshData() {
-        dataOrder.clear();
+        dataOrder.clear();  //在createUIComponents里面定义的变量 在这里能引用/修改吗
     }
 
     public JPanel getPanel() {
         return panel;
     }
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+        CommunityModel communityModel = CommunityModel.getInstance();
+        this.communityInfo = communityModel.getCurrentCommunity();
+        currentCommunity = communityModel.getCurrentCommunity();
+
+
+        String[] titleOrder = {"AptNo", "OrderDate"};
+        String[][] rowData = currentCommunity.getOrders().getDigest();
+
+        tableApt = new JTable(rowData, titleOrder);
+    }
 }

@@ -1,7 +1,9 @@
 package model.CommunityData;
 
 import jdk.jfr.Name;
+import model.OrderData.AptOrderCatalog;
 import model.OrderData.CommunityOrderCatalog;
+import model.OrderData.Order;
 
 import java.util.*;
 
@@ -44,6 +46,18 @@ public class CommunityInfo {
     public CommunityOrderCatalog getOrders() {
         return orders;
     }
+
+//    public CommunityOrderCatalog getPendingOrder() {
+//        CommunityOrderCatalog res = new CommunityOrderCatalog();
+//        for (AptOrderCatalog ap : orders.getMap().values()) {
+//            for (Order o : ap.getList()) {
+//                if (o.getStatus() == Order.OrderStatus.PENDING) {
+//                    res.getMap().
+//                }
+//            }
+//        }
+//        return res;
+//    }
 
     public void setOrders(CommunityOrderCatalog orders) {
         this.orders = orders;
