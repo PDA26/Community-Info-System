@@ -8,6 +8,7 @@ import model.OrderData.AptOrderCatalog;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -33,6 +34,7 @@ public class CommunityManagement {
     private JButton btnViewOrders;
     private JPanel panel;
     private JLabel labelShowName;
+    private JScrollPane tablePanel;
 
     Apartment apartment = new Apartment();
 
@@ -78,11 +80,7 @@ public class CommunityManagement {
                 return;
             }
             String key = (String)tableApt.getValueAt(idx, 0);
-//            SuperMarket market = SuperMarket.getInstance();
-//            OrderCenter oc = market.getOc();
-//            CommunityOrderCatalog coc = oc.getMap().get(finalCurrentName);
-//            AptOrderCatalog aoc = coc.getByAptNo(key);
-////            communityModel.setCurrentAptNo(key);
+
             CurrentApt currentApt = CurrentApt.getInstance();
             currentApt.setCurrentApt(key);
 
@@ -101,23 +99,27 @@ public class CommunityManagement {
         btnConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                refreshData();
-//                AptOrderCatalog aptOrderCatalog = new AptOrderCatalog();
-//                OrderCatalog orderCatalog = new OrderCatalog();
-//                String Apt = apartment.getAptNo();
-//                OrderCatalog.addOrder(Apt, OrderCatalog.getInstance().getCurrentOrder());
-                //TODO change all orders in this community to 'ACCEPTED'
+                int idx = tableApt.getSelectedRow();
+                if(idx == -1){
+                    JOptionPane.showMessageDialog(panel, "You have to select a row!");
+                    return;
+                }
+                String curr_aptNo = (String) tableApt.getValueAt(idx, 0);
+                String curr_date = (String) tableApt.getValueAt(idx, 1);
                 CommunityOrderCatalog coc = currentCommunity.getOrders();
-                for(String aptNo : coc.getMap().keySet()){
-                    AptOrderCatalog tmp = coc.getMap().get(aptNo);
-                    for(Order o : tmp.getList()){
+                AptOrderCatalog aoc = coc.getByAptNo(curr_aptNo);
+                for(Order o : aoc.getList()){
+                    if(o.getStatus() == Order.OrderStatus.PENDING && curr_date.equals(o.getDate().toString())){
                         o.setStatus(Order.OrderStatus.ACCEPTED);
+                        JOptionPane.showMessageDialog(panel, "Successfully confirmed!");
+                        tablePanel.revalidate();
+                        //tableApt.updateUI();
+                        return;
                     }
                 }
-
-//                AptOrderCatalog aptOrderCatalog = new AptOrderCatalog();
-
-                JOptionPane.showMessageDialog(panel, "Successfully confirmed!");
+                JOptionPane.showMessageDialog(panel, "Unsuccessfully confirmed!");
+                //tableApt.updateUI();
+                createUIComponents();
             }
         });
 

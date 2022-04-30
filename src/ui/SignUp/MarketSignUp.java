@@ -84,6 +84,8 @@ public class MarketSignUp {
         btnBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                txtPassword.setText("");
+                txtUsername.setText("");
                 Main.gotoPanel("SignIn");
             }
         });

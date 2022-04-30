@@ -50,13 +50,8 @@ public class Delivery {
         tableOrders.addAncestorListener(new AncestorListener() {
             @Override
             public void ancestorAdded(AncestorEvent ancestorEvent) {
-                List<Order> orders =
-                        SuperMarket.getInstance()
-                                   .getOc()
-                                   .getAllOrders()
-                                   .stream()
-                                   .filter(order -> order.getStatus() == Order.OrderStatus.ACCEPTED)
-                                   .collect(Collectors.toList());
+                List<Order> orderss = SuperMarket.getInstance().getOc().getAllOrders();
+                List<Order> orders = orderss.stream().filter(order -> order.getStatus() == Order.OrderStatus.SHIPPED).collect(Collectors.toList());
 
                 deliveryTableModel.setOrders(orders);
             }

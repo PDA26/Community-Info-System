@@ -3,6 +3,8 @@ package ui.Community.residentView;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -109,6 +111,17 @@ public class ResidentManagement {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String curr_aptNo = txtAptNo.getText();
+                boolean tag = false;
+                for(String s : communityInfo.getAptList()){
+                    if(curr_aptNo.equals(s)){
+                        tag = true;
+                        break;
+                    }
+                }
+                if(!tag){
+                    JOptionPane.showMessageDialog(panelResidentManagement, "Wrong AptNo! Cart Not Saved!");
+                    return;
+                }
                 communityInfo.addApt(curr_aptNo);
                 //pull curr_order to aptOrderCatalog
                 AptOrderCatalog curr_aoc = communityInfo.getOrders().getByAptNo(curr_aptNo);
@@ -117,15 +130,36 @@ public class ResidentManagement {
                     JOptionPane.showMessageDialog(panelResidentManagement, "Miss AptNo! Cart Not Saved!");
                     return;
                 }
-
+                SuperMarket market = SuperMarket.getInstance();
+                Warehouse wh = market.getWh();
+                for(Product p1 : curr_order.getItemList()){
+                    for(int i = 0; i < wh.getDir().size(); i++){
+                        Product p2 = wh.getDir().get(i);
+                        if(p1.getName().equals(p2.getName())){
+                            int val = p2.quantity - p1.quantity;
+                            //refresh tableItem
+                            wh.updateItemCnt(i, val);
+                            if(p2.quantity == 0){
+                                p2.setInStock(false);
+                            }
+                        }
+                    }
+                }
                 curr_aoc.addOrder(curr_order);
                 //curr_order stored
                 curr_order = new Order(communityInfo.communityName);
                 JOptionPane.showMessageDialog(panelResidentManagement, "Cart saved!!");
                 tableCart.setModel(curr_order);
+
             }
         });
 
+        tableCart.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                spinnerCount.setValue(1);
+            }
+        });
 
         spinnerCount.addChangeListener(new ChangeListener() {
             @Override
@@ -136,10 +170,11 @@ public class ResidentManagement {
                     Product cc = market.getWh().getByName(curr_order.getItemList().get(row).getName());
                     if(cc != null){
                         cnt = Math.min(cnt, cc.getQuantity());
+                        cnt = Math.max(0, cnt);
                     }
                     curr_order.updateItemCnt(row, cnt);
                 }else {
-                    JOptionPane.showMessageDialog(panelResidentManagement, "Please select an item!");
+                    //JOptionPane.showMessageDialog(panelResidentManagement, "Please select an item!");
                 }
 
             }

@@ -118,6 +118,8 @@ public class SignIn {
                 } else {
                     JOptionPane.showMessageDialog(panel, "Wrong enter!!!");
                 }
+                textFieldPwd.setText("");
+                textFieldUsr.setText("");
             }
         });
 
@@ -134,6 +136,8 @@ public class SignIn {
                     //jump to Community Sign Up
                     Main.gotoPanel("SignUpDelivery");
                 }
+                textFieldPwd.setText("");
+                textFieldUsr.setText("");
             }
         });
 

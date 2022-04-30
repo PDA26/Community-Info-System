@@ -72,5 +72,15 @@ public class Product {
                ", itemStatus=" + isInStock +
                '}';
     }
+    public String[] getStringArr(){
+        //"Date", "Name", "Quantity", "Unit Price", "Total Price", "Status"
+        String[] res = new String[4];
+        res[0] = String.valueOf(modifiedDate);
+        res[1] = name;
+        res[2] = String.valueOf(quantity);
+        res[3] = String.valueOf(price);
+        //res[4] = String.valueOf(isInStock);
+        return res;
+    }
 
 }

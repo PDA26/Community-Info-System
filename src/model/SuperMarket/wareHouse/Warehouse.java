@@ -14,6 +14,23 @@ import java.util.List;
 public class Warehouse extends AbstractTableModel {
     List<Product> dir = new ArrayList<>();;
 
+    public void updateItemCnt(int row, int val){
+        dir.get(row).quantity = val;
+        if(val == 0){
+            dir.get(row).setInStock(false);
+            fireTableCellUpdated(row, 4);
+        }
+        fireTableCellUpdated(row, 3);
+    }
+
+    public List<Product> getDir() {
+        return dir;
+    }
+
+    public void setDir(List<Product> dir) {
+        this.dir = dir;
+    }
+
     public Warehouse() {
 //        this.dir = new ArrayList<>();
     }

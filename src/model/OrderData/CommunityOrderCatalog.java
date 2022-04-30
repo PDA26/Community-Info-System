@@ -1,6 +1,7 @@
 package model.OrderData;
 
 import model.OrderData.Order;
+import model.Product;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -86,21 +87,30 @@ public class CommunityOrderCatalog {
         int n = 0, i = 0;
         for(String key : map.keySet()){
             AptOrderCatalog aoc = map.get(key);
-            if(aoc.getList().size() != 0){
-                n += aoc.getList().size();
+            for(Order o : aoc.getList()){
+                for (Product p : o.getItemList()){
+                    n++;
+                }
             }
         }
         String[][] res = new String[n][7];
-        //String[] titleOrders = {"AptNo", "ID", "Date", "Name", "Quantity", "Unit Price", "Total Price", "Status"};
+        //String[] titleOrders = {"AptNo", "ID", "Date", "Name", "Quantity", "Unit Price", "Status"};
         for(String key : map.keySet()){
             AptOrderCatalog aoc = map.get(key);
             if(map.get(key).getList().size() != 0) {
-                String[][] tmp = aoc.getAllOrderDetails();
-                res[i][0] = aoc.getAptNo();
-                for(int j = 0; j < 6; j++){
-                    res[i][j + 1] = tmp[i][j];
+                //String[][] tmp = aoc.getAllOrderDetails();
+                for(Order o : aoc.getList()){
+                    for(Product p : o.getItemList()){
+                        String[] tmp = p.getStringArr();
+                        res[i][0] = aoc.getAptNo();
+                        res[i][1] = String.valueOf(o.getId());
+                        for(int j = 0; j < 4; j++){
+                            res[i][j + 2] = tmp[j];
+                        }
+                        res[i][6] = o.getStatus().toString();
+                        i++;
+                    }
                 }
-                i++;
             }
         }
         return res;

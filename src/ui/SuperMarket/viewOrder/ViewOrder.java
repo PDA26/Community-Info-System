@@ -125,7 +125,6 @@ public class ViewOrder {
         updateOrderStatusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO - yes or no to change status from 'PENDING' TO 'ACCEPTED'
 
                 int row = orderJTable.getSelectedRow();
                 if (row >= 0 ) {
@@ -134,15 +133,14 @@ public class ViewOrder {
 
                     int i = JOptionPane.showConfirmDialog(viewOrderPanel, "Do you want to change order status?",
                             "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                    if(i == 0){
+                    if(i == 0 && ((String)tableModel.getValueAt(row, 4)).equals("ACCEPTED")){
                         //yes
                         setStatusForOrder();
                         populateOrderTable();
 
                     }else{
-
+                        JOptionPane.showMessageDialog(viewOrderPanel, "Only ACCEPTED order can be shipped!");
                     }
-
 
                 }else {
                     JOptionPane.showMessageDialog(null, "please select the row to operate on", "hint",
