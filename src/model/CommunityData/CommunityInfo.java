@@ -57,6 +57,15 @@ public class CommunityInfo {
         this.aptList = aptList;
     }
 
+    public void addApt(String s){
+        for(String name : aptList){
+            if(name.equals(s)){
+                return;
+            }
+        }
+        aptList.add(s);
+        orders.addApt(s);
+    }
 
 
     public String getCommunityName() {

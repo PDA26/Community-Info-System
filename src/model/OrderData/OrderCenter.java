@@ -1,8 +1,12 @@
 package model.OrderData;
 
+import model.CommunityData.CommunityInfo;
+import model.CommunityData.CommunityModel;
 import model.OrderData.Order;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +26,25 @@ public class OrderCenter {
         this.superMarketName = superMarketName;
         this.map = new HashMap<>();
     }
+
+    public List<Order> getAllOrders(){
+        List<Order> res = new ArrayList<>();
+        for(CommunityOrderCatalog coc : map.values()){
+            for(AptOrderCatalog aoc : coc.getMap().values()){
+                for(Order o : aoc.getList()){
+                    res.add(o);
+                }
+            }
+        }
+        return res;
+    }
+
+    public void addAll(CommunityModel cm){
+        for(CommunityInfo ci : cm.getCommunityInfoHashMap().values()){
+            map.put(ci.communityName, ci.getOrders());
+        }
+    }
+
     public OrderCenter() {
         this.map = new HashMap<>();
     }

@@ -23,6 +23,10 @@ public class CommunityOrderCatalog {
         this.communityName = communityName;
         this.map = new HashMap<>();
     }
+    public void addApt(String s){
+        if(map.containsKey(s))  return;
+        map.put(s, new AptOrderCatalog(s));
+    }
     public String[][] getDigest(){
         int n = 0, i = 0;
         for(String key : map.keySet()){

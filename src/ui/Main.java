@@ -63,18 +63,17 @@ public class Main {
         cm.addNewCommunity(ci1);
         cm.addNewCommunity(ci2);
         cm.addNewCommunity(ci3);
-        List<String> tmp1 = ci1.getAptList();
-        tmp1.add("101");
-        tmp1.add("102");
-        tmp1.add("103");
-        List<String> tmp2 = ci1.getAptList();
-        tmp2.add("104");
-        tmp2.add("105");
-        tmp2.add("106");
-        List<String> tmp3 = ci1.getAptList();
-        tmp3.add("107");
-        tmp3.add("108");
-        tmp3.add("109");
+        ci1.addApt("101");
+        ci1.addApt("102");
+        ci1.addApt("103");
+        ci2.addApt("101");
+        ci2.addApt("102");
+        ci2.addApt("103");
+        ci3.addApt("101");
+        ci3.addApt("102");
+        ci3.addApt("103");
+        //market.getOc().addSingleCommunity(cm)
+        market.getOc().addAll(cm);
 
         SignIn signIn = new SignIn();
         frame.add(signIn.getPanel(), "SignIn");

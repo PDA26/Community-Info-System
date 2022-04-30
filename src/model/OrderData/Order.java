@@ -19,6 +19,7 @@ public class Order extends AbstractTableModel {
     private final int id;
     private Date date;
     private List<Product> itemList;
+    private String community_name;
 
     public enum OrderStatus{
         PENDING, ACCEPTED, FINISHED
@@ -29,13 +30,20 @@ public class Order extends AbstractTableModel {
         this.id = idCount++;
         this.itemList = input;
         status = OrderStatus.PENDING;
-        //this.date = new Date();
+        this.date = new Date();
     }
     public Order() {
         this.id = idCount++;
         this.itemList = new ArrayList<>();
         status = OrderStatus.PENDING;
-        //this.date = new Date();
+        this.date = new Date();
+    }
+    public Order(String name) {
+        this.id = idCount++;
+        this.itemList = new ArrayList<>();
+        status = OrderStatus.PENDING;
+        this.date = new Date();
+        this.community_name = name;
     }
     public int addProduct(Product p){
         for(Product curr : itemList){
@@ -52,6 +60,11 @@ public class Order extends AbstractTableModel {
         itemList.remove(row);
         fireTableRowsDeleted(row, row);
     }
+    public void updateItemCnt(int row, int val){
+        itemList.get(row).quantity = val;
+        fireTableCellUpdated(row, 3);
+    }
+
 
     public List<Product> getItemList() {
         return itemList;

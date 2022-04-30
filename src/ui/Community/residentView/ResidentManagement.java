@@ -37,7 +37,6 @@ public class ResidentManagement {
     private JTextField txtAptNo;
     private JButton btnAdd;
     private JSpinner spinnerCount;
-    private JButton btnRefresh;
 
 
     Warehouse warehouse = new Warehouse();
@@ -50,7 +49,7 @@ public class ResidentManagement {
 
     public ResidentManagement() {
 
-        this.curr_order = new Order();
+        this.curr_order = new Order(communityInfo.communityName);
         this.communityModel = CommunityModel.getInstance();
         this.communityInfo = communityModel.getCurrentCommunity();
         String[] titleCart = {"Item Name", "Price", "Manufacture Date", "Quantity", "Item Status"};
@@ -110,7 +109,11 @@ public class ResidentManagement {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String curr_aptNo = txtAptNo.getText();
-                    tableCart = new JTable(curr_order);
+                    //pull curr_order to aptOrderCatalog
+                    AptOrderCatalog curr_aoc = communityInfo.getOrders().getByAptNo(curr_aptNo);
+                    curr_aoc.addOrder(curr_order);
+                    //curr_order stored
+                    curr_order = new Order(communityInfo.communityName);
             }
         });
 
@@ -125,17 +128,10 @@ public class ResidentManagement {
                     if(cc != null){
                         cnt = Math.min(cnt, cc.getQuantity());
                     }
-                    curr_order.getItemList().get(row).quantity = cnt;
-                    JOptionPane.showMessageDialog(panelResidentManagement, "Successfully Edited count of item!");
+                    curr_order.updateItemCnt(row, cnt);
                 }else {
                     JOptionPane.showMessageDialog(panelResidentManagement, "Please select an item!");
                 }
-
-            }
-        });
-        btnRefresh.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
             }
         });
@@ -145,10 +141,6 @@ public class ResidentManagement {
         return panelResidentManagement;
     }
 
-//    public static void updateTableItem(JTable tableItem){
-//        SuperMarket market = SuperMarket.getInstance();
-//        tableItem = new JTable(market.getWh());
-//    }
     private void createUIComponents() {
         SuperMarket market = SuperMarket.getInstance();
         tableItem = new JTable(market.getWh());
