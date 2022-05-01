@@ -1,17 +1,21 @@
-package ui.SuperMarket.viewItemMenu;
+package ui.SuperMarket.codeVersionUI_ignore_it.viewItemMenu_Code;
 
-import ui.SuperMarket.MainProcess;
+import model.SuperMarket.orderCenter.Product;
+import model.SuperMarket.orderCenter.ProductCatalog;
+import ui.SuperMarket.codeVersionUI_ignore_it.MainProcess;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class UpdateItemJPanel extends JPanel{
 
     /**
      * data
      */
+    ProductCatalog productModel = ProductCatalog.getInstance();
 
     /**
      * components
@@ -42,6 +46,11 @@ public class UpdateItemJPanel extends JPanel{
     }
 
     private void InitData() {
+
+        nameField.setText(productModel.getCurrentProduct().getName());
+        priceField.setText(Double.toString(productModel.getCurrentProduct().getPrice()));
+        updateTimeField.setText(productModel.getCurrentProduct().getModifiedDate());
+        quantityField.setText(Integer.toString(productModel.getCurrentProduct().getQuantity()));
 
     }
 
@@ -81,6 +90,42 @@ public class UpdateItemJPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainProcess.getInstance().changeFrame(new ViewItemMenuJPanel());
+            }
+        });
+
+        //update the profile
+        addJButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (nameField.getText().isEmpty()
+                        || priceField.getText().isEmpty()
+                        || updateTimeField.getText().isEmpty()
+                        || quantityField.getText().isEmpty()
+                        || itemStatusComboBox.getSelectedIndex() == 0) {
+
+                    MainProcess.getInstance().showDialog("information cannot be empty");
+
+                }else {
+
+                    Product product = new Product();
+                    product.setName(nameField.getText());
+                    product.setPrice(Double.parseDouble(priceField.getText()));
+                    product.setModifiedDate(updateTimeField.getText());
+                    product.setQuantity(Integer.parseInt(quantityField.getText()));
+                    product.setItemStatus(itemStatusComboBox.getSelectedIndex());
+
+                    productModel.addNewProduct(product);
+
+                    MainProcess.getInstance().showDialog("Item Profile Has Been Updated Successfully!!");
+
+                    //check the data
+                    //productModel.printCatalog();
+
+                    MainProcess.getInstance().changeFrame(new ViewItemMenuJPanel());
+
+                }
+
             }
         });
 
