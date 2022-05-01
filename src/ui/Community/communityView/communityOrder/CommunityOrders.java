@@ -34,7 +34,7 @@ public class CommunityOrders {
 
 
         String currentName = communityModel.getCurrentAptNo();
-        labelName.setText(currentName);
+
 
         btnBack.addActionListener(e -> Main.gotoPanel("CommunityManagement"));
 
