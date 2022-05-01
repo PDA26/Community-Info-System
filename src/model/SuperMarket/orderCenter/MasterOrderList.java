@@ -9,9 +9,12 @@ import java.util.Set;
 import java.util.Vector;
 
 /**
- * Master Order List
  *
- * Supplier -- Community -- Apartment -- Order Item
+ * 所有超市的所有订单 --- 每个超市的所有订单 ---- 社区的所有订单--------社区下面所有公寓的订单 -- 订单信息
+ * MasterOrderList -- OrderCenter -- CommunityOrderCatalog -- AptOrderCatalog -- Order Item
+ *
+ * Master Order List
+ * 继续吧 OrderCenter 中的订单汇总为这里的 MasterOrderList
  */
 public class MasterOrderList {
 

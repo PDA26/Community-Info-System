@@ -3,7 +3,9 @@ package model.SuperMarket.orderCenter;
 import java.util.*;
 
 /**
- * Product Catalog
+ * Product Catalog -- Product
+ *
+ * 用于存储超市的所有商品信息
  */
 public class ProductCatalog {
 

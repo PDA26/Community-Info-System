@@ -19,15 +19,7 @@ public class SupplierDirectory {
 
     }
 
-    private HashMap<String, Map<String, Product>> supplierDirectoryMap = new HashMap<>();
+    private HashMap<Supplier, Map<String, Product>> supplierDirectoryMap = new HashMap<>();
 
-    public void addNewSupplierAndItsProducts(Supplier supplier) {
 
-        supplierDirectoryMap.put(supplier.getSupplierId(), productCatalogModel.getProductCatalogMap());
-
-    }
-
-    public HashMap<String, Map<String, Product>> getSupplierDirectoryMap() {
-        return supplierDirectoryMap;
-    }
 }
