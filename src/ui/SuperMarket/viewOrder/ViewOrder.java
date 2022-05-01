@@ -92,11 +92,6 @@ public class ViewOrder {
         viewOrderDetailsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO - retrieve order details from selected row
-
-//                CommunityModel communityModel = CommunityModel.getInstance();
-//                CommunityInfo currentCommunity = communityModel.getCurrentCommunity();
-//                String communityName1 = currentCommunity.getCommunityName();
 
                 int row = orderJTable.getSelectedRow();
                 if (row >= 0 ) {
@@ -108,10 +103,9 @@ public class ViewOrder {
                     int orderId = (int) tableModel.getValueAt(row, 0);
                     orderDetails.setOrderID(orderId);
 
-//                    test.setjLabel("12312");
                     Main.gotoPanel("ViewOrderDetails");
                     orderDetails.populateTable();
-//                    Main.gotoPanel("test");
+
 
 
                 }else {
