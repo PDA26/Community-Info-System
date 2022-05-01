@@ -1,14 +1,13 @@
-package ui.SuperMarket.codeVersionUI_ignore_it.mainJPanel_Code;
+package ui.SuperMarket.mainJPanel;
 
-import ui.SuperMarket.codeVersionUI_ignore_it.MainProcess;
-import ui.SuperMarket.codeVersionUI_ignore_it.viewItemMenu_Code.ViewItemMenuJPanel;
-import ui.SuperMarket.codeVersionUI_ignore_it.viewOrder_Code.ViewOrdersJPanel;
+import ui.SuperMarket.MainProcess;
+import ui.SuperMarket.viewItemMenu.ViewItemMenuJPanel;
+import ui.SuperMarket.viewOrder.ViewOrdersJPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 
 public class MarketMainJPanel extends JPanel{
 

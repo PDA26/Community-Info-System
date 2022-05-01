@@ -1,8 +1,7 @@
-package ui.SuperMarket.codeVersionUI_ignore_it.viewOrder_Code;
+package ui.SuperMarket.viewOrder;
 
-import model.SuperMarket.orderCenter.MasterOrderList;
-import ui.SuperMarket.codeVersionUI_ignore_it.MainProcess;
-import ui.SuperMarket.codeVersionUI_ignore_it.mainJPanel_Code.MarketMainJPanel;
+import ui.SuperMarket.MainProcess;
+import ui.SuperMarket.mainJPanel.MarketMainJPanel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -11,13 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-
 public class ViewOrdersJPanel extends JPanel{
 
     /**
      * data
      */
-    MasterOrderList masterModel = MasterOrderList.getInstance();
 
     /**
      * table
@@ -55,8 +52,6 @@ public class ViewOrdersJPanel extends JPanel{
         titles.add("Order Status");
 
         data = new Vector<>();//目前还没有数据，之后还要改
-        //需要传参
-        //data.addAll(masterModel.getData());
 
         tableModel = new DefaultTableModel(data, titles);
 

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Order {
 
-    private HashMap<OrderItem, Product> OrderAndProductMap = new HashMap<>();
+    private HashMap<String, ArrayList<OrderItem>> orderMap;
 
     /*
     List<ShopItem> list;

@@ -1,8 +1,7 @@
-package ui.SuperMarket.codeVersionUI_ignore_it.viewOrder_Code;
+package ui.SuperMarket.viewOrder;
 
 import javax.swing.*;
 import java.awt.*;
-
 
 public class UpdateOrderStatusJPanel extends JPanel{
 
