@@ -3,22 +3,20 @@ package model;
 import jdk.jfr.Name;
 
 public class CommunityInfo {
-    @Name("communityName")
+
     public String communityName;
-    @Name("communityAddress")
-    public String communityAddress;
-    @Name("communityZipcode")
-    public String communityZipcode;
-    @Name("communityPhone")
+    public String communityAdd;
+    public String communityZip;
     public String communityPhone;
 
-    public CommunityInfo(String communityName, String communityAddress, String communityZipcode, String communityPhone) {
+    public CommunityInfo() { }
+
+    public CommunityInfo(String communityName, String communityAdd, String communityZip, String communityPhone) {
         this.communityName = communityName;
-        this.communityAddress = communityAddress;
-        this.communityZipcode = communityZipcode;
+        this.communityAdd = communityAdd;
+        this.communityZip = communityZip;
         this.communityPhone = communityPhone;
     }
-
 
     public String getCommunityName() {
         return communityName;
@@ -28,20 +26,20 @@ public class CommunityInfo {
         this.communityName = communityName;
     }
 
-    public String getCommunityAddress() {
-        return communityAddress;
+    public String getCommunityAdd() {
+        return communityAdd;
     }
 
-    public void setCommunityAddress(String communityAddress) {
-        this.communityAddress = communityAddress;
+    public void setCommunityAdd(String communityAdd) {
+        this.communityAdd = communityAdd;
     }
 
-    public String getCommunityZipcode() {
-        return communityZipcode;
+    public String getCommunityZip() {
+        return communityZip;
     }
 
-    public void setCommunityZipcode(String communityZipcode) {
-        this.communityZipcode = communityZipcode;
+    public void setCommunityZip(String communityZip) {
+        this.communityZip = communityZip;
     }
 
     public String getCommunityPhone() {

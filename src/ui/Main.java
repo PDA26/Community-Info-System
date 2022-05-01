@@ -24,7 +24,6 @@ public class Main {
     private JTable tableResident;
     private Community residentDir;
 
-
     public Main(){
         JPanelContent.add("Resident", new ui.Resident().getPanel());
         ButtonGroup buttonGroup_Main = new ButtonGroup();
@@ -41,7 +40,7 @@ public class Main {
                     //jump to resident
                     ((CardLayout) JPanelContent.getLayout()).show(JPanelContent, "Resident");
                 }else{
-                    JOptionPane.showMessageDialog(JPanelMain, "Wrong usrname or pwd!!!");
+                    JOptionPane.showMessageDialog(JPanelMain, "Wrong usrname or pwd of Resident!!!");
                 }
             }
         });
@@ -52,10 +51,6 @@ public class Main {
             }
         });
     }
-
-//    public JPanel getPanel() {
-//        return Main();
-//    }
 
     public static void main(String[] args) {
 //        try {
@@ -73,8 +68,6 @@ public class Main {
         frame.setVisible(true);
 
     }
-
-
 
     private void createUIComponents() {
         DefaultTableCellRenderer DateRenderer = new DefaultTableCellRenderer() {

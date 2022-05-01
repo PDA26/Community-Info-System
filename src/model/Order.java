@@ -1,12 +1,18 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
+/**
+ * Order
+ */
 public class Order {
-    List<ShopItem> list;
+
+    private HashMap<OrderItem, Product> OrderAndProductMap = new HashMap<>();
+
+    /*List<ShopItem> list;
 
     public Order() {
         this.list = new LinkedList<>();
@@ -19,5 +25,5 @@ public class Order {
             }
         }
         list.add(si);
-    }
+    }*/
 }

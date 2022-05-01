@@ -1,6 +1,7 @@
 package ui.Community;
 
 import model.CommunityInfo;
+import model.CommunityModel;
 import model.Resident;
 
 import javax.swing.*;
@@ -8,66 +9,172 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class addCommunity {
+public class addCommunity extends JPanel {
 
-    private JTextField txtCommunityName;
-    private JTextField txtCommunityAddress;
-    private JTextField txtCommunityZipcode;
-    private JTextField txtCommunityPhone;
-    private JPanel panelAddCommunity;
+    CommunityModel communityModel = CommunityModel.getInstance();
 
-    public static CommunityInfo showCommunityAdd(Component parent, CommunityInfo communityInfo) {
-        addCommunity addCommunity = new addCommunity();
-        String title = "Please Add New Community!!";
+    private JPanel topJPanel;
+    private JPanel middleJPanel;
+    private JPanel bottomJPanel;
+    private JPanel JPanelContent;
+    JFrame jFrame = new JFrame();
 
-        addCommunity.txtCommunityName.setText(communityInfo.communityName);
-        addCommunity.txtCommunityAddress.setText(communityInfo.communityAddress);
-        addCommunity.txtCommunityZipcode.setText(communityInfo.communityZipcode);
-        addCommunity.txtCommunityPhone.setText(communityInfo.communityPhone);
+    JButton btnAdd = new JButton("Add");
+    JButton btnBack = new JButton("<< Back");
+    JLabel titleJLabel = new JLabel("Please Add New Community!");
+    JTextField txtName = new JTextField();
+    JTextField txtAdd = new JTextField();
+    JTextField txtZip = new JTextField();
+    JTextField txtPhone = new JTextField();
+    JLabel lblName = new JLabel("Community Name:");
+    JLabel lblAdd = new JLabel("Community Address:");
+    JLabel lblZipcode= new JLabel("Community Zipcode:");
+    JLabel lblPhone = new JLabel("Community Contact Phone:");
 
-        int selection = JOptionPane.showConfirmDialog(parent,
-                                    addCommunity.panelAddCommunity,
-                                    title,
-                                    JOptionPane.OK_CANCEL_OPTION,
-                                    JOptionPane.PLAIN_MESSAGE);
+    public addCommunity() {
+        setStyle();
+        InitData();
+        InitView();
 
-        if (selection == JOptionPane.OK_OPTION) {
+        btnAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-            String communityName = addCommunity.txtCommunityName.getText();
-            String communityAddress = addCommunity.txtCommunityAddress.getText();
-            String communityZipcode = addCommunity.txtCommunityZipcode.getText();
-            String communityPhone = addCommunity.txtCommunityPhone.getText();
+                CommunityInfo communityInfo = new CommunityInfo();
 
-            if (communityName.isBlank()) {
-                JOptionPane.showMessageDialog(addCommunity.panelAddCommunity, "Miss Community Name!");
-                return null;
+                String name = txtName.getText();
+                String address = txtAdd.getText();
+                String zipcode = txtZip.getText();
+                String phone = txtPhone.getText();
+
+                while (true) {
+                    if (name.isBlank() || address.isBlank() || zipcode.isBlank() || phone.isBlank()) {
+                        JOptionPane.showMessageDialog(addCommunity.this, "Please enter whole information!");
+                        break;
+                    }
+                    else if (!Character.isDigit(phone.charAt(0))) {
+                        JOptionPane.showMessageDialog(addCommunity.this, "Invalid enter of contact phone!");
+                        break;
+                    }
+                    else {
+                        communityInfo.setCommunityName(name);
+                        communityInfo.setCommunityAdd(address);
+                        communityInfo.setCommunityZip(zipcode);
+                        communityInfo.setCommunityPhone(phone);
+                        communityModel.addNewCommunity(communityInfo);
+                        JOptionPane.showMessageDialog(addCommunity.this, "Community Saved!");
+                        jFrame.setVisible(false);
+                        JPanelContent.add("CommunityMain", new ui.Community.communityMain().getFrame());
+                        ((CardLayout) JPanelContent.getLayout()).show(JPanelContent, "CommunityMain");
+                    }
+                }
             }
+        });
 
-            if (communityAddress.isBlank()) {
-                JOptionPane.showMessageDialog(addCommunity.panelAddCommunity, "Miss Community Address!");
-                return null;
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jFrame.setVisible(false);
+                JPanelContent.add("CommunityMain", new ui.Community.communityMain().getFrame());
+                ((CardLayout) JPanelContent.getLayout()).show(JPanelContent, "CommunityMain");
+//                jFrame.setVisible(false);
             }
-
-            if (communityZipcode.isBlank()) {
-                JOptionPane.showMessageDialog(addCommunity.panelAddCommunity, "Miss Community Zipcode!");
-                return null;
-            }
-
-            if (communityPhone.isBlank()) {
-                JOptionPane.showMessageDialog(addCommunity.panelAddCommunity, "Miss Community Contact Phone!");
-                return null;
-            }
-
-            communityInfo.communityName = communityName;
-            communityInfo.communityAddress = communityAddress;
-            communityInfo.communityZipcode = communityZipcode;
-            communityInfo.communityPhone = communityPhone;
-
-            return communityInfo;
-        }
-        else {
-            return null;
-        }
+        });
 
     }
+
+    private void InitData() {
+    }
+
+    private void InitView() {
+        CreateTopJPanel();
+        CreateMiddleJPanel();
+        CreateBottomJPanel();
+
+        JPanel panelContainer = new JPanel();
+        panelContainer.setLayout(new GridBagLayout());
+
+        GridBagConstraints constraintsForTop = new GridBagConstraints();
+        constraintsForTop.gridx = 0;
+        constraintsForTop.gridy = 0;
+        constraintsForTop.weightx = 1;
+        constraintsForTop.weighty = 0;
+        constraintsForTop.fill = GridBagConstraints.CENTER;
+        panelContainer.add(topJPanel, constraintsForTop);
+
+        GridBagConstraints constraintsForMiddle = new GridBagConstraints();
+        constraintsForMiddle.gridx = 0;
+        constraintsForMiddle.gridy = 1;
+        constraintsForMiddle.weightx = 0;
+        constraintsForMiddle.weighty = 0;
+        constraintsForMiddle.fill = GridBagConstraints.CENTER;
+        panelContainer.add(middleJPanel, constraintsForMiddle);
+
+        GridBagConstraints constraintsForBottom = new GridBagConstraints();
+        constraintsForBottom.gridx = 0;
+        constraintsForBottom.gridy = 2;
+        constraintsForBottom.weightx = 1;
+        constraintsForBottom.weighty = 0;
+        constraintsForBottom.fill = GridBagConstraints.CENTER;
+        panelContainer.add(bottomJPanel, constraintsForBottom);
+
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setVisible(true);
+        panelContainer.setOpaque(true);
+        jFrame.setSize(new Dimension(800, 800));
+        jFrame.setContentPane(panelContainer);
+    }
+
+    private void setStyle() {
+        Font font_title = new Font(Font.SERIF, Font.PLAIN, 24);
+        titleJLabel.setFont(font_title);
+    }
+
+    private void CreateTopJPanel() {
+        topJPanel = new JPanel();
+        topJPanel.setLayout(new BoxLayout(topJPanel, BoxLayout.Y_AXIS));
+
+        topJPanel.add(Box.createVerticalStrut(10));
+        topJPanel.add(titleJLabel);
+        topJPanel.add(Box.createVerticalStrut(30));
+    }
+
+    private void CreateMiddleJPanel() {
+        middleJPanel = new JPanel();
+        middleJPanel.setLayout(new BoxLayout(middleJPanel, BoxLayout.Y_AXIS));
+
+        JPanel midJPanel = new JPanel(new GridLayout(4, 2, 25, 50));
+        midJPanel.add(lblName);
+        midJPanel.add(txtName);
+        midJPanel.add(lblAdd);
+        midJPanel.add(txtAdd);
+        midJPanel.add(lblZipcode);
+        midJPanel.add(txtZip);
+        midJPanel.add(lblPhone);
+        midJPanel.add(txtPhone);
+
+        middleJPanel.add(midJPanel);
+    }
+
+    private void CreateBottomJPanel() {
+        bottomJPanel = new JPanel();
+        bottomJPanel.setLayout(new BoxLayout(bottomJPanel, BoxLayout.Y_AXIS));
+
+        JPanel btnJPanel = new JPanel(new GridLayout(1, 2, 25, 50));
+        btnJPanel.add(btnBack);
+        btnJPanel.add(btnAdd);
+
+        bottomJPanel.add(Box.createVerticalStrut(10));
+        bottomJPanel.add(btnJPanel);
+        bottomJPanel.add(Box.createVerticalStrut(10));
+    }
+
+    public JFrame getFrame() {
+        return jFrame;
+    }
+
+//    public static void main(String[] args) {
+//
+//        new addCommunity();
+//    }
 }

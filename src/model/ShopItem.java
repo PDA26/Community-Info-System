@@ -2,6 +2,9 @@ package model;
 
 import java.util.Date;
 
+/**
+ * Order Items
+ */
 public class ShopItem {
     String name;
     int price;
