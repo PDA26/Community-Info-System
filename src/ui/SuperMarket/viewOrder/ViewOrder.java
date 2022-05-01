@@ -173,9 +173,9 @@ public class ViewOrder {
                     List<Order> list = aptOrderCatalog.getList();
                     for (Order order : list) {
 
-                        if (order.getId() == IDForUpdateStatus){
+                        if (order.getStatus() == Order.OrderStatus.ACCEPTED){
 
-//                        System.out.println(order);
+                        System.out.println(order);
 
                             order.setStatus(Order.OrderStatus.SHIPPED);
 

@@ -42,18 +42,6 @@ public class OrderDetail {
         OrderCenter oc = market.getOc();
         CommunityOrderCatalog coc = oc.getMap().get(currCommunity);
         AptOrderCatalog aoc = coc.getByAptNo(currApt);
-//        AptOrderCatalog curr_aptOrderCatalog = communityModel.getCommunityByKey(key).getOrders().getByAptNo(key);
-
-        /**
-         * 这里怎么获取当前的 curr_aptOrderCatalog 方法是有问题的
-         */
-//        curr_aptOrderCatalog = communityModel.getCommunityByKey(key).getOrders().getByAptNo(key);
-
-//        String[] titleOrder = {"ID", "Date", "Name", "Quantity", "Unit Price", "Status"};
-//        String[][] curr_list = aoc.getAllOrderDetails();
-//
-//        tableOrder = new JTable(curr_list, titleOrder);
-
 
         labelName.setText(currApt);
 
