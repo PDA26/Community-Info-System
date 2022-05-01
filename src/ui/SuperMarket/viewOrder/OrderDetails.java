@@ -3,7 +3,9 @@ package ui.SuperMarket.viewOrder;
 import model.OrderData.AptOrderCatalog;
 import model.OrderData.CommunityOrderCatalog;
 import model.OrderData.Order;
+import model.OrderData.OrderCenter;
 import model.Product;
+import model.SuperMarket.SuperMarket;
 import ui.Main;
 
 import javax.swing.*;
@@ -33,11 +35,15 @@ public class OrderDetails {
     private JLabel nameLabel;
     private JPanel ViewOrderDetailsJPanel;
     private JButton backToOrderInterfaceButton;
-    private JButton updateOrderStatusButton;
+
+
     private String communityName;
     private String time;
+    private int orderID;
 
-    private AptOrderCatalog currentAptOrderCatalog = new AptOrderCatalog();
+    private AptOrderCatalog currentApt;
+
+//    private SuperMarket superMarket = SuperMarket.getInstance();
 
     private void InitTable() {
 
@@ -45,19 +51,19 @@ public class OrderDetails {
 //        data.addAll(productModel.getData());
         orderDetailsJTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         orderDetailsJTable.setModel(tableModel);
-        tableModel.addColumn("ID");
-        tableModel.addColumn("Date");
         tableModel.addColumn("Product Name");
+        tableModel.addColumn("Price");
+        tableModel.addColumn("Modified Date");
         tableModel.addColumn("Quantity");
-        tableModel.addColumn("Unit Price");
-//        tableModel.addColumn("Status");
+//        tableModel.addColumn("Unit Price");
+        tableModel.addColumn("Status");
 
     }
 
     public OrderDetails() {
 
+
         InitTable();
-        nameLabel.setText(communityName);
 
         populateTable();
 
@@ -68,51 +74,86 @@ public class OrderDetails {
             }
         });
 
-        updateOrderStatusButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //TODO - yes or no to change status from 'PENDING' TO 'ACCEPTED'
-                int i = JOptionPane.showConfirmDialog(ViewOrderDetailsJPanel, "Do you want to change order status?",
-                        "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                if(i == 0){
-                    //yes
-                    int row = orderDetailsJTable.getSelectedRow();
-                    allOrderDetails[row][5] = Order.OrderStatus.ACCEPTED.toString();
-
-                    populateTable();
-
-                }else{
-
-                    return;
-
-                }
-            }
-        });
-
     }
 
     public void populateTable() {
+
+
+//        System.out.println("community selected is  " + this.communityName);
+
         DefaultTableModel model = (DefaultTableModel) orderDetailsJTable.getModel();
         model.setRowCount(0);
-        Object[ ] row = new Object[5];
-        allOrderDetails = currentAptOrderCatalog.getAllOrderDetails();
-        for (int a = 0; a < allOrderDetails.length; a ++) {
-            for (int i = 0; i < allOrderDetails[a].length; i ++) {
 
-                row[i] = allOrderDetails[a][i];
+//        AptOrderCatalog currentAptOrderCatalog = new AptOrderCatalog();
+
+
+        //allOrderDetails = currentAptOrderCatalog.getAllOrderDetails();
+        SuperMarket superMarket = SuperMarket.getInstance();
+        OrderCenter oc = superMarket.getOc();
+
+        Map<String, CommunityOrderCatalog> map01 = oc.getMap();
+
+        Set<Map.Entry<String, CommunityOrderCatalog>> entries = map01.entrySet();
+        for (Map.Entry<String, CommunityOrderCatalog> entry : entries) {
+
+            String key = entry.getKey();
+            CommunityOrderCatalog value = entry.getValue();
+
+//            System.out.println(key + "  " + value);
+
+//            Set<Map.Entry<String, AptOrderCatalog>> entries1 = value.getMap().entrySet();
+
+            AptOrderCatalog aptOrderCatalog = value.getMap().get(communityName);
+            if (aptOrderCatalog != null) {
+
+                List<Order> list = aptOrderCatalog.getList();
+                for (Order order : list) {
+
+                    if (order.getId() == orderID){
+
+//                        System.out.println(order);
+                        List<Product> itemList = order.getItemList();
+                        for (Product product : itemList) {
+//                            System.out.println(product);
+                            Object[ ] row = new Object[5];
+                            row[0] = product.getName();
+                            row[1] = product.getPrice();
+                            row[2] = product.getModifiedDate();
+                            row[3] = product.getQuantity();
+                            row[4] = product.getInStock();
+
+                            model.addRow(row);
+
+                        }
+
+                    }
+
+                }
 
             }
-            model.addRow(row);
+
         }
 
     }
 
+    public JLabel getNameLabel() {
+        return nameLabel;
+    }
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
 
     public String getCommunityName() {
         return communityName;
     }
 
     public void setCommunityName(String communityName) {
+        nameLabel.setText(communityName);
         this.communityName = communityName;
     }
 
@@ -122,12 +163,6 @@ public class OrderDetails {
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-    public void setCurrentAptOrderCatalog(CommunityOrderCatalog communityOrderCatalog, String name) {
-
-        this.currentAptOrderCatalog = communityOrderCatalog.getMap().get(name);
-
     }
 
     public JPanel getPanel() {

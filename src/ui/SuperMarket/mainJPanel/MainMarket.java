@@ -1,5 +1,8 @@
 package ui.SuperMarket.mainJPanel;
 
+import model.CommunityData.CommunityModel;
+import model.OrderData.CommunityOrderCatalog;
+import model.OrderData.Order;
 import model.SuperMarket.SuperMarket;
 import ui.Main;
 import ui.SuperMarket.viewMenu.ViewItemMenu;
@@ -9,6 +12,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class MainMarket {
 
@@ -41,11 +47,17 @@ public class MainMarket {
             Main.gotoPanel("ViewItemMenu");
         });
 
-        viewOrder = new ViewOrder();
-        Main.addPanel(viewOrder.getPanel(), "ViewOrder");
+
         viewOrderButton.addActionListener(e -> {
             //TODO view all orders in this market
-            viewOrder.setCurrentOrderCenter(currentSuperMarket.getOc());
+
+//            CommunityModel communityModel = CommunityModel.getInstance();
+
+
+            viewOrder = new ViewOrder();
+            Main.addPanel(viewOrder.getPanel(), "ViewOrder");
+
+            //viewOrder.setCurrentOrderCenter(currentSuperMarket.getOc());
             Main.gotoPanel("ViewOrder");
         });
 
