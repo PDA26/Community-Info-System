@@ -1,7 +1,6 @@
-package ui.SuperMarket.viewOrder;
+package ui.SuperMarket.codeVersionUI_ignore_it.viewOrder_Code;
 
-import ui.SuperMarket.MainProcess;
-import ui.SuperMarket.mainJPanel.MarketMainJPanel;
+import ui.SuperMarket.codeVersionUI_ignore_it.MainProcess;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class ViewOrdersJPanel extends JPanel{
+public class ViewOrderDetailsJPanel extends JPanel{
 
     /**
      * data
@@ -30,13 +29,15 @@ public class ViewOrdersJPanel extends JPanel{
     private static JPanel middleJPanel;
     private static JPanel bottomJPanel;
 
-    JLabel titleJLabel = new JLabel("All Orders From Different Communities");
-    JButton viewOrderDetailsJButton = new JButton("View Order Details");
-    JButton updateOrderStatusJButton = new JButton("Update Order Status");
-    JButton backToMarketJButton = new JButton("<< Back to Market Interface");
+    JLabel titleJLabel = new JLabel("Order Details");
+    JLabel communityNameJLabel = new JLabel("Community Name: ");
+    JLabel communityName = new JLabel();
+    JLabel orderTimeJLabel = new JLabel("Order Time: ");
+    JLabel orderTime = new JLabel();
+    JButton backToOrders = new JButton("<< Back to Orders Interface");
     JTable jTable;
 
-    public ViewOrdersJPanel() {
+    public ViewOrderDetailsJPanel() {
 
         InitData();
         InitViews();
@@ -46,10 +47,10 @@ public class ViewOrdersJPanel extends JPanel{
     private void InitData() {
 
         titles = new Vector<>();
-        titles.add("ID");
-        titles.add("Community Name");
-        titles.add("Order Time");
-        titles.add("Order Status");
+        titles.add("Item Name");
+        titles.add("Unit Price");
+        titles.add("Quantity");
+        titles.add("Price");
 
         data = new Vector<>();//目前还没有数据，之后还要改
 
@@ -89,24 +90,10 @@ public class ViewOrdersJPanel extends JPanel{
         constraintsForBottom.fill = GridBagConstraints.HORIZONTAL;
         add(bottomJPanel, constraintsForBottom);
 
-        viewOrderDetailsJButton.addActionListener(new ActionListener() {
+        backToOrders.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainProcess.getInstance().changeFrame(new ViewOrderDetailsJPanel());
-            }
-        });
-
-        updateOrderStatusJButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainProcess.getInstance().changeFrame(new UpdateOrderStatusJPanel());
-            }
-        });
-
-        backToMarketJButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainProcess.getInstance().changeFrame(new MarketMainJPanel());
+                MainProcess.getInstance().changeFrame(new ViewOrdersJPanel());
             }
         });
 
@@ -118,7 +105,7 @@ public class ViewOrdersJPanel extends JPanel{
         topJPanel.setLayout(new BoxLayout(topJPanel, BoxLayout.Y_AXIS));
 
         topJPanel.add(Box.createVerticalStrut(10));
-        topJPanel.add(backToMarketJButton);
+        topJPanel.add(backToOrders);
         topJPanel.add(Box.createVerticalStrut(10));
 
     }
@@ -132,18 +119,20 @@ public class ViewOrdersJPanel extends JPanel{
         upJPanel.setLayout(new BoxLayout(upJPanel, BoxLayout.X_AXIS));
         upJPanel.add(titleJLabel);
 
+        JPanel downJPanel = new JPanel();
+        downJPanel.setLayout(new BoxLayout(downJPanel, BoxLayout.X_AXIS));
+        downJPanel.add(Box.createHorizontalStrut(10));
+        downJPanel.add(communityNameJLabel);
+        downJPanel.add(Box.createHorizontalStrut(5));
+        downJPanel.add(communityName);
+        downJPanel.add(Box.createHorizontalGlue());
+        downJPanel.add(orderTimeJLabel);
+        downJPanel.add(Box.createHorizontalStrut(5));
+        downJPanel.add(orderTime);
+        downJPanel.add(Box.createHorizontalStrut(10));
+
         middleJPanel.add(Box.createVerticalStrut(10));
         middleJPanel.add(upJPanel);
-        middleJPanel.add(Box.createVerticalStrut(10));
-
-        JPanel downJPanel = new JPanel();
-        downJPanel.setLayout(new BoxLayout(downJPanel, BoxLayout.Y_AXIS));
-        jTable = new JTable(tableModel);
-        jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JScrollPane scrollPane = new JScrollPane(jTable);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        downJPanel.add(scrollPane);
-
         middleJPanel.add(Box.createVerticalStrut(10));
         middleJPanel.add(downJPanel);
         middleJPanel.add(Box.createVerticalStrut(10));
@@ -157,11 +146,11 @@ public class ViewOrdersJPanel extends JPanel{
 
         JPanel contentJPanel = new JPanel();
         contentJPanel.setLayout(new BoxLayout(contentJPanel, BoxLayout.X_AXIS));
-        contentJPanel.add(Box.createHorizontalStrut(10));
-        contentJPanel.add(viewOrderDetailsJButton);
-        contentJPanel.add(Box.createHorizontalGlue());
-        contentJPanel.add(updateOrderStatusJButton);
-        contentJPanel.add(Box.createHorizontalStrut(10));
+        jTable = new JTable(tableModel);
+        jTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrollPane = new JScrollPane(jTable);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        contentJPanel.add(scrollPane);
 
         bottomJPanel.add(Box.createVerticalStrut(10));
         bottomJPanel.add(contentJPanel);
@@ -170,7 +159,7 @@ public class ViewOrdersJPanel extends JPanel{
     }
 
     public static void main(String[] args) {
-        //new ViewOrdersJPanel();
+        //new ViewOrderDetailsJPanel();
     }
 
 }

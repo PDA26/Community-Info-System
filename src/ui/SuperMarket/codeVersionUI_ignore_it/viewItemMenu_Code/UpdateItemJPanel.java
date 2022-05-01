@@ -1,17 +1,20 @@
-package ui.SuperMarket.viewItemMenu;
+package ui.SuperMarket.codeVersionUI_ignore_it.viewItemMenu_Code;
 
-import ui.SuperMarket.MainProcess;
+import model.SuperMarket.orderCenter.Product;
+import model.SuperMarket.orderCenter.ProductCatalog;
+import ui.SuperMarket.codeVersionUI_ignore_it.MainProcess;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddItemJPanel extends JPanel{
+public class UpdateItemJPanel extends JPanel{
 
     /**
      * data
      */
+    ProductCatalog productModel = ProductCatalog.getInstance();
 
     /**
      * components
@@ -21,7 +24,7 @@ public class AddItemJPanel extends JPanel{
     private JPanel bottomJPanel;
 
     JButton backJButton = new JButton("<< Back");
-    JLabel titleJLabel         = new JLabel("Add New Item Profile");
+    JLabel titleJLabel         = new JLabel("Update Item Profile");
     JLabel nameJLabel          = new JLabel("  Item Name: ");
     JLabel priceJLabel         = new JLabel("      Price: ");
     JLabel modifiedDateJLabel  = new JLabel("Update time: ");
@@ -32,16 +35,21 @@ public class AddItemJPanel extends JPanel{
     JTextField updateTimeField = new JTextField(20);
     JTextField quantityField = new JTextField(20);
     JComboBox itemStatusComboBox = new JComboBox();
-    JButton addJButton = new JButton("Add");
+    JButton addJButton = new JButton("Update");
 
-
-    public AddItemJPanel() {
+    public UpdateItemJPanel() {
 
         InitData();
         InitView();
+
     }
 
     private void InitData() {
+
+        nameField.setText(productModel.getCurrentProduct().getName());
+        priceField.setText(Double.toString(productModel.getCurrentProduct().getPrice()));
+        updateTimeField.setText(productModel.getCurrentProduct().getModifiedDate());
+        quantityField.setText(Integer.toString(productModel.getCurrentProduct().getQuantity()));
 
     }
 
@@ -81,6 +89,42 @@ public class AddItemJPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainProcess.getInstance().changeFrame(new ViewItemMenuJPanel());
+            }
+        });
+
+        //update the profile
+        addJButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (nameField.getText().isEmpty()
+                        || priceField.getText().isEmpty()
+                        || updateTimeField.getText().isEmpty()
+                        || quantityField.getText().isEmpty()
+                        || itemStatusComboBox.getSelectedIndex() == 0) {
+
+                    MainProcess.getInstance().showDialog("information cannot be empty");
+
+                }else {
+
+                    Product product = new Product();
+                    product.setName(nameField.getText());
+                    product.setPrice(Double.parseDouble(priceField.getText()));
+                    product.setModifiedDate(updateTimeField.getText());
+                    product.setQuantity(Integer.parseInt(quantityField.getText()));
+                    product.setItemStatus(itemStatusComboBox.getSelectedIndex());
+
+                    productModel.addNewProduct(product);
+
+                    MainProcess.getInstance().showDialog("Item Profile Has Been Updated Successfully!!");
+
+                    //check the data
+                    //productModel.printCatalog();
+
+                    MainProcess.getInstance().changeFrame(new ViewItemMenuJPanel());
+
+                }
+
             }
         });
 
@@ -165,7 +209,7 @@ public class AddItemJPanel extends JPanel{
     }
 
     public static void main(String[] args) {
-        //new AddItemJPanel();
+        new UpdateItemJPanel();
     }
 
 }

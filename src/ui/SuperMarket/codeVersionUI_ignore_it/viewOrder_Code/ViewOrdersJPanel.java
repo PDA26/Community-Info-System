@@ -1,7 +1,8 @@
-package ui.SuperMarket.viewItemMenu;
+package ui.SuperMarket.codeVersionUI_ignore_it.viewOrder_Code;
 
-import ui.SuperMarket.MainProcess;
-import ui.SuperMarket.mainJPanel.MarketMainJPanel;
+import model.SuperMarket.orderCenter.MasterOrderList;
+import ui.SuperMarket.codeVersionUI_ignore_it.MainProcess;
+import ui.SuperMarket.codeVersionUI_ignore_it.mainJPanel_Code.MarketMainJPanel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,16 +11,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class ViewItemMenuJPanel extends JPanel{
+public class ViewOrdersJPanel extends JPanel{
 
     /**
      * data
      */
+    MasterOrderList masterModel = MasterOrderList.getInstance();
 
     /**
      * table
      */
-    Vector<String> titles;
+    Vector<Object> titles;
     Vector<Vector<Object>> data;
     DefaultTableModel tableModel;
 
@@ -30,14 +32,13 @@ public class ViewItemMenuJPanel extends JPanel{
     private static JPanel middleJPanel;
     private static JPanel bottomJPanel;
 
-    JLabel titleJLabel = new JLabel("Menu of all the items");
-    JButton addItemJButton = new JButton("Add New Item");
-    JButton modifyItemJButton = new JButton("Modify Item");
-    JButton deleteItemJButton = new JButton("Delete New Item");
+    JLabel titleJLabel = new JLabel("All Orders From Different Communities");
+    JButton viewOrderDetailsJButton = new JButton("View Order Details");
+    JButton updateOrderStatusJButton = new JButton("Update Order Status");
     JButton backToMarketJButton = new JButton("<< Back to Market Interface");
     JTable jTable;
 
-    public ViewItemMenuJPanel() {
+    public ViewOrdersJPanel() {
 
         InitData();
         InitViews();
@@ -47,13 +48,14 @@ public class ViewItemMenuJPanel extends JPanel{
     private void InitData() {
 
         titles = new Vector<>();
-        titles.add("Item Name");
-        titles.add("Price");
-        titles.add("Modified Date");
-        titles.add("Quantity");
-        titles.add("Item Status");
+        titles.add("ID");
+        titles.add("Community Name");
+        titles.add("Order Time");
+        titles.add("Order Status");
 
         data = new Vector<>();//目前还没有数据，之后还要改
+        //需要传参
+        //data.addAll(masterModel.getData());
 
         tableModel = new DefaultTableModel(data, titles);
 
@@ -91,17 +93,17 @@ public class ViewItemMenuJPanel extends JPanel{
         constraintsForBottom.fill = GridBagConstraints.HORIZONTAL;
         add(bottomJPanel, constraintsForBottom);
 
-        addItemJButton.addActionListener(new ActionListener() {
+        viewOrderDetailsJButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainProcess.getInstance().changeFrame(new AddItemJPanel());
+                MainProcess.getInstance().changeFrame(new ViewOrderDetailsJPanel());
             }
         });
 
-        modifyItemJButton.addActionListener(new ActionListener() {
+        updateOrderStatusJButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainProcess.getInstance().changeFrame(new UpdateItemJPanel());
+                MainProcess.getInstance().changeFrame(new UpdateOrderStatusJPanel());
             }
         });
 
@@ -160,12 +162,10 @@ public class ViewItemMenuJPanel extends JPanel{
         JPanel contentJPanel = new JPanel();
         contentJPanel.setLayout(new BoxLayout(contentJPanel, BoxLayout.X_AXIS));
         contentJPanel.add(Box.createHorizontalStrut(10));
-        contentJPanel.add(addItemJButton);
-        contentJPanel.add(Box.createHorizontalStrut(30));
-        contentJPanel.add(modifyItemJButton);
-        contentJPanel.add(Box.createHorizontalStrut(30));
-        contentJPanel.add(deleteItemJButton);
+        contentJPanel.add(viewOrderDetailsJButton);
         contentJPanel.add(Box.createHorizontalGlue());
+        contentJPanel.add(updateOrderStatusJButton);
+        contentJPanel.add(Box.createHorizontalStrut(10));
 
         bottomJPanel.add(Box.createVerticalStrut(10));
         bottomJPanel.add(contentJPanel);
@@ -174,7 +174,7 @@ public class ViewItemMenuJPanel extends JPanel{
     }
 
     public static void main(String[] args) {
-        //new ViewItemMenuJPanel();
+        //new ViewOrdersJPanel();
     }
 
 }
