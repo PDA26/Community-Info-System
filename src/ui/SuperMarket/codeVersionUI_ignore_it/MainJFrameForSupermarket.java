@@ -1,8 +1,7 @@
-package ui.SuperMarket;
+package ui.SuperMarket.codeVersionUI_ignore_it;
 
 
 import javax.swing.*;
-import java.awt.*;
 
 public class MainJFrameForSupermarket extends JFrame {
 
