@@ -4,16 +4,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import model.CommunityData.CommunityModel;
-import model.CommunityData.CommunityOrderCatalog;
-import model.SuperMarket.orderCenter.OrderCatalog;
-import model.OrderData.AptOrderCatalog;
-import ui.Community.communityView.communityManagement.communityManagement;
-import ui.Community.mainJPanel.communityMain;
 import ui.Main;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Vector;
 
 
@@ -53,7 +45,7 @@ public class communityOrders {
         String currentName = communityModel.getCurrentCommunity().getCommunityName();
         labelName.setText(currentName);
 
-        btnBack.addActionListener(e -> Main.gotoPanel("communityManagement"));
+        btnBack.addActionListener(e -> Main.gotoPanel("CommunityManagement"));
 
     }
 

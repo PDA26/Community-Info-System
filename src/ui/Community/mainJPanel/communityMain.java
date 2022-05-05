@@ -1,16 +1,12 @@
 package ui.Community.mainJPanel;
 
-import model.CommunityData.Communities;
-import model.CommunityInfo;
-import ui.Community.communityView.communityEditor.addCommunity;
-import ui.Community.communityView.communityManagement.communityManagement;
-import ui.Community.residentView.residentManagement;
-import ui.Login;
+import model.CommunityData.CommunityInfo;
+import ui.Community.communityView.communityManagement.CommunityManagement;
+import ui.Community.residentView.ResidentManagement;
 import model.CommunityData.CommunityModel;
 import ui.Main;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -28,7 +24,7 @@ public class communityMain {
     JLabel imgJLabel;
 
 
-    Communities communitiesDir;
+    CommunityModel communitiesDir;
     CommunityInfo communityInfo;
 
 //    ImageIcon logoIcon = new ImageIcon(new ImageIcon("src/ui/Community/img/ad.png").getImage().getScaledInstance(400, 300, Image.SCALE_AREA_AVERAGING));
@@ -39,12 +35,9 @@ public class communityMain {
 
     public communityMain() {
 
-        // panelCommunityMain.setOpaque(true);
-
-//        panelContent.add("communityManagement", new communityManagement().getPanel());
 
         btnAdd.addActionListener(actionEvent -> {
-            CommunityInfo c = addCommunity.showCommunityAdd(panelCommunityMain, null);
+            CommunityInfo c = AddCommunity.showCommunityAdd(panelCommunityMain, null);
             if(c != null){
                 ArrayList<String> names = new ArrayList<String>();
 
@@ -55,19 +48,8 @@ public class communityMain {
             }
         });
 
-//        System.out.println("test1");
-//
-//        ArrayList<String> names2 = new ArrayList<String>();
-//        for (String i: names) {
-//                names2.add(communityInfo.getCommunityName());
-//                System.out.println("test2");
-//        }
-//
-//        System.out.println("test3");
-
-
-
-        Main.addPanel(new communityManagement().getPanel(), "communityManagement");
+        CommunityManagement communityManagement = new CommunityManagement();
+        Main.addPanel(communityManagement.getPanel(), "CommunityManagement");
         btnToCom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,16 +60,16 @@ public class communityMain {
 //                  String name = communityName.get(index);
                     communityModel.setCurrentCommunity(index);
 
-                    Main.gotoPanel("communityManagement");
+                    Main.gotoPanel("CommunityManagement");
                 }
                 else {
                     JOptionPane.showMessageDialog(panelCommunityMain, "Please select a community!");
                 }
             }
         });
-
-        Main.addPanel(new residentManagement().getPanel(), "residentManagement");
-        btnToRes.addActionListener(e -> Main.gotoPanel("residentManagement"));
+        ResidentManagement residentManagement = new ResidentManagement();
+        Main.addPanel(residentManagement.getPanel(), "ResidentManagement");
+        btnToRes.addActionListener(e -> Main.gotoPanel("ResidentManagement"));
 
         btnBack.addActionListener(e -> Main.gotoPanel("Login"));
 

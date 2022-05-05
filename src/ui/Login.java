@@ -40,12 +40,12 @@ public class Login {
 
 
     public Login() {
-        Main.addPanel(new Resident().getPanel(), "Resident");
-        Main.addPanel(new communityMain().getPanel(), "Community");
+        //Main.addPanel(new Resident().getPanel(), "Resident");
+        //Main.addPanel(new communityMain().getPanel(), "Community");
         Main.addPanel(new MainMarket().getPanel(), "Market");
-        Main.addPanel(new CommunitySignUp().getPanel(), "SignUpCommunity");
-        Main.addPanel(new MarketSignUp().getPanel(), "SignUpMarket");
-        Main.addPanel(new DeliverySignUp().getPanel(), "SignUpDelivery");
+        //Main.addPanel(new CommunitySignUp().getPanel(), "SignUpCommunity");
+        //Main.addPanel(new MarketSignUp().getPanel(), "SignUpMarket");
+        //Main.addPanel(new DeliverySignUp().getPanel(), "SignUpDelivery");
 
         ButtonGroup buttonGroup_Main = new ButtonGroup();
         buttonGroup_Main.add(residentRadioButton);
@@ -137,34 +137,12 @@ public class Login {
             }
         });
 
-        System.out.println("test" + accountCatalog);
+        //System.out.println("test" + accountCatalog);
     }
 
     private void createUIComponents() {
-        DefaultTableCellRenderer DateRenderer = new DefaultTableCellRenderer() {
-            @Override
-            protected void setValue(Object value) {
-                if (value instanceof Date) {
-                    this.setText(DateFormat.getDateInstance().format(value));
-                } else {
-                    super.setValue(value);
-                }
-            }
-        };
-        DefaultTableCellRenderer DateTimeRenderer = new DefaultTableCellRenderer() {
-            @Override
-            protected void setValue(Object value) {
-                if (value instanceof Date) {
-                    this.setText(DateFormat.getDateTimeInstance().format(value));
-                } else {
-                    super.setValue(value);
-                }
-            }
-        };
-
         residentDir = new Community();
         tableResident = new JTable(residentDir);
-        // tableResident.setDefaultRenderer(Date.class, DateRenderer);
         tableResident.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 }

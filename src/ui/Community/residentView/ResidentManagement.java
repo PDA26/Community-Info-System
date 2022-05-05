@@ -15,7 +15,7 @@ import model.SuperMarket.orderCenter.ProductCatalog;
 import model.OrderData.AptOrderCatalog;
 import ui.Main;
 
-public class residentManagement {
+public class ResidentManagement {
 
 
     private JPanel panelResidentManagement;
@@ -42,7 +42,7 @@ public class residentManagement {
 
     int id = 0;
 
-    public residentManagement() {
+    public ResidentManagement() {
 
         // panelResidentManagement.setOpaque(true);
 

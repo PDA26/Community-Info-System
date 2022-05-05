@@ -2,8 +2,7 @@ package ui.Community.communityView.communityManagement;
 
 import model.Apartment;
 import model.CommunityData.CommunityModel;
-import model.CommunityInfo;
-import model.SuperMarket.orderCenter.OrderCatalog;
+import model.CommunityData.CommunityInfo;
 import model.OrderData.AptOrderCatalog;
 import ui.Community.mainJPanel.communityMain;
 
@@ -19,7 +18,7 @@ import ui.Community.communityView.communityOrder.communityOrders;
 import ui.Community.communityView.communityOrder.orderDetail;
 import ui.Main;
 
-public class communityManagement {
+public class CommunityManagement {
 
 
     private JButton btnBack;
@@ -37,7 +36,7 @@ public class communityManagement {
     DefaultTableModel tableModelOrder;
 
 
-    public communityManagement() {
+    public CommunityManagement() {
 
         // panel.setOpaque(true);
 
