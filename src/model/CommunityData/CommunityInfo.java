@@ -1,6 +1,8 @@
 package model.CommunityData;
 
 import jdk.jfr.Name;
+import model.OrderData.CommunityOrderCatalog;
+
 import java.util.*;
 
 public class CommunityInfo {
@@ -18,14 +20,8 @@ public class CommunityInfo {
     public String communityPhone;
 
     private List<String> aptList;
+    private CommunityOrderCatalog orders;
 
-    public List<String> getAptList() {
-        return aptList;
-    }
-
-    public void setAptList(List<String> aptList) {
-        this.aptList = aptList;
-    }
 
     public CommunityInfo() {
 
@@ -39,7 +35,25 @@ public class CommunityInfo {
         this.communityZipcode = communityZipcode;
         this.communityPhone = communityPhone;
         this.aptList = new ArrayList<>();
+        this.orders = new CommunityOrderCatalog();
     }
+
+    public CommunityOrderCatalog getOrders() {
+        return orders;
+    }
+
+    public void setOrders(CommunityOrderCatalog orders) {
+        this.orders = orders;
+    }
+
+    public List<String> getAptList() {
+        return aptList;
+    }
+
+    public void setAptList(List<String> aptList) {
+        this.aptList = aptList;
+    }
+
 
 
     public String getCommunityName() {
