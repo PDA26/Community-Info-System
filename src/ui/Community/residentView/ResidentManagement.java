@@ -51,7 +51,7 @@ public class ResidentManagement {
         titlesMenu.add("Price");
         titlesMenu.add("Item Status");
         titlesMenu.add("Quantity");
-
+        //TODO
         dataMenu.addElement((Vector<Product>) productCatalog.getProducts());
         tableModelMenu = new DefaultTableModel(dataMenu, titlesMenu);
 //        tableItem = new JTable(tableModelMenu);
