@@ -71,7 +71,7 @@ public class communityMain {
         Main.addPanel(residentManagement.getPanel(), "ResidentManagement");
         btnToRes.addActionListener(e -> Main.gotoPanel("ResidentManagement"));
 
-        btnBack.addActionListener(e -> Main.gotoPanel("Login"));
+        btnBack.addActionListener(e -> Main.gotoPanel("SignIn"));
 
     }
 

@@ -24,9 +24,9 @@ public class Main {
 
         frame.setLayout(new CardLayout());
 
-        Login login = new Login();
-        frame.add(login.getPanel(), "Login");
-        gotoPanel("Login");
+        SignIn signIn = new SignIn();
+        frame.add(signIn.getPanel(), "SignIn");
+        gotoPanel("SignIn");
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 800);

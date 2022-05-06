@@ -49,7 +49,7 @@ public class MainMarket {
             Main.gotoPanel("ViewOrder");
         });
 
-        backToMainButton.addActionListener(e -> Main.gotoPanel("Login"));
+        backToMainButton.addActionListener(e -> Main.gotoPanel("SignIn"));
 
     }
 
