@@ -8,16 +8,6 @@
 
 
 
-## Requirements
-
-1. The objective of the final project is for us to explore and the design and implementation of software systems for complex problems.
-2. At least 4 enterprises and 8 organization should be used, with communication by the usage of work requests.
-3. At least 3 work requests between enterprises and at least a total of 4 work requests in the whole system.
-4. Logical alignment with the real-time process. 
-5. Database support.
-
-
-
 ## Project Description
 The general goal of this design is to create a system for community group purchase, in order to reduce crowding shopping condition under the enviroment of COVID-19, as well as cut down the logistic costs and purchase efficiency.
 
